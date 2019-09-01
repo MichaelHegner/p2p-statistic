@@ -9,6 +9,7 @@ public enum Plattform {
 	INVESTLY, 
 	IUVO, 
 	MINTOS, 
+	NEOFINANCE, 
 	PEERBERRY, 
 	ROBOCASH, 
 	SWAPER, 
