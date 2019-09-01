@@ -11,7 +11,7 @@ class MintosExcelRowMapper implements RowMapper<MintosTransactionDto> {
 	MintosTransactionDto mapRow(RowSet rs) throws Exception {
 		def dto = MintosTransactionDto.newInstance()
 		dto.ID = rs.getColumnValue COL_ID
-		dto.myInvestments = rs.getColumnValue COL_INVESTMENT_VALUE
+		dto.investedAmount = rs.getColumnValue COL_INVESTMENT_VALUE
 		dto
 	}
 

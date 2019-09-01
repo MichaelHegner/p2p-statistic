@@ -10,7 +10,7 @@ public class MintosItemProcessor implements ItemProcessor<MintosTransactionDto, 
 	public TransactionEntity process(MintosTransactionDto dto) throws Exception {
 		def entity    = new TransactionEntity()
 		entity.id     = dto.ID
-		entity.amount = dto.myInvestments
+		entity.amount    = dto.investedAmount
 		entity
 	}
 
