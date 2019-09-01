@@ -13,5 +13,6 @@ public enum Plattform {
 	PEERBERRY, 
 	ROBOCASH, 
 	SWAPER, 
-	TWINO;
+	TWINO,
+	VIVENTOR;
 }
