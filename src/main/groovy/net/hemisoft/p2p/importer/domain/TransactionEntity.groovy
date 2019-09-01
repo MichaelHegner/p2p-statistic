@@ -6,7 +6,7 @@ import groovy.transform.ToString
 class TransactionEntity {
 	Long id                    // entity id
 	String transactionId       // transaction id
-	String loanId              // id of loan
+	Loan loan                  // id of loan
 	BigDecimal investedAmount  // invested amount by user
 	Plattform plattform        // p2p plattform
 }

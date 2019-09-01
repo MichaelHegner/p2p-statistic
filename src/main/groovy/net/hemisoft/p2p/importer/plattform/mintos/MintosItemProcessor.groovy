@@ -1,20 +1,14 @@
 package net.hemisoft.p2p.importer.plattform.mintos
 
-import org.springframework.batch.item.ItemProcessor
-
+import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
 import net.hemisoft.p2p.importer.domain.Plattform
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 
-public class MintosItemProcessor implements ItemProcessor<MintosTransactionDto, TransactionEntity> {
+public class MintosItemProcessor extends AbstractItemProcessor<MintosTransactionDto, TransactionEntity> {
 
-	@Override
-	public TransactionEntity process(MintosTransactionDto dto) throws Exception {
-		def entity       = new TransactionEntity()
-		entity.transactionId  = dto.transactionId
-		entity.loanId         = dto.loanId
-		entity.investedAmount = dto.investedAmount
-		entity.plattform = Plattform.MINTOS
-		entity
+	@Override TransactionEntity process(MintosTransactionDto dto) throws Exception {
+		super.process(dto)
 	}
-
+	
+	@Override Plattform createPlattform() { Plattform.MINTOS }
 }
