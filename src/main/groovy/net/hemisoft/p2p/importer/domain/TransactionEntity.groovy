@@ -5,6 +5,7 @@ import groovy.transform.ToString
 @ToString
 class TransactionEntity {
 	def id
-	def amount  
+	def amount
+	def plattform  
 }
  
