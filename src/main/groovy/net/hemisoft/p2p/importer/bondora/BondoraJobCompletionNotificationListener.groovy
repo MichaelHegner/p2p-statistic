@@ -13,7 +13,7 @@ public class BondoraJobCompletionNotificationListener extends JobExecutionListen
 			super.afterJob(jobExecution)
 			
 			if(BatchStatus.COMPLETED == jobExecution.status) {
-				log.info "!!! Twino Import Job finished. !!!"
+				log.info "!!! Bondora Import Job finished. !!!"
 			}
  		}
 }
