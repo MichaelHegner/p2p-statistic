@@ -4,6 +4,7 @@ public enum Plattform {
 	BONDORA, 
 	CROWDESTATE, 
 	ESTATEGURU, 
+	FINBEE,
 	FLENDER, 
 	GRUPEER, 
 	INVESTLY, 
