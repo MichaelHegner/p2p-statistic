@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.bondora;
+package net.hemisoft.p2p.importer.bondora
 
-class BondoraTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class BondoraTransactionDto extends AbstractTransactionDto {}

@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.iuvo;
+package net.hemisoft.p2p.importer.iuvo
 
-class IuvoTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class IuvoTransactionDto extends AbstractTransactionDto {}

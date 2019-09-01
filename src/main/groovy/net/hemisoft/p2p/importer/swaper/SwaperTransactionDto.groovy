@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.swaper;
+package net.hemisoft.p2p.importer.swaper
 
-class SwaperTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class SwaperTransactionDto extends AbstractTransactionDto {}

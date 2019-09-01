@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.investly;
+package net.hemisoft.p2p.importer.investly
 
-class InvestlyTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class InvestlyTransactionDto extends AbstractTransactionDto {}

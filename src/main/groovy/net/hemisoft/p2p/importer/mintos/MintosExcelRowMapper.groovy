@@ -1,18 +1,25 @@
 package net.hemisoft.p2p.importer.mintos
 
-import org.springframework.batch.item.excel.RowMapper
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
-class MintosExcelRowMapper implements RowMapper<MintosTransactionDto> {
-	private static final int COL_ID = 1
-	private static final int COL_INVESTMENT_VALUE = 17
+import net.hemisoft.p2p.importer.commons.ExcelColum
+import net.hemisoft.p2p.importer.commons.plattform.AbstractExcelRowMapper
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
 
-	@Override
-	MintosTransactionDto mapRow(RowSet rs) throws Exception {
-		def dto = MintosTransactionDto.newInstance()
-		dto.ID = rs.getColumnValue COL_ID
-		dto.investedAmount = rs.getColumnValue COL_INVESTMENT_VALUE
-		dto
+class MintosExcelRowMapper extends AbstractExcelRowMapper<MintosTransactionDto> {
+	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable
+	private static final int COL_LOAN_ID          = ExcelColum.B.ordinal()
+	private static final int COL_INVESTED_AMOUNT  = ExcelColum.R.ordinal()
+
+	@Override MintosTransactionDto mapRow(RowSet rs) throws Exception {
+		super.mapRow(rs)
 	}
-
+	
+	@Override int getTransactionIdColumnIndex()  { COL_TRANSACTION_ID  }
+	@Override int getLoanIdColumnIndex()         { COL_LOAN_ID         }
+	@Override int getInvestedAmountColumnIndex() { COL_INVESTED_AMOUNT }
+	
+	@Override AbstractTransactionDto createNewDto() {
+		MintosTransactionDto.newInstance()
+	}
 }

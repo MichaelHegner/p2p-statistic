@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.mintos;
+package net.hemisoft.p2p.importer.mintos
 
-class MintosTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class MintosTransactionDto extends AbstractTransactionDto {}

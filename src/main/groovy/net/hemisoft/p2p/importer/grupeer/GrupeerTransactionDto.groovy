@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.grupeer;
+package net.hemisoft.p2p.importer.grupeer
 
-class GrupeerTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class GrupeerTransactionDto extends AbstractTransactionDto {}

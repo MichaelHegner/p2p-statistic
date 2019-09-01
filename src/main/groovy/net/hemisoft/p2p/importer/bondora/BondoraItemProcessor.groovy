@@ -9,10 +9,11 @@ public class BondoraItemProcessor implements ItemProcessor<BondoraTransactionDto
 
 	@Override
 	public TransactionEntity process(BondoraTransactionDto dto) throws Exception {
-		def entity    = new TransactionEntity()
-		entity.id     = dto.ID
-		entity.amount = dto.investedAmount
-		entity.plattform = Plattform.BONDORA
+		def entity            = new TransactionEntity()
+		entity.transactionId  = dto.transactionId
+		entity.loanId         = dto.loanId
+		entity.investedAmount = dto.investedAmount
+		entity.plattform      = Plattform.BONDORA
 		entity
 	}
 

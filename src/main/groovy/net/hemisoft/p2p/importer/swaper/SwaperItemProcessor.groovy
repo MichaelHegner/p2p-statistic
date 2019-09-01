@@ -10,8 +10,9 @@ public class SwaperItemProcessor implements ItemProcessor<SwaperTransactionDto, 
 	@Override
 	public TransactionEntity process(SwaperTransactionDto dto) throws Exception {
 		def entity    = new TransactionEntity()
-		entity.id     = dto.ID
-		entity.amount = dto.investedAmount
+		entity.transactionId  = dto.transactionId
+		entity.loanId         = dto.loanId
+		entity.investedAmount = dto.investedAmount
 		entity.plattform = Plattform.SWAPER
 		entity
 	}

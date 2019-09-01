@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.viventor;
+package net.hemisoft.p2p.importer.viventor
 
-class ViventorTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class ViventorTransactionDto extends AbstractTransactionDto {}

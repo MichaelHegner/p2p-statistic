@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.finbee;
+package net.hemisoft.p2p.importer.finbee
 
-class FinbeeTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class FinbeeTransactionDto extends AbstractTransactionDto {}

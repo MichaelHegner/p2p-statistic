@@ -1,20 +1,26 @@
 package net.hemisoft.p2p.importer.robocash
 
-import org.springframework.batch.item.excel.RowMapper
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
 import net.hemisoft.p2p.importer.commons.ExcelColum
+import net.hemisoft.p2p.importer.commons.plattform.AbstractExcelRowMapper
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
 
-class RobocashExcelRowMapper implements RowMapper<RobocashTransactionDto> {
-	private static final int COL_ID               = ExcelColum.A.ordinal()
-	private static final int COL_INVESTMENT_VALUE = ExcelColum.H.ordinal()
+class RobocashExcelRowMapper extends AbstractExcelRowMapper<RobocashTransactionDto> {
+	private static final int COL_TRANSACTION_ID   = ExcelColum.A.ordinal()
+	private static final int COL_LOAN_ID          = ExcelColum.E.ordinal()
+	private static final int COL_INVESTED_AMOUNT  = ExcelColum.H.ordinal()
 
 	@Override
 	RobocashTransactionDto mapRow(RowSet rs) throws Exception {
-		def dto = RobocashTransactionDto.newInstance()
-		dto.ID             = rs.getColumnValue COL_ID
-		dto.investedAmount = rs.getColumnValue COL_INVESTMENT_VALUE
-		dto
+		super.mapRow(rs)
 	}
-
+	
+	@Override int getTransactionIdColumnIndex()  { COL_TRANSACTION_ID  }
+	@Override int getLoanIdColumnIndex()         { COL_LOAN_ID         }
+	@Override int getInvestedAmountColumnIndex() { COL_INVESTED_AMOUNT }
+	
+	@Override AbstractTransactionDto createNewDto() {
+		RobocashTransactionDto.newInstance()
+	}
 }

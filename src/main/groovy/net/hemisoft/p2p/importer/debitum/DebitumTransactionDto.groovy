@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.debitum;
+package net.hemisoft.p2p.importer.debitum
 
-class DebitumTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class DebitumTransactionDto  extends AbstractTransactionDto {}

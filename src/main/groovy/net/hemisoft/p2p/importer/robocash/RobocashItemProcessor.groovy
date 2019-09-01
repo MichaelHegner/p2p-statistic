@@ -10,8 +10,9 @@ public class RobocashItemProcessor implements ItemProcessor<RobocashTransactionD
 	@Override
 	public TransactionEntity process(RobocashTransactionDto dto) throws Exception {
 		def entity    = new TransactionEntity()
-		entity.id     = dto.ID
-		entity.amount = dto.investedAmount
+		entity.transactionId  = dto.transactionId
+		entity.loanId         = dto.loanId
+		entity.investedAmount = dto.investedAmount
 		entity.plattform = Plattform.ROBOCASH
 		entity
 	}

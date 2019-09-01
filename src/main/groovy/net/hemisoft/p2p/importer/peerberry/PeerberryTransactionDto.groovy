@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.peerberry;
+package net.hemisoft.p2p.importer.peerberry
 
-class PeerberryTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class PeerberryTransactionDto extends AbstractTransactionDto {}

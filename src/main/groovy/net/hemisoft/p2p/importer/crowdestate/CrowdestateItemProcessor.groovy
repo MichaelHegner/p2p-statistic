@@ -9,9 +9,10 @@ public class CrowdestateItemProcessor implements ItemProcessor<CrowdestateTransa
 
 	@Override
 	public TransactionEntity process(CrowdestateTransactionDto dto) throws Exception {
-		def entity    = new TransactionEntity()
-		entity.id     = dto.ID
-		entity.amount = dto.investedAmount
+		def entity            = TransactionEntity.newInstance()
+		entity.transactionId  = dto.transactionId
+		entity.loanId         = dto.loanId
+		entity.investedAmount = dto.investedAmount
 		entity.plattform = Plattform.CROWDESTATE
 		entity
 	}

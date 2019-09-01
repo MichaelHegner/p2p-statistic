@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.flender;
+package net.hemisoft.p2p.importer.flender
 
-class FlenderTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class FlenderTransactionDto extends AbstractTransactionDto {}

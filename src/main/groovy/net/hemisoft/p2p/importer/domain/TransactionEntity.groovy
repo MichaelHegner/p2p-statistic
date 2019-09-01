@@ -4,8 +4,10 @@ import groovy.transform.ToString
 
 @ToString
 class TransactionEntity {
-	def id
-	def amount
-	def plattform  
+	Long id                    // entity id
+	String transactionId       // transaction id
+	String loanId              // id of loan
+	BigDecimal investedAmount  // invested amount by user
+	Plattform plattform        // p2p plattform
 }
  

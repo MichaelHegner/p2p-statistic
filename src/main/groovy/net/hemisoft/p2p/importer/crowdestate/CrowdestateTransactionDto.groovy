@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.crowdestate;
+package net.hemisoft.p2p.importer.crowdestate
 
-class CrowdestateTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class CrowdestateTransactionDto extends AbstractTransactionDto {}

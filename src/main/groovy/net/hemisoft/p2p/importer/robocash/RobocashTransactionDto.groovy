@@ -1,6 +1,5 @@
-package net.hemisoft.p2p.importer.robocash;
+package net.hemisoft.p2p.importer.robocash
 
-class RobocashTransactionDto {
-	def ID				// transaction id
-	def investedAmount	// invested amount
-}
+import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+
+class RobocashTransactionDto extends AbstractTransactionDto {}
