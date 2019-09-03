@@ -1,12 +1,8 @@
 package net.hemisoft.p2p.importer.plattform.peerberry
 
-import org.springframework.batch.core.Job
-import org.springframework.batch.core.JobExecutionListener
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
-import org.springframework.batch.core.launch.support.RunIdIncrementer
 import org.springframework.batch.item.ItemProcessor
 import org.springframework.batch.item.ItemReader
 import org.springframework.batch.item.ItemWriter
@@ -21,11 +17,9 @@ import net.hemisoft.p2p.importer.domain.TransactionEntity
 @Configuration
 @EnableBatchProcessing
 public class PeerberryConfiguration {
-	final JobBuilderFactory  jobBuilderFactory
-	final StepBuilderFactory stepBuilderFactory
-
-	PeerberryConfiguration(JobBuilderFactory  jobBuilderFactory, StepBuilderFactory stepBuilderFactory) {
-		this.jobBuilderFactory = jobBuilderFactory
+	private final StepBuilderFactory stepBuilderFactory
+	
+	PeerberryConfiguration(StepBuilderFactory stepBuilderFactory) {
 		this.stepBuilderFactory = stepBuilderFactory
 	}
 	
@@ -34,7 +28,6 @@ public class PeerberryConfiguration {
 		new FileSystemResource(path)
 	}
 
-	// Reader, Processor and Writer ...
 	
 	@Bean
 	ItemReader peerberryItemReader(Resource peerberryResource) {
@@ -51,30 +44,14 @@ public class PeerberryConfiguration {
 		new PeerberryItemWriter()
 	}
 	
-	// Job steps
-	
-	@Bean
-	Job peerberryImportJob(JobExecutionListener peerberryJobCompletionNotificationListener, Step importPeerberryDataStep) {
-		jobBuilderFactory.get("peerberryImportJob")
-			.incrementer(RunIdIncrementer.newInstance())
-			.listener(peerberryJobCompletionNotificationListener)
-			.flow(importPeerberryDataStep)
-			.end()
-			.build()
-	}
 	
 	@Bean
 	Step importPeerberryDataStep(ItemReader peerberryItemReader, ItemProcessor peerberryItemProcessor, ItemWriter peerberryItemWriter) {
-		stepBuilderFactory.get("step1")
+		stepBuilderFactory.get("importPeerberryData")
 			.<PeerberryTransactionDto, TransactionEntity> chunk(10)
 			.reader(peerberryItemReader)
 			.processor(peerberryItemProcessor)
 			.writer(peerberryItemWriter)
 			.build()
-	}
-	
-	@Bean
-	JobExecutionListener peerberryJobCompletionNotificationListener() {
-		PeerberryJobCompletionNotificationListener.newInstance()
 	}
 }
