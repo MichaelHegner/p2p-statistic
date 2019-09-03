@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.importer.bondora
+package net.hemisoft.p2p.importer.plattform.bondora
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
 

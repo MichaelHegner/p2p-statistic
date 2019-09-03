@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.importer.bondora
+package net.hemisoft.p2p.importer.plattform.bondora
 
 import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
 import net.hemisoft.p2p.importer.domain.Plattform
