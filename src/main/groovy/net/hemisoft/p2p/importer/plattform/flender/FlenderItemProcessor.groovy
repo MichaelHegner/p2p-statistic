@@ -1,14 +1,14 @@
 package net.hemisoft.p2p.importer.plattform.flender
 
 import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
+import net.hemisoft.p2p.importer.domain.Loan
 import net.hemisoft.p2p.importer.domain.Plattform
-import net.hemisoft.p2p.importer.domain.TransactionEntity
 
-public class FlenderItemProcessor extends AbstractItemProcessor<FlenderTransactionDto, TransactionEntity> {
+public class FlenderItemProcessor extends AbstractItemProcessor<FlenderTransactionDto, Loan> {
 
-	@Override TransactionEntity process(FlenderTransactionDto dto) throws Exception {
+	@Override Loan process(FlenderTransactionDto dto) throws Exception {
 		super.process(dto)
 	}
 
-	@Override Plattform createPlattform() { Plattform.FLENDER }
+	@Override Plattform createPlattform()   { Plattform.FLENDER }
 }

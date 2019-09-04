@@ -1,14 +1,14 @@
 package net.hemisoft.p2p.importer.plattform.iuvo
 
 import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
+import net.hemisoft.p2p.importer.domain.Loan
 import net.hemisoft.p2p.importer.domain.Plattform
-import net.hemisoft.p2p.importer.domain.TransactionEntity
 
-public class IuvoItemProcessor extends AbstractItemProcessor<IuvoTransactionDto, TransactionEntity> {
+public class IuvoItemProcessor extends AbstractItemProcessor<IuvoTransactionDto, Loan> {
 
-	@Override TransactionEntity process(IuvoTransactionDto dto) throws Exception {
+	@Override Loan process(IuvoTransactionDto dto) throws Exception {
 		super.process(dto)
 	}
 	
-	@Override Plattform createPlattform() { Plattform.IUVO }
+	@Override Plattform createPlattform()   { Plattform.IUVO }
 }

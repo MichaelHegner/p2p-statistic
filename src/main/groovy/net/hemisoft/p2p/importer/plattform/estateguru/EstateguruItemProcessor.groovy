@@ -1,14 +1,14 @@
 package net.hemisoft.p2p.importer.plattform.estateguru
 
 import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
+import net.hemisoft.p2p.importer.domain.Loan
 import net.hemisoft.p2p.importer.domain.Plattform
-import net.hemisoft.p2p.importer.domain.TransactionEntity
 
-public class EstateguruItemProcessor extends AbstractItemProcessor<EstateguruTransactionDto, TransactionEntity> {
+public class EstateguruItemProcessor extends AbstractItemProcessor<EstateguruTransactionDto, Loan> {
 
-	@Override TransactionEntity process(EstateguruTransactionDto dto) throws Exception {
+	@Override Loan process(EstateguruTransactionDto dto) throws Exception {
 		super.process(dto)
 	}
 
-	@Override Plattform createPlattform() { Plattform.ESTATEGURU }
+	@Override Plattform createPlattform()   { Plattform.ESTATEGURU }
 }

@@ -1,13 +1,18 @@
 package net.hemisoft.p2p.importer.commons.plattform
 
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+
+import org.apache.commons.lang3.math.NumberUtils
 import org.springframework.batch.item.excel.RowMapper
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
 public abstract class AbstractExcelRowMapper<T> implements RowMapper<T> {
-	abstract int getTransactionIdColumnIndex()
 	abstract int getLoanIdColumnIndex()
+	abstract int getIssuedColumnIndex()
 	abstract int getInvestedAmountColumnIndex()
-
+	
 	@Override
 	AbstractTransactionDto mapRow(RowSet rs) throws Exception {
 		def dto = createNewDto()
@@ -15,19 +20,29 @@ public abstract class AbstractExcelRowMapper<T> implements RowMapper<T> {
 
 		if (null == currentRow) return null
 
-		int transactionIdCol = getTransactionIdColumnIndex()
-		if(transactionIdCol > -1 && currentRow.length > transactionIdCol)
-			dto.transactionId = rs.getColumnValue transactionIdCol
-
 		int loanIdCol = getLoanIdColumnIndex()
 		if(loanIdCol > -1 && currentRow.length > loanIdCol)
 			dto.loanId = rs.getColumnValue loanIdCol
 
+		int issuedCol = getIssuedColumnIndex()
+		if(issuedCol > -1 && currentRow.length > issuedCol) {
+			def issuedFromRowSet = rs.getColumnValue issuedCol
+			
+			if(NumberUtils.isCreatable(issuedFromRowSet)) {
+				def getColumnValue = Long.valueOf(rs.getColumnValue(issuedCol))
+				dto.issuedDate = Instant.ofEpochMilli(getColumnValue).atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+			} else {
+				dto.issuedDate = issuedFromRowSet
+			}
+			
+		}
+		
 		int investedAmountCol = getInvestedAmountColumnIndex()
 		if(investedAmountCol > -1 && currentRow.length > investedAmountCol) {
 			def investmentAmountAsString = rs.getColumnValue(investedAmountCol).replace(",", ".")
 			dto.investedAmount = BigDecimal.newInstance(investmentAmountAsString)
 		}
+		
 		dto
 	}
 

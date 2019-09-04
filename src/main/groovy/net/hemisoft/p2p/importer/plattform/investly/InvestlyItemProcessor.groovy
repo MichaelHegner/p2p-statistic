@@ -1,14 +1,14 @@
 package net.hemisoft.p2p.importer.plattform.investly
 
 import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
+import net.hemisoft.p2p.importer.domain.Loan
 import net.hemisoft.p2p.importer.domain.Plattform
-import net.hemisoft.p2p.importer.domain.TransactionEntity
 
-public class InvestlyItemProcessor extends AbstractItemProcessor<InvestlyTransactionDto, TransactionEntity> {
+public class InvestlyItemProcessor extends AbstractItemProcessor<InvestlyTransactionDto, Loan> {
 
-	@Override TransactionEntity process(InvestlyTransactionDto dto) throws Exception {
+	@Override Loan process(InvestlyTransactionDto dto) throws Exception {
 		super.process(dto)
 	}
 
-	@Override Plattform createPlattform() { Plattform.INVESTLY }
+	@Override Plattform createPlattform()   { Plattform.INVESTLY }
 }

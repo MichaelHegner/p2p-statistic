@@ -1,14 +1,14 @@
 package net.hemisoft.p2p.importer.plattform.finbee
 
 import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
+import net.hemisoft.p2p.importer.domain.Loan
 import net.hemisoft.p2p.importer.domain.Plattform
-import net.hemisoft.p2p.importer.domain.TransactionEntity
 
-public class FinbeeItemProcessor extends AbstractItemProcessor<FinbeeTransactionDto, TransactionEntity> {
+public class FinbeeItemProcessor extends AbstractItemProcessor<FinbeeTransactionDto, Loan> {
 
-	@Override TransactionEntity process(FinbeeTransactionDto dto) throws Exception {
+	@Override Loan process(FinbeeTransactionDto dto) throws Exception {
 		super.process(dto)
 	}
 
-	@Override Plattform createPlattform() { Plattform.FINBEE }
+	@Override Plattform createPlattform()   { Plattform.FINBEE }
 }

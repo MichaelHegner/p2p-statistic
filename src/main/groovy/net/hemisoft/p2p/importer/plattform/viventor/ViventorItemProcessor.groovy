@@ -1,14 +1,14 @@
 package net.hemisoft.p2p.importer.plattform.viventor
 
 import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
+import net.hemisoft.p2p.importer.domain.Loan
 import net.hemisoft.p2p.importer.domain.Plattform
-import net.hemisoft.p2p.importer.domain.TransactionEntity
 
-public class ViventorItemProcessor extends AbstractItemProcessor<ViventorTransactionDto, TransactionEntity> {
+public class ViventorItemProcessor extends AbstractItemProcessor<ViventorTransactionDto, Loan> {
 
-	@Override TransactionEntity process(ViventorTransactionDto dto) throws Exception {
+	@Override Loan process(ViventorTransactionDto dto) throws Exception {
 		super.process(dto)
 	}
 	
-	@Override Plattform createPlattform() { Plattform.VIVENTOR }
+	@Override Plattform createPlattform()   { Plattform.VIVENTOR }
 }

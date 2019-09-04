@@ -1,15 +1,14 @@
 package net.hemisoft.p2p.importer.plattform.swaper
 
 import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
+import net.hemisoft.p2p.importer.domain.Loan
 import net.hemisoft.p2p.importer.domain.Plattform
-import net.hemisoft.p2p.importer.domain.TransactionEntity
 
-public class SwaperItemProcessor extends AbstractItemProcessor<SwaperTransactionDto, TransactionEntity> {
+public class SwaperItemProcessor extends AbstractItemProcessor<SwaperTransactionDto, Loan> {
 
-	@Override TransactionEntity process(SwaperTransactionDto dto) throws Exception {
+	@Override Loan process(SwaperTransactionDto dto) throws Exception {
 		super.process(dto)
 	}
 	
-	@Override Plattform createPlattform() { Plattform.SWAPER }
-
+	@Override Plattform createPlattform()   { Plattform.SWAPER }
 }

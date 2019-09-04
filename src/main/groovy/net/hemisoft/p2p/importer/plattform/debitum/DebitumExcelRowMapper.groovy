@@ -10,15 +10,16 @@ class DebitumExcelRowMapper extends AbstractExcelRowMapper<DebitumTransactionDto
 	private static final int COL_TRANSACTION_ID   = ExcelColum.B.ordinal()
 	private static final int COL_LOAN_ID          = ExcelColum.C.ordinal()
 	private static final int COL_INVESTED_AMOUNT  = ExcelColum.E.ordinal()
+	private static final int COL_ISSUED           = ExcelColum.A.ordinal()
 
 	@Override DebitumTransactionDto mapRow(RowSet rs) throws Exception {
 		super.mapRow(rs)
 	}
 
-	@Override int getTransactionIdColumnIndex()  { COL_TRANSACTION_ID }
 	@Override int getLoanIdColumnIndex()         { COL_LOAN_ID        }
 	@Override int getInvestedAmountColumnIndex() { COL_INVESTED_AMOUNT }
-
+	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
+	
 	@Override AbstractTransactionDto createNewDto() {
 		DebitumTransactionDto.newInstance()
 	}

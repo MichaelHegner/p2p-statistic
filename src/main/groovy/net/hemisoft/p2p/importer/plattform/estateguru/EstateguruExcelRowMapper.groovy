@@ -10,15 +10,16 @@ class EstateguruExcelRowMapper extends AbstractExcelRowMapper<EstateguruTransact
 	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable 
 	private static final int COL_LOAN_ID          = ExcelColum.A.ordinal()
 	private static final int COL_INVESTED_AMOUNT  = ExcelColum.O.ordinal()
-
+	private static final int COL_ISSUED           = ExcelColum.D.ordinal()
+	
 	@Override EstateguruTransactionDto mapRow(RowSet rs) throws Exception {
 		super.mapRow(rs)
 	}
 
-	@Override int getTransactionIdColumnIndex()  { COL_TRANSACTION_ID }
 	@Override int getLoanIdColumnIndex()         { COL_LOAN_ID        }
 	@Override int getInvestedAmountColumnIndex() { COL_INVESTED_AMOUNT }
-
+	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
+	
 	@Override AbstractTransactionDto createNewDto() {
 		EstateguruTransactionDto.newInstance()
 	}
