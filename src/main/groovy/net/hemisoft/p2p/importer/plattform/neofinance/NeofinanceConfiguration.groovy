@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.neofinance
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class NeofinanceConfiguration {
 	
 	
 	@Bean
-	Step importNeofinanceDataStep(ItemReader neofinanceItemReader, ItemProcessor neofinanceItemProcessor, ItemWriter neofinanceItemWriter) {
-		stepBuilderFactory.get("importNeofinanceData")
+	Step importNeofinanceDataStep(
+		ItemReader neofinanceItemReader, 
+		ItemProcessor neofinanceItemProcessor, 
+		ItemWriter neofinanceItemWriter,
+		StepExecutionListener neofinanceStepExecutionListener
+	) {
+		stepBuilderFactory.get("importNeofinanceData").listener(neofinanceStepExecutionListener)
 			.<NeofinanceTransactionDto, TransactionEntity> chunk(10)
 			.reader(neofinanceItemReader)
 			.processor(neofinanceItemProcessor)
 			.writer(neofinanceItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener neofinanceStepExecutionListener() {
+		new NeofinanceStepExecutionListener()
 	}
 }

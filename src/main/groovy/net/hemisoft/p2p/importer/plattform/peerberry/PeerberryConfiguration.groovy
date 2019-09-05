@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.peerberry
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class PeerberryConfiguration {
 	
 	
 	@Bean
-	Step importPeerberryDataStep(ItemReader peerberryItemReader, ItemProcessor peerberryItemProcessor, ItemWriter peerberryItemWriter) {
-		stepBuilderFactory.get("importPeerberryData")
+	Step importPeerberryDataStep(
+		ItemReader peerberryItemReader, 
+		ItemProcessor peerberryItemProcessor, 
+		ItemWriter peerberryItemWriter,
+		StepExecutionListener peerberryStepExecutionListener
+	) {
+		stepBuilderFactory.get("importPeerberryData").listener(peerberryStepExecutionListener)
 			.<PeerberryTransactionDto, TransactionEntity> chunk(10)
 			.reader(peerberryItemReader)
 			.processor(peerberryItemProcessor)
 			.writer(peerberryItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener peerberryStepExecutionListener() {
+		new PeerberryStepExecutionListener()
 	}
 }

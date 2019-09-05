@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.twino
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class TwinoConfiguration {
 	
 	
 	@Bean
-	Step importTwinoDataStep(ItemReader twinoItemReader, ItemProcessor twinoItemProcessor, ItemWriter twinoItemWriter) {
-		stepBuilderFactory.get("importTwinoData")
+	Step importTwinoDataStep(
+		ItemReader twinoItemReader, 
+		ItemProcessor twinoItemProcessor, 
+		ItemWriter twinoItemWriter,
+		StepExecutionListener twinoStepExecutionListener
+	) {
+		stepBuilderFactory.get("importTwinoData").listener(twinoStepExecutionListener)
 			.<TwinoTransactionDto, TransactionEntity> chunk(10)
 			.reader(twinoItemReader)
 			.processor(twinoItemProcessor)
 			.writer(twinoItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener twinoStepExecutionListener() {
+		new TwinoStepExecutionListener()
 	}
 }

@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.mintos
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class MintosConfiguration {
 	
 	
 	@Bean
-	Step importMintosDataStep(ItemReader mintosItemReader, ItemProcessor mintosItemProcessor, ItemWriter mintosItemWriter) {
-		stepBuilderFactory.get("importMintosData")
+	Step importMintosDataStep(
+		ItemReader mintosItemReader, 
+		ItemProcessor mintosItemProcessor, 
+		ItemWriter mintosItemWriter,
+		StepExecutionListener mintosStepExecutionListener
+	) {
+		stepBuilderFactory.get("importMintosData").listener(mintosStepExecutionListener)
 			.<MintosTransactionDto, TransactionEntity> chunk(10)
 			.reader(mintosItemReader)
 			.processor(mintosItemProcessor)
 			.writer(mintosItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener mintosStepExecutionListener() {
+		new MintosStepExecutionListener()
 	}
 }

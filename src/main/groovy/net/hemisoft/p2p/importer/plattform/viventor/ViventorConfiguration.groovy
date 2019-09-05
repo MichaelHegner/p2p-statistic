@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.viventor
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class ViventorConfiguration {
 	
 	
 	@Bean
-	Step importViventorDataStep(ItemReader viventorItemReader, ItemProcessor viventorItemProcessor, ItemWriter viventorItemWriter) {
-		stepBuilderFactory.get("importViventorData")
+	Step importViventorDataStep(
+		ItemReader viventorItemReader, 
+		ItemProcessor viventorItemProcessor, 
+		ItemWriter viventorItemWriter,
+		StepExecutionListener viventorStepExecutionListener
+	) {
+		stepBuilderFactory.get("importViventorData").listener(viventorStepExecutionListener)
 			.<ViventorTransactionDto, TransactionEntity> chunk(10)
 			.reader(viventorItemReader)
 			.processor(viventorItemProcessor)
 			.writer(viventorItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener viventorStepExecutionListener() {
+		new ViventorStepExecutionListener()
 	}
 }

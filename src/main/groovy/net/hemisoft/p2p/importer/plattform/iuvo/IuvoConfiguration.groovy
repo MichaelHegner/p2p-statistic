@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.iuvo
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class IuvoConfiguration {
 	
 	
 	@Bean
-	Step importIuvoDataStep(ItemReader iuvoItemReader, ItemProcessor iuvoItemProcessor, ItemWriter iuvoItemWriter) {
-		stepBuilderFactory.get("importIuvoData")
+	Step importIuvoDataStep(
+		ItemReader iuvoItemReader, 
+		ItemProcessor iuvoItemProcessor, 
+		ItemWriter iuvoItemWriter,
+		StepExecutionListener iuvoStepExecutionListener
+	) {
+		stepBuilderFactory.get("importIuvoData").listener(iuvoStepExecutionListener)
 			.<IuvoTransactionDto, TransactionEntity> chunk(10)
 			.reader(iuvoItemReader)
 			.processor(iuvoItemProcessor)
 			.writer(iuvoItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener iuvoStepExecutionListener() {
+		new IuvoStepExecutionListener()
 	}
 }

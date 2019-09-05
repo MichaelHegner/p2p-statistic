@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.flender
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class FlenderConfiguration {
 	
 	
 	@Bean
-	Step importFlenderDataStep(ItemReader flenderItemReader, ItemProcessor flenderItemProcessor, ItemWriter flenderItemWriter) {
-		stepBuilderFactory.get("importFlenderData")
+	Step importFlenderDataStep(
+		ItemReader flenderItemReader, 
+		ItemProcessor flenderItemProcessor, 
+		ItemWriter flenderItemWriter,
+		StepExecutionListener flenderStepExecutionListener
+	) {
+		stepBuilderFactory.get("importFlenderData").listener(flenderStepExecutionListener)
 			.<FlenderTransactionDto, TransactionEntity> chunk(10)
 			.reader(flenderItemReader)
 			.processor(flenderItemProcessor)
 			.writer(flenderItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener flenderStepExecutionListener() {
+		new FlenderStepExecutionListener()
 	}
 }

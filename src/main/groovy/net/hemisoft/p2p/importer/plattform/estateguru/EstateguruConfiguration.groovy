@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.estateguru
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class EstateguruConfiguration {
 	
 	
 	@Bean
-	Step importEstateguruDataStep(ItemReader estateguruItemReader, ItemProcessor estateguruItemProcessor, ItemWriter estateguruItemWriter) {
-		stepBuilderFactory.get("importEstateguruData")
+	Step importEstateguruDataStep(
+		ItemReader estateguruItemReader, 
+		ItemProcessor estateguruItemProcessor, 
+		ItemWriter estateguruItemWriter,
+		StepExecutionListener estateguruStepExecutionListener
+	) {
+		stepBuilderFactory.get("importEstateguruData").listener(estateguruStepExecutionListener)
 			.<EstateguruTransactionDto, TransactionEntity> chunk(10)
 			.reader(estateguruItemReader)
 			.processor(estateguruItemProcessor)
 			.writer(estateguruItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener estateguruStepExecutionListener() {
+		new EstateguruStepExecutionListener()
 	}
 }

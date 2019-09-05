@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.finbee
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class FinbeeConfiguration {
 	
 	
 	@Bean
-	Step importFinbeeDataStep(ItemReader finbeeItemReader, ItemProcessor finbeeItemProcessor, ItemWriter finbeeItemWriter) {
-		stepBuilderFactory.get("importFinbeeData")
+	Step importFinbeeDataStep(
+		ItemReader finbeeItemReader, 
+		ItemProcessor finbeeItemProcessor, 
+		ItemWriter finbeeItemWriter,
+		StepExecutionListener finbeeStepExecutionListener
+	) {
+		stepBuilderFactory.get("importFinbeeData").listener(finbeeStepExecutionListener)
 			.<FinbeeTransactionDto, TransactionEntity> chunk(10)
 			.reader(finbeeItemReader)
 			.processor(finbeeItemProcessor)
 			.writer(finbeeItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener finbeeStepExecutionListener() {
+		new FinbeeStepExecutionListener()
 	}
 }

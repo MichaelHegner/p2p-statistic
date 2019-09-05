@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.debitum
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class DebitumConfiguration {
 	
 	
 	@Bean
-	Step importDebitumDataStep(ItemReader debitumItemReader, ItemProcessor debitumItemProcessor, ItemWriter debitumItemWriter) {
-		stepBuilderFactory.get("importDebitumData")
+	Step importDebitumDataStep(
+		ItemReader debitumItemReader, 
+		ItemProcessor debitumItemProcessor, 
+		ItemWriter debitumItemWriter,
+		StepExecutionListener debitumStepExecutionListener
+	) {
+		stepBuilderFactory.get("importDebitumData").listener(debitumStepExecutionListener)
 			.<DebitumTransactionDto, TransactionEntity> chunk(10)
 			.reader(debitumItemReader)
 			.processor(debitumItemProcessor)
 			.writer(debitumItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener debitumStepExecutionListener() {
+		new DebitumStepExecutionListener()
 	}
 }

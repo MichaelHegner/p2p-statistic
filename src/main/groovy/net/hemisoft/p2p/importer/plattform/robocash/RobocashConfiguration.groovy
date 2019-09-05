@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.robocash
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class RobocashConfiguration {
 	
 	
 	@Bean
-	Step importRobocashDataStep(ItemReader robocashItemReader, ItemProcessor robocashItemProcessor, ItemWriter robocashItemWriter) {
-		stepBuilderFactory.get("importRobocashData")
+	Step importRobocashDataStep(
+		ItemReader robocashItemReader, 
+		ItemProcessor robocashItemProcessor, 
+		ItemWriter robocashItemWriter,
+		StepExecutionListener robocashStepExecutionListener
+	) {
+		stepBuilderFactory.get("importRobocashData").listener(robocashStepExecutionListener)
 			.<RobocashTransactionDto, TransactionEntity> chunk(10)
 			.reader(robocashItemReader)
 			.processor(robocashItemProcessor)
 			.writer(robocashItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener robocashStepExecutionListener() {
+		new RobocashStepExecutionListener()
 	}
 }

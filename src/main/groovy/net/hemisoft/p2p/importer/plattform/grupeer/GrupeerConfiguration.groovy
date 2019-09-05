@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.grupeer
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class GrupeerConfiguration {
 	
 	
 	@Bean
-	Step importGrupeerDataStep(ItemReader grupeerItemReader, ItemProcessor grupeerItemProcessor, ItemWriter grupeerItemWriter) {
-		stepBuilderFactory.get("importGrupeerData")
+	Step importGrupeerDataStep(
+		ItemReader grupeerItemReader, 
+		ItemProcessor grupeerItemProcessor, 
+		ItemWriter grupeerItemWriter,
+		StepExecutionListener grupeerStepExecutionListener
+	) {
+		stepBuilderFactory.get("importGrupeerData").listener(grupeerStepExecutionListener)
 			.<GrupeerTransactionDto, TransactionEntity> chunk(10)
 			.reader(grupeerItemReader)
 			.processor(grupeerItemProcessor)
 			.writer(grupeerItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener grupeerStepExecutionListener() {
+		new GrupeerStepExecutionListener()
 	}
 }

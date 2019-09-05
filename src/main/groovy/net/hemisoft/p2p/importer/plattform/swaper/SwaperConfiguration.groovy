@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.swaper
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class SwaperConfiguration {
 	
 	
 	@Bean
-	Step importSwaperDataStep(ItemReader swaperItemReader, ItemProcessor swaperItemProcessor, ItemWriter swaperItemWriter) {
-		stepBuilderFactory.get("importSwaperData")
+	Step importSwaperDataStep(
+		ItemReader swaperItemReader, 
+		ItemProcessor swaperItemProcessor, 
+		ItemWriter swaperItemWriter,
+		StepExecutionListener swaperStepExecutionListener
+	) {
+		stepBuilderFactory.get("importSwaperData").listener(swaperStepExecutionListener)
 			.<SwaperTransactionDto, TransactionEntity> chunk(10)
 			.reader(swaperItemReader)
 			.processor(swaperItemProcessor)
 			.writer(swaperItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener swaperStepExecutionListener() {
+		new SwaperStepExecutionListener()
 	}
 }

@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.bondora
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class BondoraConfiguration {
 	
 	
 	@Bean
-	Step importBondoraDataStep(ItemReader bondoraItemReader, ItemProcessor bondoraItemProcessor, ItemWriter bondoraItemWriter) {
-		stepBuilderFactory.get("importBondoraData")
+	Step importBondoraDataStep(
+		ItemReader bondoraItemReader, 
+		ItemProcessor bondoraItemProcessor, 
+		ItemWriter bondoraItemWriter,
+		StepExecutionListener bondoraStepExecutionListener
+	) {
+		stepBuilderFactory.get("importBondoraData").listener(bondoraStepExecutionListener)
 			.<BondoraTransactionDto, TransactionEntity> chunk(10)
 			.reader(bondoraItemReader)
 			.processor(bondoraItemProcessor)
 			.writer(bondoraItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener bondoraStepExecutionListener() {
+		new BondoraStepExecutionListener()
 	}
 }

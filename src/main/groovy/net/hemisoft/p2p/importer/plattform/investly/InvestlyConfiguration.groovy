@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.investly
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,22 @@ public class InvestlyConfiguration {
 	
 	
 	@Bean
-	Step importInvestlyDataStep(ItemReader investlyItemReader, ItemProcessor investlyItemProcessor, ItemWriter investlyItemWriter) {
-		stepBuilderFactory.get("importInvestlyData")
+	Step importInvestlyDataStep(
+		ItemReader investlyItemReader, 
+		ItemProcessor investlyItemProcessor, 
+		ItemWriter investlyItemWriter,
+		StepExecutionListener investlyStepExecutionListener
+	) {
+		stepBuilderFactory.get("importInvestlyData").listener(investlyStepExecutionListener)
 			.<InvestlyTransactionDto, TransactionEntity> chunk(10)
 			.reader(investlyItemReader)
 			.processor(investlyItemProcessor)
 			.writer(investlyItemWriter)
 			.build()
+	}
+	
+	@Bean
+	StepExecutionListener investlyStepExecutionListener() {
+		new InvestlyStepExecutionListener()
 	}
 }

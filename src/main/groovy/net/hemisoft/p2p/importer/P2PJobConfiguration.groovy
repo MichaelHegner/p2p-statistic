@@ -77,7 +77,7 @@ public class P2PJobConfiguration {
 			@Override
 			public void afterJob(JobExecution jobExecution) {
 				if(BatchStatus.COMPLETED == jobExecution.status) {
-					log.info "!!! Bondora Import Job finished. !!!"
+					log.info "!!! Import Job finished. !!!"
 				}
 			}
 			

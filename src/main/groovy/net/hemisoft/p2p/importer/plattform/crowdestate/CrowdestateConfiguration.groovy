@@ -1,6 +1,7 @@
 package net.hemisoft.p2p.importer.plattform.crowdestate
 
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.item.ItemProcessor
@@ -46,12 +47,23 @@ public class CrowdestateConfiguration {
 	
 	
 	@Bean
-	Step importCrowdestateDataStep(ItemReader crowdestateItemReader, ItemProcessor crowdestateItemProcessor, ItemWriter crowdestateItemWriter) {
-		stepBuilderFactory.get("importCrowdestateData")
+	Step importCrowdestateDataStep(
+		ItemReader crowdestateItemReader, 
+		ItemProcessor crowdestateItemProcessor, 
+		ItemWriter crowdestateItemWriter,
+		StepExecutionListener crowdestateStepExecutionListener
+	) {
+		stepBuilderFactory.get("importCrowdestateData").listener(crowdestateStepExecutionListener)
 			.<CrowdestateTransactionDto, TransactionEntity> chunk(10)
 			.reader(crowdestateItemReader)
 			.processor(crowdestateItemProcessor)
 			.writer(crowdestateItemWriter)
 			.build()
+	}
+	
+	
+	@Bean
+	StepExecutionListener crowdestateStepExecutionListener() {
+		new CrowdestateStepExecutionListener()
 	}
 }
