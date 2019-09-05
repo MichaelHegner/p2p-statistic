@@ -11,4 +11,10 @@ public class EstateguruItemProcessor extends AbstractItemProcessor<EstateguruTra
 	}
 
 	@Override Plattform createPlattform()   { Plattform.ESTATEGURU }
+	
+	def pattern = ~/[A-Z]{2}\d{4}$/
+	@Override String createLoanId(EstateguruTransactionDto dto) {
+		def matcher = dto.loanId =~ pattern
+		def result = (matcher.find()) ? matcher[0] : super.createLoanId(dto)
+	}
 }

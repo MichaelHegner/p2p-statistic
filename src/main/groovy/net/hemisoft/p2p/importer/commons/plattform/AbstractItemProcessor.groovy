@@ -14,11 +14,15 @@ public abstract class AbstractItemProcessor<I extends AbstractTransactionDto, O 
 	
 	O createPopulated(I dto) {
 		def entity            = new Loan()
-		entity.loanId         = dto.loanId
+		entity.loanId         = createLoanId dto
 		entity.investedAmount = Double.parseDouble dto.investedAmount
 		entity.issued         = P2PDateUtils.createLocalDateIfPossible dto.issuedDate
 		entity.plattform      = createPlattform()
 		entity
+	}
+	
+	protected String createLoanId(I dto) {
+		dto.loanId
 	}
 
 	abstract Plattform createPlattform()

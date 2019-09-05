@@ -11,4 +11,12 @@ public class SwaperItemProcessor extends AbstractItemProcessor<SwaperTransaction
 	}
 	
 	@Override Plattform createPlattform()   { Plattform.SWAPER }
+	
+	@Override String createLoanId(SwaperTransactionDto dto) {
+		def loanId = dto.loanId
+		
+		if (null == loanId) null
+		else loanId.substring(0, loanId.indexOf("."))
+	}
+
 }

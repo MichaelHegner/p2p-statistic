@@ -11,4 +11,11 @@ public class IuvoItemProcessor extends AbstractItemProcessor<IuvoTransactionDto,
 	}
 	
 	@Override Plattform createPlattform()   { Plattform.IUVO }
+	
+	@Override String createLoanId(IuvoTransactionDto dto) {
+		def loanId = dto.loanId
+		def endIndex = loanId.indexOf(".")
+		loanId.substring(0, endIndex)
+	}
+
 }

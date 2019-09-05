@@ -11,4 +11,11 @@ public class RobocashItemProcessor extends AbstractItemProcessor<RobocashTransac
 	}
 	
 	@Override Plattform createPlattform()   { Plattform.ROBOCASH }
+	
+	@Override String createLoanId(RobocashTransactionDto dto) {
+		def loanId = dto.loanId
+		def endIndex = loanId.indexOf(".")
+		endIndex >= 0 ? loanId.substring(0, endIndex) : loanId
+	}
+
 }

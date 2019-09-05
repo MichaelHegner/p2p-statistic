@@ -11,4 +11,10 @@ public class ViventorItemProcessor extends AbstractItemProcessor<ViventorTransac
 	}
 	
 	@Override Plattform createPlattform()   { Plattform.VIVENTOR }
+	
+	def pattern = ~/\d{6}$/
+	@Override String createLoanId(ViventorTransactionDto dto) {
+		def matcher = dto.loanId =~ pattern
+		def result = (matcher.find()) ? matcher[0] : super.createLoanId(dto)
+	}
 }
