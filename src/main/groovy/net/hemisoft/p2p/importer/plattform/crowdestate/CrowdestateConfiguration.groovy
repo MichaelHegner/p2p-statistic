@@ -20,15 +20,10 @@ import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 import net.hemisoft.p2p.importer.plattform.crowdestate.dto.CrowdestateLoanDto
-import net.hemisoft.p2p.importer.plattform.crowdestate.listener.CrowdestateAccountStepExecutionListener
-import net.hemisoft.p2p.importer.plattform.crowdestate.listener.CrowdestateJobExecutionListener
-import net.hemisoft.p2p.importer.plattform.crowdestate.listener.CrowdestateLoanStepExecutionListener
 import net.hemisoft.p2p.importer.plattform.crowdestate.processor.CrowdestateAccountItemProcessor
 import net.hemisoft.p2p.importer.plattform.crowdestate.processor.CrowdestateLoanItemProcessor
 import net.hemisoft.p2p.importer.plattform.crowdestate.reader.CrowdestateAccountItemReader
 import net.hemisoft.p2p.importer.plattform.crowdestate.reader.CrowdestateLoanItemReader
-import net.hemisoft.p2p.importer.plattform.crowdestate.writer.CrowdestateAccountItemWriter
-import net.hemisoft.p2p.importer.plattform.crowdestate.writer.CrowdestateLoanItemWriter
 
 @Configuration
 @EnableBatchProcessing
@@ -60,16 +55,6 @@ public class CrowdestateConfiguration {
 	@Bean
 	ItemProcessor crowdestateLoanItemProcessor() {
 		new CrowdestateLoanItemProcessor()
-	}
-	
-	@Bean
-	ItemWriter crowdestateAccountItemWriter() {
-		new CrowdestateAccountItemWriter()
-	}
-	
-	@Bean
-	ItemWriter crowdestateLoanItemWriter() {
-		new CrowdestateLoanItemWriter()
 	}
 	
 	
@@ -116,19 +101,4 @@ public class CrowdestateConfiguration {
 			.build()
 	}
 	
-	
-	@Bean
-	StepExecutionListener crowdestateAccountStepExecutionListener() {
-		new CrowdestateAccountStepExecutionListener()
-	}
-
-	@Bean
-	StepExecutionListener crowdestateLoanStepExecutionListener() {
-		new CrowdestateLoanStepExecutionListener()
-	}
-	
-	@Bean
-	JobExecutionListener crowdestateJobExecutionListener() {
-		new CrowdestateJobExecutionListener()
-	}
 }

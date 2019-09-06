@@ -20,15 +20,10 @@ import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 import net.hemisoft.p2p.importer.plattform.estateguru.dto.EstateguruLoanDto
-import net.hemisoft.p2p.importer.plattform.estateguru.listener.EstateguruAccountStepExecutionListener
-import net.hemisoft.p2p.importer.plattform.estateguru.listener.EstateguruJobExecutionListener
-import net.hemisoft.p2p.importer.plattform.estateguru.listener.EstateguruLoanStepExecutionListener
 import net.hemisoft.p2p.importer.plattform.estateguru.processor.EstateguruAccountItemProcessor
 import net.hemisoft.p2p.importer.plattform.estateguru.processor.EstateguruLoanItemProcessor
 import net.hemisoft.p2p.importer.plattform.estateguru.reader.EstateguruAccountItemReader
 import net.hemisoft.p2p.importer.plattform.estateguru.reader.EstateguruLoanItemReader
-import net.hemisoft.p2p.importer.plattform.estateguru.writer.EstateguruAccountItemWriter
-import net.hemisoft.p2p.importer.plattform.estateguru.writer.EstateguruLoanItemWriter
 
 @Configuration
 @EnableBatchProcessing
@@ -64,16 +59,7 @@ public class EstateguruConfiguration {
 		new EstateguruLoanItemProcessor()
 	}
 	
-	@Bean
-	ItemWriter estateguruAccountItemWriter() {
-		new EstateguruAccountItemWriter()
-	}
 
-	@Bean
-	ItemWriter estateguruLoanItemWriter() {
-		new EstateguruLoanItemWriter()
-	}
-	
 	
 	@Bean
 	Job estateguruImportJob(
@@ -116,21 +102,5 @@ public class EstateguruConfiguration {
 			.processor(estateguruLoanItemProcessor)
 			.writer(estateguruLoanItemWriter)
 			.build()
-	}
-	
-	
-	@Bean
-	StepExecutionListener estateguruAccountStepExecutionListener() {
-		new EstateguruAccountStepExecutionListener()
-	}
-
-	@Bean
-	StepExecutionListener estateguruLoanStepExecutionListener() {
-		new EstateguruLoanStepExecutionListener()
-	}
-	
-	@Bean
-	JobExecutionListener estateguruJobExecutionListener() {
-		new EstateguruJobExecutionListener()
 	}
 }

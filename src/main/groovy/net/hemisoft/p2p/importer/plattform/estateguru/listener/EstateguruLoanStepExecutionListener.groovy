@@ -1,26 +1,19 @@
 package net.hemisoft.p2p.importer.plattform.estateguru.listener
 
-import org.springframework.batch.core.ExitStatus
-import org.springframework.batch.core.StepExecution
-import org.springframework.batch.core.StepExecutionListener
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
 import groovy.util.logging.Slf4j
+import net.hemisoft.p2p.importer.commons.plattform.listener.AbstractLoanStepExecutionListener
+import net.hemisoft.p2p.importer.domain.Plattform
 import net.hemisoft.p2p.importer.plattform.estateguru.service.EstateguruLoanImportService
 
 
 @Slf4j
-public class EstateguruLoanStepExecutionListener implements StepExecutionListener {
-	@Autowired EstateguruLoanImportService service
-
-	@Override
-	public void beforeStep(StepExecution stepExecution) {
-		log.info "Start Estateguru Loan Import ...."
-	}
-
-	@Override
-	public ExitStatus afterStep(StepExecution stepExecution) {
-		def numberOfLoans = service.countLoans()
-		log.info "Estateguru Loan Import added $numberOfLoans loans."
+@Component
+public class EstateguruLoanStepExecutionListener extends AbstractLoanStepExecutionListener {
+	private static final Plattform PLATTFORM = Plattform.ESTATEGURU
+	
+	EstateguruLoanStepExecutionListener(EstateguruLoanImportService service) {
+		super(PLATTFORM, service)
 	}
 }

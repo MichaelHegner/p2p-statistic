@@ -1,27 +1,19 @@
 package net.hemisoft.p2p.importer.plattform.crowdestate.listener
 
-import org.springframework.batch.core.BatchStatus
-import org.springframework.batch.core.JobExecution
-import org.springframework.batch.core.JobExecutionListener
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
 import groovy.util.logging.Slf4j
-import net.hemisoft.p2p.importer.plattform.crowdestate.service.CrowdestateLoanImportService
+import net.hemisoft.p2p.importer.commons.plattform.listener.AbstractJobExecutionListener
+import net.hemisoft.p2p.importer.domain.Plattform
+import net.hemisoft.p2p.importer.plattform.crowdestate.service.CrowdestateAccountImportService
 
 
 @Slf4j
-public class CrowdestateJobExecutionListener implements JobExecutionListener {
-	@Autowired CrowdestateLoanImportService service
+@Component
+public class CrowdestateJobExecutionListener extends AbstractJobExecutionListener {
+	private static final Plattform PLATTFORM = Plattform.CROWDESTATE
 
-	@Override
-	public void beforeJob(JobExecution jobExecution) {
-		// Nothing to do.
-	}
-
-	@Override
-	public void afterJob(JobExecution jobExecution) {
-		if(BatchStatus.COMPLETED == jobExecution.status) {
-			log.info "!!! Import Crowdestate Job finished. !!!"
-		}
+	CrowdestateJobExecutionListener(CrowdestateAccountImportService service) {
+		super(PLATTFORM, service)
 	}
 }

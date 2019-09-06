@@ -20,15 +20,10 @@ import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 import net.hemisoft.p2p.importer.plattform.debitum.dto.DebitumLoanDto
-import net.hemisoft.p2p.importer.plattform.debitum.listener.DebitumAccountStepExecutionListener
-import net.hemisoft.p2p.importer.plattform.debitum.listener.DebitumJobExecutionListener
-import net.hemisoft.p2p.importer.plattform.debitum.listener.DebitumLoanStepExecutionListener
 import net.hemisoft.p2p.importer.plattform.debitum.processor.DebitumAccountItemProcessor
 import net.hemisoft.p2p.importer.plattform.debitum.processor.DebitumLoanItemProcessor
 import net.hemisoft.p2p.importer.plattform.debitum.reader.DebitumAccountItemReader
 import net.hemisoft.p2p.importer.plattform.debitum.reader.DebitumLoanItemReader
-import net.hemisoft.p2p.importer.plattform.debitum.writer.DebitumAccountItemWriter
-import net.hemisoft.p2p.importer.plattform.debitum.writer.DebitumLoanItemWriter
 
 @Configuration
 @EnableBatchProcessing
@@ -62,16 +57,6 @@ public class DebitumConfiguration {
 	@Bean
 	ItemProcessor debitumLoanItemProcessor() {
 		new DebitumLoanItemProcessor()
-	}
-	
-	@Bean
-	ItemWriter debitumAccountItemWriter() {
-		new DebitumAccountItemWriter()
-	}
-
-	@Bean
-	ItemWriter debitumLoanItemWriter() {
-		new DebitumLoanItemWriter()
 	}
 	
 	
@@ -118,19 +103,4 @@ public class DebitumConfiguration {
 			.build()
 	}
 	
-	
-	@Bean
-	StepExecutionListener debitumAccountStepExecutionListener() {
-		new DebitumAccountStepExecutionListener()
-	}
-
-	@Bean
-	StepExecutionListener debitumLoanStepExecutionListener() {
-		new DebitumLoanStepExecutionListener()
-	}
-	
-	@Bean
-	JobExecutionListener debitumJobExecutionListener() {
-		new DebitumJobExecutionListener()
-	}
 }
