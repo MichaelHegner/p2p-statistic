@@ -1,10 +1,10 @@
 package net.hemisoft.p2p.importer.plattform.iuvo
 
-import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
+import net.hemisoft.p2p.importer.commons.plattform.processor.AbstractLoanItemProcessor
 import net.hemisoft.p2p.importer.domain.Loan
 import net.hemisoft.p2p.importer.domain.Plattform
 
-public class IuvoItemProcessor extends AbstractItemProcessor<IuvoTransactionDto, Loan> {
+public class IuvoItemProcessor extends AbstractLoanItemProcessor<IuvoTransactionDto, Loan> {
 
 	@Override Loan process(IuvoTransactionDto dto) throws Exception {
 		super.process(dto)

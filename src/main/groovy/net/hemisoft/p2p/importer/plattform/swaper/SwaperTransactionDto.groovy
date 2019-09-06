@@ -1,5 +1,5 @@
 package net.hemisoft.p2p.importer.plattform.swaper
 
-import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
 
-class SwaperTransactionDto extends AbstractTransactionDto {}
+class SwaperTransactionDto extends AbstractLoanDto {}

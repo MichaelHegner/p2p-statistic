@@ -1,5 +1,5 @@
 package net.hemisoft.p2p.importer.plattform.flender
 
-import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
 
-class FlenderTransactionDto extends AbstractTransactionDto {}
+class FlenderTransactionDto extends AbstractLoanDto {}

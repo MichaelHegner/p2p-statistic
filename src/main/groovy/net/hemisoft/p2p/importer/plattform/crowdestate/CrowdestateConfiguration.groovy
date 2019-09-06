@@ -1,12 +1,17 @@
 package net.hemisoft.p2p.importer.plattform.crowdestate
 
+import org.springframework.batch.core.Job
+import org.springframework.batch.core.JobExecutionListener
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
+import org.springframework.batch.core.launch.support.RunIdIncrementer
 import org.springframework.batch.item.ItemProcessor
 import org.springframework.batch.item.ItemReader
 import org.springframework.batch.item.ItemWriter
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,15 +19,22 @@ import org.springframework.core.io.FileSystemResource
 import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
+import net.hemisoft.p2p.importer.plattform.crowdestate.dto.CrowdestateLoanDto
+import net.hemisoft.p2p.importer.plattform.crowdestate.listener.CrowdestateAccountStepExecutionListener
+import net.hemisoft.p2p.importer.plattform.crowdestate.listener.CrowdestateJobExecutionListener
+import net.hemisoft.p2p.importer.plattform.crowdestate.listener.CrowdestateLoanStepExecutionListener
+import net.hemisoft.p2p.importer.plattform.crowdestate.processor.CrowdestateAccountItemProcessor
+import net.hemisoft.p2p.importer.plattform.crowdestate.processor.CrowdestateLoanItemProcessor
+import net.hemisoft.p2p.importer.plattform.crowdestate.reader.CrowdestateAccountItemReader
+import net.hemisoft.p2p.importer.plattform.crowdestate.reader.CrowdestateLoanItemReader
+import net.hemisoft.p2p.importer.plattform.crowdestate.writer.CrowdestateAccountItemWriter
+import net.hemisoft.p2p.importer.plattform.crowdestate.writer.CrowdestateLoanItemWriter
 
 @Configuration
 @EnableBatchProcessing
 public class CrowdestateConfiguration {
-	private final StepBuilderFactory stepBuilderFactory
-	
-	CrowdestateConfiguration(StepBuilderFactory stepBuilderFactory) {
-		this.stepBuilderFactory = stepBuilderFactory
-	}
+	@Autowired StepBuilderFactory stepBuilderFactory
+	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
 	Resource crowdestateResource(@Value('${path.crowdestate.input}') def path) {
@@ -31,39 +43,92 @@ public class CrowdestateConfiguration {
 
 	
 	@Bean
-	ItemReader crowdestateItemReader(Resource crowdestateResource) {
-		CrowdestateItemReader.newInstance crowdestateResource
+	ItemReader crowdestateAccountItemReader(Resource crowdestateResource) {
+		CrowdestateAccountItemReader.newInstance crowdestateResource
 	}
 
 	@Bean
-	ItemProcessor crowdestateItemProcessor() {
-		new CrowdestateItemProcessor()
+	ItemReader crowdestateLoanItemReader(Resource crowdestateResource) {
+		CrowdestateLoanItemReader.newInstance crowdestateResource
 	}
 	
 	@Bean
-	ItemWriter crowdestateItemWriter() {
-		new CrowdestateItemWriter()
+	ItemProcessor crowdestateAccountItemProcessor() {
+		new CrowdestateAccountItemProcessor()
+	}
+	
+	@Bean
+	ItemProcessor crowdestateLoanItemProcessor() {
+		new CrowdestateLoanItemProcessor()
+	}
+	
+	@Bean
+	ItemWriter crowdestateAccountItemWriter() {
+		new CrowdestateAccountItemWriter()
+	}
+	
+	@Bean
+	ItemWriter crowdestateLoanItemWriter() {
+		new CrowdestateLoanItemWriter()
 	}
 	
 	
 	@Bean
-	Step importCrowdestateDataStep(
-		ItemReader crowdestateItemReader, 
-		ItemProcessor crowdestateItemProcessor, 
-		ItemWriter crowdestateItemWriter,
-		StepExecutionListener crowdestateStepExecutionListener
+	Job crowdestateImportJob(
+		JobExecutionListener crowdestateJobExecutionListener,
+		Step importCrowdestateAccountDataStep,
+		Step importCrowdestateLoanDataStep
 	) {
-		stepBuilderFactory.get("importCrowdestateData").listener(crowdestateStepExecutionListener)
-			.<CrowdestateTransactionDto, TransactionEntity> chunk(10)
-			.reader(crowdestateItemReader)
-			.processor(crowdestateItemProcessor)
-			.writer(crowdestateItemWriter)
+		jobBuilderFactory.get("importCrowdestateDataJob").incrementer(RunIdIncrementer.newInstance())
+			.listener(crowdestateJobExecutionListener)
+			.start(importCrowdestateAccountDataStep)
+			.next(importCrowdestateLoanDataStep)
+			.build()
+	}
+	
+	@Bean
+	Step importCrowdestateAccountDataStep(
+		ItemReader crowdestateAccountItemReader,
+		ItemProcessor crowdestateAccountItemProcessor,
+		ItemWriter crowdestateAccountItemWriter,
+		StepExecutionListener crowdestateAccountStepExecutionListener
+	) {
+		stepBuilderFactory.get("importCrowdestateAccountData").listener(crowdestateAccountStepExecutionListener)
+			.<CrowdestateLoanDto, TransactionEntity> chunk(10)
+			.reader(crowdestateAccountItemReader)
+			.processor(crowdestateAccountItemProcessor)
+			.writer(crowdestateAccountItemWriter)
+			.build()
+	}
+
+	@Bean
+	Step importCrowdestateLoanDataStep(
+		ItemReader crowdestateLoanItemReader, 
+		ItemProcessor crowdestateLoanItemProcessor, 
+		ItemWriter crowdestateLoanItemWriter,
+		StepExecutionListener crowdestateLoanStepExecutionListener
+	) {
+		stepBuilderFactory.get("importCrowdestateAccountData").listener(crowdestateLoanStepExecutionListener)
+			.<CrowdestateLoanDto, TransactionEntity> chunk(10)
+			.reader(crowdestateLoanItemReader)
+			.processor(crowdestateLoanItemProcessor)
+			.writer(crowdestateLoanItemWriter)
 			.build()
 	}
 	
 	
 	@Bean
-	StepExecutionListener crowdestateStepExecutionListener() {
-		new CrowdestateStepExecutionListener()
+	StepExecutionListener crowdestateAccountStepExecutionListener() {
+		new CrowdestateAccountStepExecutionListener()
+	}
+
+	@Bean
+	StepExecutionListener crowdestateLoanStepExecutionListener() {
+		new CrowdestateLoanStepExecutionListener()
+	}
+	
+	@Bean
+	JobExecutionListener crowdestateJobExecutionListener() {
+		new CrowdestateJobExecutionListener()
 	}
 }

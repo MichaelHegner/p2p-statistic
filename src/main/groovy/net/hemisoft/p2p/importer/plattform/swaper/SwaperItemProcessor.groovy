@@ -1,10 +1,10 @@
 package net.hemisoft.p2p.importer.plattform.swaper
 
-import net.hemisoft.p2p.importer.commons.plattform.AbstractItemProcessor
+import net.hemisoft.p2p.importer.commons.plattform.processor.AbstractLoanItemProcessor
 import net.hemisoft.p2p.importer.domain.Loan
 import net.hemisoft.p2p.importer.domain.Plattform
 
-public class SwaperItemProcessor extends AbstractItemProcessor<SwaperTransactionDto, Loan> {
+public class SwaperItemProcessor extends AbstractLoanItemProcessor<SwaperTransactionDto, Loan> {
 
 	@Override Loan process(SwaperTransactionDto dto) throws Exception {
 		super.process(dto)

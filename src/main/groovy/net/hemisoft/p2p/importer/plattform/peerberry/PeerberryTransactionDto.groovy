@@ -1,5 +1,5 @@
 package net.hemisoft.p2p.importer.plattform.peerberry
 
-import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
 
-class PeerberryTransactionDto extends AbstractTransactionDto {}
+class PeerberryTransactionDto extends AbstractLoanDto {}

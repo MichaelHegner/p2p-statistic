@@ -3,10 +3,10 @@ package net.hemisoft.p2p.importer.plattform.robocash
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
-import net.hemisoft.p2p.importer.commons.plattform.AbstractExcelRowMapper
-import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanExcelRowMapper
+import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
 
-class RobocashExcelRowMapper extends AbstractExcelRowMapper<RobocashTransactionDto> {
+class RobocashExcelRowMapper extends AbstractLoanExcelRowMapper<RobocashTransactionDto> {
 	private static final int COL_TRANSACTION_ID   = ExcelColum.A.ordinal()
 	private static final int COL_LOAN_ID          = ExcelColum.E.ordinal()
 	private static final int COL_INVESTED_AMOUNT  = ExcelColum.H.ordinal()
@@ -21,7 +21,7 @@ class RobocashExcelRowMapper extends AbstractExcelRowMapper<RobocashTransactionD
 	@Override int getInvestedAmountColumnIndex() { COL_INVESTED_AMOUNT }
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
-	@Override AbstractTransactionDto createNewDto() {
+	@Override AbstractLoanDto createNewDto() {
 		RobocashTransactionDto.newInstance()
 	}
 }

@@ -1,5 +1,5 @@
 package net.hemisoft.p2p.importer.plattform.viventor
 
-import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
 
-class ViventorTransactionDto extends AbstractTransactionDto {}
+class ViventorTransactionDto extends AbstractLoanDto {}

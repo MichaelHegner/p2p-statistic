@@ -1,5 +1,5 @@
 package net.hemisoft.p2p.importer.plattform.finbee
 
-import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
 
-class FinbeeTransactionDto extends AbstractTransactionDto {}
+class FinbeeTransactionDto extends AbstractLoanDto {}

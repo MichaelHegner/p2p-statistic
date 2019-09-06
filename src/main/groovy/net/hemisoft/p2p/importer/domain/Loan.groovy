@@ -8,8 +8,9 @@ import groovy.transform.ToString
 class Loan {
 	Long      id
 	String    loanId	
-	Plattform plattform 
+	Plattform plattform
+	Account   account 
 	LocalDate issued
-	double    investedAmount
-	boolean   closed
+	Double    investedAmount = 0.0
+	Boolean   closed         = false
 }

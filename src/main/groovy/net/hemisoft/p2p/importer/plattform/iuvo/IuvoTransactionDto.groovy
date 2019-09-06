@@ -1,5 +1,5 @@
 package net.hemisoft.p2p.importer.plattform.iuvo
 
-import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
 
-class IuvoTransactionDto extends AbstractTransactionDto {}
+class IuvoTransactionDto extends AbstractLoanDto {}

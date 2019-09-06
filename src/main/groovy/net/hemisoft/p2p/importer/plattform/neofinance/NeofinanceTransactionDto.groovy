@@ -1,5 +1,5 @@
 package net.hemisoft.p2p.importer.plattform.neofinance
 
-import net.hemisoft.p2p.importer.commons.plattform.AbstractTransactionDto
+import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
 
-class NeofinanceTransactionDto extends AbstractTransactionDto {}
+class NeofinanceTransactionDto extends AbstractLoanDto {}
