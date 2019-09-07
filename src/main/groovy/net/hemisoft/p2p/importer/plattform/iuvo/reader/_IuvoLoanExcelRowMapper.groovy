@@ -1,18 +1,21 @@
-package net.hemisoft.p2p.importer.plattform.iuvo
+package net.hemisoft.p2p.importer.plattform.iuvo.reader
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
+import groovy.transform.PackageScope
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
 import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanExcelRowMapper
 import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.importer.plattform.iuvo.dto.IuvoLoanDto
 
-class IuvoExcelRowMapper extends AbstractLoanExcelRowMapper<IuvoTransactionDto> {
+@PackageScope
+class _IuvoLoanExcelRowMapper extends AbstractLoanExcelRowMapper<IuvoLoanDto> {
 	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable
-	private static final int COL_LOAN_ID          = ExcelColum.B.ordinal()
-	private static final int COL_INVESTED_AMOUNT  = ExcelColum.Q.ordinal()
-	private static final int COL_ISSUED           = ExcelColum.D.ordinal()
+	private static final int COL_LOAN_ID          = ExcelColum.D.ordinal()
+	private static final int COL_INVESTED_AMOUNT  = ExcelColum.F.ordinal()
+	private static final int COL_ISSUED           = ExcelColum.A.ordinal()
 	
-	@Override IuvoTransactionDto mapRow(RowSet rs) throws Exception {
+	@Override IuvoLoanDto mapRow(RowSet rs) throws Exception {
 		super.mapRow(rs)
 	}
 	
@@ -21,6 +24,6 @@ class IuvoExcelRowMapper extends AbstractLoanExcelRowMapper<IuvoTransactionDto> 
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
 	@Override AbstractLoanDto createNewDto() {
-		IuvoTransactionDto.newInstance()
+		IuvoLoanDto.newInstance()
 	}
 }
