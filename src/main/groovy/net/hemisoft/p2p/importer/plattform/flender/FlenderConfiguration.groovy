@@ -20,10 +20,6 @@ import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 import net.hemisoft.p2p.importer.plattform.flender.dto.FlenderAccountDto
-import net.hemisoft.p2p.importer.plattform.flender.processor.FlenderAccountItemProcessor
-import net.hemisoft.p2p.importer.plattform.flender.processor.FlenderLoanItemProcessor
-import net.hemisoft.p2p.importer.plattform.flender.reader.FlenderAccountItemReader
-import net.hemisoft.p2p.importer.plattform.flender.reader.FlenderLoanItemReader
 
 @Configuration
 @EnableBatchProcessing
@@ -42,27 +38,6 @@ public class FlenderConfiguration {
 		new FileSystemResource(path)
 	}
 
-	
-	@Bean
-	ItemReader flenderAccountItemReader(Resource flenderAccountResource) {
-		FlenderAccountItemReader.newInstance flenderAccountResource
-	}
-
-	@Bean
-	ItemReader flenderLoanItemReader(Resource flenderLoanResource) {
-		FlenderLoanItemReader.newInstance flenderLoanResource
-	}
-
-	
-	@Bean
-	ItemProcessor flenderAccountItemProcessor() {
-		new FlenderAccountItemProcessor()
-	}
-
-	@Bean
-	ItemProcessor flenderLoanItemProcessor() {
-		new FlenderLoanItemProcessor()
-	}
 	
 	
 	@Bean

@@ -20,10 +20,6 @@ import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 import net.hemisoft.p2p.importer.plattform.grupeer.dto.GrupeerLoanDto
-import net.hemisoft.p2p.importer.plattform.grupeer.processor.GrupeerAccountItemProcessor
-import net.hemisoft.p2p.importer.plattform.grupeer.processor.GrupeerLoanItemProcessor
-import net.hemisoft.p2p.importer.plattform.grupeer.reader.GrupeerAccountItemReader
-import net.hemisoft.p2p.importer.plattform.grupeer.reader.GrupeerLoanItemReader
 
 @Configuration
 @EnableBatchProcessing
@@ -37,27 +33,6 @@ public class GrupeerConfiguration {
 		new FileSystemResource(path)
 	}
 
-	
-	@Bean
-	ItemReader grupeerAccountItemReader(Resource grupeerResource) {
-		GrupeerAccountItemReader.newInstance grupeerResource
-	}
-
-	@Bean
-	ItemReader grupeerLoanItemReader(Resource grupeerResource) {
-		GrupeerLoanItemReader.newInstance grupeerResource
-	}
-	
-	@Bean
-	ItemProcessor grupeerAccountItemProcessor() {
-		new GrupeerAccountItemProcessor()
-	}
-
-	@Bean
-	ItemProcessor grupeerLoanItemProcessor() {
-		new GrupeerLoanItemProcessor()
-	}
-	
 	
 	@Bean
 	Job grupeerImportJob(

@@ -20,10 +20,6 @@ import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 import net.hemisoft.p2p.importer.plattform.finbee.dto.FinbeeLoanDto
-import net.hemisoft.p2p.importer.plattform.finbee.processor.FinbeeAccountItemProcessor
-import net.hemisoft.p2p.importer.plattform.finbee.processor.FinbeeLoanItemProcessor
-import net.hemisoft.p2p.importer.plattform.finbee.reader.FinbeeAccountItemReader
-import net.hemisoft.p2p.importer.plattform.finbee.reader.FinbeeLoanItemReader
 
 @Configuration
 @EnableBatchProcessing
@@ -37,28 +33,6 @@ public class FinbeeConfiguration {
 		new FileSystemResource(path)
 	}
 
-	
-	@Bean
-	ItemReader finbeeAccountItemReader(Resource finbeeResource) {
-		FinbeeAccountItemReader.newInstance finbeeResource
-	}
-
-	@Bean
-	ItemReader finbeeLoanItemReader(Resource finbeeResource) {
-		FinbeeLoanItemReader.newInstance finbeeResource
-	}
-
-		
-	@Bean
-	ItemProcessor finbeeAccountItemProcessor() {
-		new FinbeeAccountItemProcessor()
-	}
-
-	@Bean
-	ItemProcessor finbeeLoanItemProcessor() {
-		new FinbeeLoanItemProcessor()
-	}
-	
 	
 	@Bean
 	Job finbeeImportJob(

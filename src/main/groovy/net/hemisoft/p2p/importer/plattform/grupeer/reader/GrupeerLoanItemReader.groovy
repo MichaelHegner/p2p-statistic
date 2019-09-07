@@ -1,7 +1,9 @@
 package net.hemisoft.p2p.importer.plattform.grupeer.reader
 
 import org.springframework.core.io.Resource
+import org.springframework.stereotype.Component
 
+@Component
 class GrupeerLoanItemReader extends _GrupeerAbstractItemReader {
 	public GrupeerLoanItemReader(Resource grupeerResource) {
 		super(grupeerResource)

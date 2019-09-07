@@ -1,11 +1,14 @@
 package net.hemisoft.p2p.importer.plattform.crowdestate.processor
 
+import org.springframework.stereotype.Component
+
 import net.hemisoft.p2p.importer.commons.plattform.processor.AbstractAccountItemProcessor
 import net.hemisoft.p2p.importer.domain.Account
 import net.hemisoft.p2p.importer.domain.Plattform
 import net.hemisoft.p2p.importer.domain.TransferType
 import net.hemisoft.p2p.importer.plattform.crowdestate.dto.CrowdestateAccountDto
 
+@Component
 public class CrowdestateAccountItemProcessor extends AbstractAccountItemProcessor<CrowdestateAccountDto, Account> {
 
 	@Override Account process(CrowdestateAccountDto dto) throws Exception {

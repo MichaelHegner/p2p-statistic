@@ -20,10 +20,6 @@ import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 import net.hemisoft.p2p.importer.plattform.crowdestate.dto.CrowdestateLoanDto
-import net.hemisoft.p2p.importer.plattform.crowdestate.processor.CrowdestateAccountItemProcessor
-import net.hemisoft.p2p.importer.plattform.crowdestate.processor.CrowdestateLoanItemProcessor
-import net.hemisoft.p2p.importer.plattform.crowdestate.reader.CrowdestateAccountItemReader
-import net.hemisoft.p2p.importer.plattform.crowdestate.reader.CrowdestateLoanItemReader
 
 @Configuration
 @EnableBatchProcessing
@@ -36,27 +32,6 @@ public class CrowdestateConfiguration {
 		new FileSystemResource(path)
 	}
 
-	
-	@Bean
-	ItemReader crowdestateAccountItemReader(Resource crowdestateResource) {
-		CrowdestateAccountItemReader.newInstance crowdestateResource
-	}
-
-	@Bean
-	ItemReader crowdestateLoanItemReader(Resource crowdestateResource) {
-		CrowdestateLoanItemReader.newInstance crowdestateResource
-	}
-	
-	@Bean
-	ItemProcessor crowdestateAccountItemProcessor() {
-		new CrowdestateAccountItemProcessor()
-	}
-	
-	@Bean
-	ItemProcessor crowdestateLoanItemProcessor() {
-		new CrowdestateLoanItemProcessor()
-	}
-	
 	
 	@Bean
 	Job crowdestateImportJob(

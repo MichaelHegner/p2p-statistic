@@ -1,7 +1,9 @@
 package net.hemisoft.p2p.importer.plattform.flender.reader
 
 import org.springframework.core.io.Resource
+import org.springframework.stereotype.Component
 
+@Component
 class FlenderLoanItemReader extends _FlenderAbstractItemReader {
 	
 	public FlenderLoanItemReader(Resource flenderLoanResource) {

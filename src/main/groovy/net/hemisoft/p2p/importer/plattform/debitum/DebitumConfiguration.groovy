@@ -20,10 +20,6 @@ import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 import net.hemisoft.p2p.importer.plattform.debitum.dto.DebitumLoanDto
-import net.hemisoft.p2p.importer.plattform.debitum.processor.DebitumAccountItemProcessor
-import net.hemisoft.p2p.importer.plattform.debitum.processor.DebitumLoanItemProcessor
-import net.hemisoft.p2p.importer.plattform.debitum.reader.DebitumAccountItemReader
-import net.hemisoft.p2p.importer.plattform.debitum.reader.DebitumLoanItemReader
 
 @Configuration
 @EnableBatchProcessing
@@ -37,28 +33,6 @@ public class DebitumConfiguration {
 		new FileSystemResource(path)
 	}
 
-	
-	@Bean
-	ItemReader debitumAccountItemReader(Resource debitumResource) {
-		DebitumAccountItemReader.newInstance debitumResource
-	}
-	
-	@Bean
-	ItemReader debitumLoanItemReader(Resource debitumResource) {
-		DebitumLoanItemReader.newInstance debitumResource
-	}
-
-
-	@Bean
-	ItemProcessor debitumAccountItemProcessor() {
-		new DebitumAccountItemProcessor()
-	}
-	
-	@Bean
-	ItemProcessor debitumLoanItemProcessor() {
-		new DebitumLoanItemProcessor()
-	}
-	
 	
 	@Bean
 	Job debitumImportJob(

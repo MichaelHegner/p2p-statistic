@@ -20,10 +20,6 @@ import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
 import net.hemisoft.p2p.importer.plattform.estateguru.dto.EstateguruLoanDto
-import net.hemisoft.p2p.importer.plattform.estateguru.processor.EstateguruAccountItemProcessor
-import net.hemisoft.p2p.importer.plattform.estateguru.processor.EstateguruLoanItemProcessor
-import net.hemisoft.p2p.importer.plattform.estateguru.reader.EstateguruAccountItemReader
-import net.hemisoft.p2p.importer.plattform.estateguru.reader.EstateguruLoanItemReader
 
 @Configuration
 @EnableBatchProcessing
@@ -38,28 +34,6 @@ public class EstateguruConfiguration {
 	}
 
 	
-	@Bean
-	ItemReader estateguruAccountItemReader(Resource estateguruResource) {
-		EstateguruAccountItemReader.newInstance estateguruResource
-	}
-
-	@Bean
-	ItemReader estateguruLoanItemReader(Resource estateguruResource) {
-		EstateguruLoanItemReader.newInstance estateguruResource
-	}
-
-	
-	@Bean
-	ItemProcessor estateguruAccountItemProcessor() {
-		new EstateguruAccountItemProcessor()
-	}
-
-	@Bean
-	ItemProcessor estateguruLoanItemProcessor() {
-		new EstateguruLoanItemProcessor()
-	}
-	
-
 	
 	@Bean
 	Job estateguruImportJob(
