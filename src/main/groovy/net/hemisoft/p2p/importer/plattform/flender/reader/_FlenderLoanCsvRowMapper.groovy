@@ -1,16 +1,19 @@
-package net.hemisoft.p2p.importer.plattform.flender
+package net.hemisoft.p2p.importer.plattform.flender.reader
 
+import groovy.transform.PackageScope
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
 import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanCsvLineMapper
 import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.importer.plattform.flender.dto.FlenderLoanDto
 
-class FlenderCsvRowMapper extends AbstractLoanCsvLineMapper<FlenderTransactionDto> {
-	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable
+@PackageScope
+class _FlenderLoanCsvRowMapper extends AbstractLoanCsvLineMapper<FlenderLoanDto> {
+	private static final int COL_TRANSACTION_ID   = -1 // TODO:
 	private static final int COL_LOAN_ID          = ExcelColum.A.ordinal()
 	private static final int COL_INVESTED_AMOUNT  = ExcelColum.B.ordinal()
 	private static final int COL_ISSUED           = -1 // TODO:
 	
-	@Override FlenderTransactionDto mapLine(String line, int lineNumber) throws Exception {
+	@Override FlenderLoanDto mapLine(String line, int lineNumber) throws Exception {
 		super.mapLine(line, lineNumber)
 	}
 
@@ -19,6 +22,6 @@ class FlenderCsvRowMapper extends AbstractLoanCsvLineMapper<FlenderTransactionDt
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
 	@Override AbstractLoanDto createNewDto() {
-		FlenderTransactionDto.newInstance()
+		FlenderLoanDto.newInstance()
 	}
 }
