@@ -1,18 +1,21 @@
-package net.hemisoft.p2p.importer.plattform.investly
+package net.hemisoft.p2p.importer.plattform.investly.reader
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
+import groovy.transform.PackageScope
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
 import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanExcelRowMapper
 import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.importer.plattform.investly.dto.InvestlyLoanDto
 
-class InvestlyExcelRowMapper extends AbstractLoanExcelRowMapper<InvestlyTransactionDto> {
+@PackageScope
+class _InvestlyLoanExcelRowMapper extends AbstractLoanExcelRowMapper<InvestlyLoanDto> {
 	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable
 	private static final int COL_LOAN_ID          = ExcelColum.F.ordinal()
 	private static final int COL_INVESTED_AMOUNT  = ExcelColum.D.ordinal()
 	private static final int COL_ISSUED           = ExcelColum.A.ordinal()
 	
-	@Override InvestlyTransactionDto mapRow(RowSet rs) throws Exception {
+	@Override InvestlyLoanDto mapRow(RowSet rs) throws Exception {
 		super.mapRow(rs)
 	}
 
@@ -21,6 +24,6 @@ class InvestlyExcelRowMapper extends AbstractLoanExcelRowMapper<InvestlyTransact
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
 	@Override AbstractLoanDto createNewDto() {
-		InvestlyTransactionDto.newInstance()
+		InvestlyLoanDto.newInstance()
 	}
 }

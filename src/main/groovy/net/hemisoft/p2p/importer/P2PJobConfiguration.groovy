@@ -26,8 +26,6 @@ public class P2PJobConfiguration {
 	Job crowdestateImportJob(
 		JobExecutionListener importP2PJobCompletionNotificationListener, 
 		Step importBondoraDataStep,
-		Step importGrupeerDataStep,
-		Step importInvestlyDataStep,
 		Step importIuvoDataStep,
 		Step importMintosDataStep,
 		Step importNeofinanceDataStep,
@@ -41,8 +39,6 @@ public class P2PJobConfiguration {
 			.incrementer(RunIdIncrementer.newInstance())
 			.listener(importP2PJobCompletionNotificationListener)
 			.start(importBondoraDataStep)
-			.next(importGrupeerDataStep)
-			.next(importInvestlyDataStep)
 			.next(importIuvoDataStep)
 			.next(importMintosDataStep)
 			.next(importNeofinanceDataStep)

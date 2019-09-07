@@ -1,12 +1,17 @@
 package net.hemisoft.p2p.importer.plattform.investly
 
+import org.springframework.batch.core.Job
+import org.springframework.batch.core.JobExecutionListener
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
+import org.springframework.batch.core.launch.support.RunIdIncrementer
 import org.springframework.batch.item.ItemProcessor
 import org.springframework.batch.item.ItemReader
 import org.springframework.batch.item.ItemWriter
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,55 +19,61 @@ import org.springframework.core.io.FileSystemResource
 import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
+import net.hemisoft.p2p.importer.plattform.investly.dto.InvestlyLoanDto
 
 @Configuration
 @EnableBatchProcessing
 public class InvestlyConfiguration {
-	private final StepBuilderFactory stepBuilderFactory
-	
-	InvestlyConfiguration(StepBuilderFactory stepBuilderFactory) {
-		this.stepBuilderFactory = stepBuilderFactory
-	}
+	@Autowired StepBuilderFactory stepBuilderFactory
+	@Autowired JobBuilderFactory  jobBuilderFactory
+
 	
 	@Bean
 	Resource investlyResource(@Value('${path.investly.input}') def path) {
 		new FileSystemResource(path)
 	}
-
-	
-	@Bean
-	ItemReader investlyItemReader(Resource investlyResource) {
-		InvestlyItemReader.newInstance investlyResource
-	}
-
-	@Bean
-	ItemProcessor investlyItemProcessor() {
-		new InvestlyItemProcessor()
-	}
-	
-	@Bean
-	ItemWriter investlyItemWriter() {
-		new InvestlyItemWriter()
-	}
 	
 	
 	@Bean
-	Step importInvestlyDataStep(
-		ItemReader investlyItemReader, 
-		ItemProcessor investlyItemProcessor, 
-		ItemWriter investlyItemWriter,
-		StepExecutionListener investlyStepExecutionListener
+	Job investlyImportJob(
+		JobExecutionListener investlyJobExecutionListener,
+		Step importInvestlyAccountDataStep,
+		Step importInvestlyLoanDataStep
 	) {
-		stepBuilderFactory.get("importInvestlyData").listener(investlyStepExecutionListener)
-			.<InvestlyTransactionDto, TransactionEntity> chunk(10)
-			.reader(investlyItemReader)
-			.processor(investlyItemProcessor)
-			.writer(investlyItemWriter)
+		jobBuilderFactory.get("importInvestlyDataJob").incrementer(RunIdIncrementer.newInstance())
+			.listener(investlyJobExecutionListener)
+			.start(importInvestlyAccountDataStep)
+			.next(importInvestlyLoanDataStep)
 			.build()
 	}
 	
 	@Bean
-	StepExecutionListener investlyStepExecutionListener() {
-		new InvestlyStepExecutionListener()
+	Step importInvestlyAccountDataStep(
+		ItemReader investlyAccountItemReader,
+		ItemProcessor investlyAccountItemProcessor,
+		ItemWriter investlyAccountItemWriter,
+		StepExecutionListener investlyAccountStepExecutionListener
+	) {
+		stepBuilderFactory.get("importInvestlyAccountData").listener(investlyAccountStepExecutionListener)
+			.<InvestlyLoanDto, TransactionEntity> chunk(10)
+			.reader(investlyAccountItemReader)
+			.processor(investlyAccountItemProcessor)
+			.writer(investlyAccountItemWriter)
+			.build()
+	}
+
+	@Bean
+	Step importInvestlyLoanDataStep(
+		ItemReader investlyLoanItemReader, 
+		ItemProcessor investlyLoanItemProcessor, 
+		ItemWriter investlyLoanItemWriter,
+		StepExecutionListener investlyLoanStepExecutionListener
+	) {
+		stepBuilderFactory.get("importInvestlyLoanData").listener(investlyLoanStepExecutionListener)
+			.<InvestlyLoanDto, TransactionEntity> chunk(10)
+			.reader(investlyLoanItemReader)
+			.processor(investlyLoanItemProcessor)
+			.writer(investlyLoanItemWriter)
+			.build()
 	}
 }
