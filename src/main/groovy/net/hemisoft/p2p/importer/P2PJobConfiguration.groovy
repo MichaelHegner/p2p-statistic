@@ -26,14 +26,12 @@ public class P2PJobConfiguration {
 	Job crowdestateImportJob(
 		JobExecutionListener importP2PJobCompletionNotificationListener, 
 		Step importBondoraDataStep,
-		Step importTwinoDataStep,
 		Step importViventorDataStep
 	) {
 		jobBuilderFactory.get("importP2PDataJob")
 			.incrementer(RunIdIncrementer.newInstance())
 			.listener(importP2PJobCompletionNotificationListener)
 			.start(importBondoraDataStep)
-			.next(importTwinoDataStep)
 			.next(importViventorDataStep)
 			.build()
 	}

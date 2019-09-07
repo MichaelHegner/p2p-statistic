@@ -9,11 +9,19 @@ abstract class AbstractAccountImportService {
 	void saveAccount(List<Account> items) {
 		items.each {
 			switch(it.transferType) {
-				case TransferType.DEPOSIT:  value += Math.abs it.amount
+				case TransferType.DEPOSIT:  increaseAmount it
 				                            break
-				case TransferType.WITHDRAW: value -= Math.abs it.amount
+				case TransferType.WITHDRAW: decreaseAmount it
 				                            break
 			}
 		}
+	}
+	
+	void increaseAmount(Account account) {
+		value += Math.abs account.amount
+	}
+
+	void decreaseAmount(Account account) {
+		value -= Math.abs account.amount
 	}
 }
