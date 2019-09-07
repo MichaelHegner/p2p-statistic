@@ -1,12 +1,17 @@
 package net.hemisoft.p2p.importer.plattform.mintos
 
+import org.springframework.batch.core.Job
+import org.springframework.batch.core.JobExecutionListener
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
+import org.springframework.batch.core.launch.support.RunIdIncrementer
 import org.springframework.batch.item.ItemProcessor
 import org.springframework.batch.item.ItemReader
 import org.springframework.batch.item.ItemWriter
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,15 +19,13 @@ import org.springframework.core.io.FileSystemResource
 import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
+import net.hemisoft.p2p.importer.plattform.mintos.dto.MintosLoanDto
 
 @Configuration
 @EnableBatchProcessing
 public class MintosConfiguration {
-	private final StepBuilderFactory stepBuilderFactory
-	
-	MintosConfiguration(StepBuilderFactory stepBuilderFactory) {
-		this.stepBuilderFactory = stepBuilderFactory
-	}
+	@Autowired StepBuilderFactory stepBuilderFactory
+	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
 	Resource mintosResource(@Value('${path.mintos.input}') def path) {
@@ -31,38 +34,45 @@ public class MintosConfiguration {
 
 	
 	@Bean
-	ItemReader mintosItemReader(Resource mintosResource) {
-		MintosItemReader.newInstance mintosResource
-	}
-
-	@Bean
-	ItemProcessor mintosItemProcessor() {
-		new MintosItemProcessor()
-	}
-	
-	@Bean
-	ItemWriter mintosItemWriter() {
-		new MintosItemWriter()
-	}
-	
-	
-	@Bean
-	Step importMintosDataStep(
-		ItemReader mintosItemReader, 
-		ItemProcessor mintosItemProcessor, 
-		ItemWriter mintosItemWriter,
-		StepExecutionListener mintosStepExecutionListener
+	Job mintosImportJob(
+		JobExecutionListener mintosJobExecutionListener,
+		Step importMintosAccountDataStep,
+		Step importMintosLoanDataStep
 	) {
-		stepBuilderFactory.get("importMintosData").listener(mintosStepExecutionListener)
-			.<MintosTransactionDto, TransactionEntity> chunk(10)
-			.reader(mintosItemReader)
-			.processor(mintosItemProcessor)
-			.writer(mintosItemWriter)
+		jobBuilderFactory.get("importMintosDataJob").incrementer(RunIdIncrementer.newInstance())
+			.listener(mintosJobExecutionListener)
+			.start(importMintosAccountDataStep)
+			.next(importMintosLoanDataStep)
 			.build()
 	}
 	
 	@Bean
-	StepExecutionListener mintosStepExecutionListener() {
-		new MintosStepExecutionListener()
+	Step importMintosAccountDataStep(
+		ItemReader mintosAccountItemReader,
+		ItemProcessor mintosAccountItemProcessor,
+		ItemWriter mintosAccountItemWriter,
+		StepExecutionListener mintosAccountStepExecutionListener
+	) {
+		stepBuilderFactory.get("importMintosAccountData").listener(mintosAccountStepExecutionListener)
+			.<MintosLoanDto, TransactionEntity> chunk(10)
+			.reader(mintosAccountItemReader)
+			.processor(mintosAccountItemProcessor)
+			.writer(mintosAccountItemWriter)
+			.build()
+	}
+
+	@Bean
+	Step importMintosLoanDataStep(
+		ItemReader mintosLoanItemReader,
+		ItemProcessor mintosLoanItemProcessor,
+		ItemWriter mintosLoanItemWriter,
+		StepExecutionListener mintosLoanStepExecutionListener
+	) {
+		stepBuilderFactory.get("importMintosLoanData").listener(mintosLoanStepExecutionListener)
+			.<MintosLoanDto, TransactionEntity> chunk(10)
+			.reader(mintosLoanItemReader)
+			.processor(mintosLoanItemProcessor)
+			.writer(mintosLoanItemWriter)
+			.build()
 	}
 }

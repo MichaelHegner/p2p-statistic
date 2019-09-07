@@ -1,18 +1,21 @@
-package net.hemisoft.p2p.importer.plattform.mintos
+package net.hemisoft.p2p.importer.plattform.mintos.reader
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
+import groovy.transform.PackageScope
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
 import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanExcelRowMapper
 import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.importer.plattform.mintos.dto.MintosLoanDto
 
-class MintosExcelRowMapper extends AbstractLoanExcelRowMapper<MintosTransactionDto> {
+@PackageScope
+class _MintosLoanExcelRowMapper extends AbstractLoanExcelRowMapper<MintosLoanDto> {
 	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable
-	private static final int COL_LOAN_ID          = ExcelColum.B.ordinal()
-	private static final int COL_INVESTED_AMOUNT  = ExcelColum.R.ordinal()
-	private static final int COL_ISSUED           = ExcelColum.C.ordinal()
+	private static final int COL_LOAN_ID          = ExcelColum.C.ordinal()
+	private static final int COL_INVESTED_AMOUNT  = ExcelColum.D.ordinal()
+	private static final int COL_ISSUED           = ExcelColum.B.ordinal()
 	
-	@Override MintosTransactionDto mapRow(RowSet rs) throws Exception {
+	@Override MintosLoanDto mapRow(RowSet rs) throws Exception {
 		super.mapRow(rs)
 	}
 	
@@ -21,6 +24,6 @@ class MintosExcelRowMapper extends AbstractLoanExcelRowMapper<MintosTransactionD
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
 	@Override AbstractLoanDto createNewDto() {
-		MintosTransactionDto.newInstance()
+		MintosLoanDto.newInstance()
 	}
 }
