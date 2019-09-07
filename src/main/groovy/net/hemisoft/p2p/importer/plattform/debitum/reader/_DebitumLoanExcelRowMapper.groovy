@@ -19,7 +19,7 @@ class _DebitumLoanExcelRowMapper extends AbstractLoanExcelRowMapper<DebitumLoanD
 		super.mapRow(rs)
 	}
 
-	@Override int getLoanIdColumnIndex()         { COL_LOAN_ID        }
+	@Override int getLoanIdColumnIndex()         { COL_LOAN_ID         }
 	@Override int getInvestedAmountColumnIndex() { COL_INVESTED_AMOUNT }
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
