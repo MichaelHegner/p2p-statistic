@@ -1,19 +1,22 @@
-package net.hemisoft.p2p.importer.plattform.swaper
+package net.hemisoft.p2p.importer.plattform.swaper.reader
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
+import groovy.transform.PackageScope
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
 import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanExcelRowMapper
 import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.importer.plattform.swaper.dto.SwaperLoanDto
 
-class SwaperExcelRowMapper extends AbstractLoanExcelRowMapper<SwaperTransactionDto> {
+@PackageScope
+class _SwaperLoanExcelRowMapper extends AbstractLoanExcelRowMapper<SwaperLoanDto> {
 	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable
 	private static final int COL_LOAN_ID          = ExcelColum.E.ordinal()
 	private static final int COL_INVESTED_AMOUNT  = ExcelColum.C.ordinal()
 	private static final int COL_ISSUED           = ExcelColum.A.ordinal()
 	
 	@Override
-	SwaperTransactionDto mapRow(RowSet rs) throws Exception {
+	SwaperLoanDto mapRow(RowSet rs) throws Exception {
 		super.mapRow(rs)
 	}
 	
@@ -22,7 +25,7 @@ class SwaperExcelRowMapper extends AbstractLoanExcelRowMapper<SwaperTransactionD
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
 	@Override AbstractLoanDto createNewDto() {
-		SwaperTransactionDto.newInstance()
+		SwaperLoanDto.newInstance()
 	}
 
 }
