@@ -1,16 +1,19 @@
-package net.hemisoft.p2p.importer.plattform.neofinance
+package net.hemisoft.p2p.importer.plattform.neofinance.reader
 
+import groovy.transform.PackageScope
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
 import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanCsvLineMapper
 import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.importer.plattform.neofinance.dto.NeofinanceLoanDto
 
-class NeofinanceCsvRowMapper extends AbstractLoanCsvLineMapper<NeofinanceTransactionDto> {
+@PackageScope
+class _NeofinanceLoanCsvRowMapper extends AbstractLoanCsvLineMapper<NeofinanceLoanDto> {
 	private static final int COL_TRANSACTION_ID   = ExcelColum.A.ordinal()
 	private static final int COL_LOAN_ID          = ExcelColum.C.ordinal()
 	private static final int COL_INVESTED_AMOUNT  = ExcelColum.F.ordinal()
 	private static final int COL_ISSUED           = ExcelColum.B.ordinal()
 	
-	@Override NeofinanceTransactionDto mapLine(String line, int lineNumber) throws Exception {
+	@Override NeofinanceLoanDto mapLine(String line, int lineNumber) throws Exception {
 		super.mapLine(line, lineNumber)
 	}
 	
@@ -19,6 +22,6 @@ class NeofinanceCsvRowMapper extends AbstractLoanCsvLineMapper<NeofinanceTransac
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
 	@Override AbstractLoanDto createNewDto() {
-		NeofinanceTransactionDto.newInstance()
+		NeofinanceLoanDto.newInstance()
 	}
 }
