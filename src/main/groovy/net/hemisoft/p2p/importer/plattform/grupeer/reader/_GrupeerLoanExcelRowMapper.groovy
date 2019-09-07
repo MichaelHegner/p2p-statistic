@@ -1,18 +1,21 @@
-package net.hemisoft.p2p.importer.plattform.grupeer
+package net.hemisoft.p2p.importer.plattform.grupeer.reader
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
+import groovy.transform.PackageScope
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
 import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanExcelRowMapper
 import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.importer.plattform.grupeer.dto.GrupeerLoanDto
 
-class GrupeerExcelRowMapper extends AbstractLoanExcelRowMapper<GrupeerTransactionDto> {
+@PackageScope
+class _GrupeerLoanExcelRowMapper extends AbstractLoanExcelRowMapper<GrupeerLoanDto> {
 	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable
 	private static final int COL_LOAN_ID          = ExcelColum.G.ordinal()
 	private static final int COL_INVESTED_AMOUNT  = ExcelColum.D.ordinal()
 	private static final int COL_ISSUED           = ExcelColum.A.ordinal()
 	
-	@Override GrupeerTransactionDto mapRow(RowSet rs) throws Exception {
+	@Override GrupeerLoanDto mapRow(RowSet rs) throws Exception {
 		super.mapRow(rs)
 	}
 	
@@ -21,6 +24,6 @@ class GrupeerExcelRowMapper extends AbstractLoanExcelRowMapper<GrupeerTransactio
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
 	@Override AbstractLoanDto createNewDto() {
-		GrupeerTransactionDto.newInstance()
+		GrupeerLoanDto.newInstance()
 	}
 }
