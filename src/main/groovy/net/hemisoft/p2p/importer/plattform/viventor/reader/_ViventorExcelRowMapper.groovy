@@ -1,18 +1,21 @@
-package net.hemisoft.p2p.importer.plattform.viventor
+package net.hemisoft.p2p.importer.plattform.viventor.reader
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
+import groovy.transform.PackageScope
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
 import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanExcelRowMapper
 import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.importer.plattform.viventor.dto.ViventorLoanDto
 
-class ViventorExcelRowMapper extends AbstractLoanExcelRowMapper<ViventorTransactionDto> {
-	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable
+@PackageScope
+class _ViventorExcelRowMapper extends AbstractLoanExcelRowMapper<ViventorLoanDto> {
+	private static final int COL_TRANSACTION_ID   = ExcelColum.A.ordinal()
 	private static final int COL_LOAN_ID          = ExcelColum.D.ordinal()
 	private static final int COL_INVESTED_AMOUNT  = ExcelColum.G.ordinal()
 	private static final int COL_ISSUED           = ExcelColum.B.ordinal()
 	
-	@Override ViventorTransactionDto mapRow(RowSet rs) throws Exception {
+	@Override ViventorLoanDto mapRow(RowSet rs) throws Exception {
 		super.mapRow(rs)
 	}
 	
@@ -21,6 +24,6 @@ class ViventorExcelRowMapper extends AbstractLoanExcelRowMapper<ViventorTransact
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
 	@Override AbstractLoanDto createNewDto() {
-		ViventorTransactionDto.newInstance()
+		ViventorLoanDto.newInstance()
 	}
 }
