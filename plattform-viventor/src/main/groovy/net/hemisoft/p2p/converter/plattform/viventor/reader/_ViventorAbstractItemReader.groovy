@@ -8,7 +8,7 @@ import net.hemisoft.p2p.converter.plattform.viventor.dto.ViventorLoanDto
 
 @PackageScope
 abstract class _ViventorAbstractItemReader extends PoiItemReader<ViventorLoanDto> {
-	private static final int LINES_TO_SKIP = 10
+	private static final int LINES_TO_SKIP = 9
 
 	_ViventorAbstractItemReader(Resource viventorResource) {
 		this.linesToSkip = LINES_TO_SKIP

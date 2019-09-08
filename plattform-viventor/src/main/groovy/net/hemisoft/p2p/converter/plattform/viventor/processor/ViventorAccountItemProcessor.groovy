@@ -18,7 +18,7 @@ public class ViventorAccountItemProcessor extends AbstractAccountItemProcessor<V
 	
 	@Override TransferType createTransferType(String transferType) {
 		switch(transferType) {
-			case "FUNDING": TransferType.DEPOSIT;  break
+			case "Funds deposit": TransferType.DEPOSIT;  break
 			default: null
 		}
 	}
