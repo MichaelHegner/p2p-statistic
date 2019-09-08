@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.converter.converter.plattform.crowdestate.service
+package net.hemisoft.p2p.converter.plattform.crowdestate.service
 
 import org.springframework.stereotype.Service
 

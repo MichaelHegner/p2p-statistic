@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.converter.converter.plattform.crowdestate
+package net.hemisoft.p2p.converter.plattform.crowdestate
 
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.JobExecutionListener
@@ -18,8 +18,8 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.FileSystemResource
 import org.springframework.core.io.Resource
 
-import net.hemisoft.p2p.converter.converter.plattform.crowdestate.dto.CrowdestateLoanDto
 import net.hemisoft.p2p.converter.domain.entity.TransactionEntity
+import net.hemisoft.p2p.converter.plattform.crowdestate.dto.CrowdestateLoanDto
 
 @Configuration
 @EnableBatchProcessing

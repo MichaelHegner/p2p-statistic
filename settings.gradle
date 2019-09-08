@@ -4,6 +4,7 @@ include 'domain'
 include 'utils'
 include 'plattform'
 include 'plattform-bondora'
+include 'plattform-crowdestate'
 include 'converter'
 
 rootProject.children.each { it.name = rootProject.name + '-' + it.name }

@@ -1,10 +1,10 @@
-package net.hemisoft.p2p.converter.converter.plattform.crowdestate.reader
+package net.hemisoft.p2p.converter.plattform.crowdestate.reader
 
 import org.springframework.batch.item.excel.poi.PoiItemReader
 import org.springframework.core.io.Resource
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.plattform.crowdestate.dto.CrowdestateLoanDto
+import net.hemisoft.p2p.converter.plattform.crowdestate.dto.CrowdestateLoanDto
 
 @PackageScope
 abstract class _CrowdestateAbstractItemReader extends PoiItemReader<CrowdestateLoanDto> {
