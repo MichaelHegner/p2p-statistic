@@ -1,9 +1,9 @@
 package net.hemisoft.p2p.converter.converter.plattform.peerberry.reader
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.commons.key.ExcelColum
-import net.hemisoft.p2p.converter.converter.commons.plattform.AbstractAccountCsvLineMapper
 import net.hemisoft.p2p.converter.converter.plattform.peerberry.dto.PeerberryAccountDto
+import net.hemisoft.p2p.converter.plattform.key.ExcelColum
+import net.hemisoft.p2p.converter.plattform.mapper.AbstractAccountCsvLineMapper
 
 @PackageScope
 class _PeerberryAccountCsvLineMapper extends AbstractAccountCsvLineMapper<PeerberryAccountDto> {

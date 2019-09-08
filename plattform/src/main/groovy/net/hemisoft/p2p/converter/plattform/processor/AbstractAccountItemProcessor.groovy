@@ -1,11 +1,11 @@
-package net.hemisoft.p2p.converter.converter.commons.plattform.processor
+package net.hemisoft.p2p.converter.plattform.processor
 
 import org.springframework.batch.item.ItemProcessor
 
-import net.hemisoft.p2p.converter.converter.commons.plattform.dto.AbstractAccountDto
 import net.hemisoft.p2p.converter.domain.entity.Account
 import net.hemisoft.p2p.converter.domain.entity.Plattform
 import net.hemisoft.p2p.converter.domain.entity.TransferType
+import net.hemisoft.p2p.converter.plattform.dto.AbstractAccountDto
 import net.hemisoft.p2p.converter.utils.date.P2PDateUtils
 import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 

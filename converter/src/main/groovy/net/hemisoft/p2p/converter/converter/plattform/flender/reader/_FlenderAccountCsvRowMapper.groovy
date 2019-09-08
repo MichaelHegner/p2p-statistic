@@ -1,9 +1,9 @@
 package net.hemisoft.p2p.converter.converter.plattform.flender.reader
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.commons.key.ExcelColum
-import net.hemisoft.p2p.converter.converter.commons.plattform.AbstractAccountCsvLineMapper
 import net.hemisoft.p2p.converter.converter.plattform.flender.dto.FlenderAccountDto
+import net.hemisoft.p2p.converter.plattform.key.ExcelColum
+import net.hemisoft.p2p.converter.plattform.mapper.AbstractAccountCsvLineMapper
 
 @PackageScope
 class _FlenderAccountCsvRowMapper extends AbstractAccountCsvLineMapper<FlenderAccountDto> {

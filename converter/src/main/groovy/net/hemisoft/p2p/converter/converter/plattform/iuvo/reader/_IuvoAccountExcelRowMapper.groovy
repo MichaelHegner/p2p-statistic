@@ -3,10 +3,10 @@ package net.hemisoft.p2p.converter.converter.plattform.iuvo.reader
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.commons.key.ExcelColum
-import net.hemisoft.p2p.converter.converter.commons.plattform.AbstractAccountExcelRowMapper
-import net.hemisoft.p2p.converter.converter.commons.plattform.dto.AbstractAccountDto
 import net.hemisoft.p2p.converter.converter.plattform.iuvo.dto.IuvoAccountDto
+import net.hemisoft.p2p.converter.plattform.dto.AbstractAccountDto
+import net.hemisoft.p2p.converter.plattform.key.ExcelColum
+import net.hemisoft.p2p.converter.plattform.mapper.AbstractAccountExcelRowMapper
 
 @PackageScope
 class _IuvoAccountExcelRowMapper extends AbstractAccountExcelRowMapper<IuvoAccountDto> {

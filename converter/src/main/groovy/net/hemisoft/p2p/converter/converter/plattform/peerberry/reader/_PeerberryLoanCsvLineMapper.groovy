@@ -1,10 +1,10 @@
 package net.hemisoft.p2p.converter.converter.plattform.peerberry.reader
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.commons.key.ExcelColum
-import net.hemisoft.p2p.converter.converter.commons.plattform.AbstractLoanCsvLineMapper
-import net.hemisoft.p2p.converter.converter.commons.plattform.dto.AbstractLoanDto
 import net.hemisoft.p2p.converter.converter.plattform.peerberry.dto.PeerberryLoanDto
+import net.hemisoft.p2p.converter.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.converter.plattform.key.ExcelColum
+import net.hemisoft.p2p.converter.plattform.mapper.AbstractLoanCsvLineMapper
 
 @PackageScope
 class _PeerberryLoanCsvLineMapper extends AbstractLoanCsvLineMapper<PeerberryLoanDto> {

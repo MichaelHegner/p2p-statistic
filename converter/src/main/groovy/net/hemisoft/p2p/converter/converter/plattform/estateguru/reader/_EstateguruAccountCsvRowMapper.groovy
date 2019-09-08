@@ -1,9 +1,9 @@
 package net.hemisoft.p2p.converter.converter.plattform.estateguru.reader
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.commons.key.ExcelColum
-import net.hemisoft.p2p.converter.converter.commons.plattform.AbstractAccountCsvLineMapper
 import net.hemisoft.p2p.converter.converter.plattform.estateguru.dto.EstateguruAccountDto
+import net.hemisoft.p2p.converter.plattform.key.ExcelColum
+import net.hemisoft.p2p.converter.plattform.mapper.AbstractAccountCsvLineMapper
 
 @PackageScope
 class _EstateguruAccountCsvRowMapper extends AbstractAccountCsvLineMapper<EstateguruAccountDto> {

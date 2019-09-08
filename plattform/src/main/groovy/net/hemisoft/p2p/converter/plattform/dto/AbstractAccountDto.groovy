@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.converter.converter.commons.plattform.dto
+package net.hemisoft.p2p.converter.plattform.dto
 
 import net.hemisoft.p2p.converter.domain.entity.Plattform
 

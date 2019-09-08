@@ -95,10 +95,33 @@ project(':' + rootProject.name + '-utils') {
 }
 
 
+project(':' + rootProject.name + '-plattform') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-domain')
+		compile project	(':' + rootProject.name + '-utils')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+
 project(':' + rootProject.name + '-converter') {
 	dependencies {
 		compile project	(':' + rootProject.name + '-domain')
 		compile project	(':' + rootProject.name + '-utils')
+		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
 	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'

@@ -1,10 +1,10 @@
-package net.hemisoft.p2p.converter.converter.commons.plattform.writer;
+package net.hemisoft.p2p.converter.plattform.writer;
 
 import java.util.List;
 
 import org.springframework.batch.item.ItemWriter;
 
-import net.hemisoft.p2p.converter.converter.commons.plattform.service.AbstractAccountImportService
+import net.hemisoft.p2p.converter.plattform.service.AbstractAccountImportService
 
 abstract class AbstractAccountItemWriter implements ItemWriter {
 	AbstractAccountImportService service

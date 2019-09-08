@@ -3,9 +3,9 @@ package net.hemisoft.p2p.converter.converter.plattform.bondora.reader
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.commons.key.ExcelColum
-import net.hemisoft.p2p.converter.converter.commons.plattform.AbstractAccountExcelRowMapper
 import net.hemisoft.p2p.converter.converter.plattform.bondora.dto.BondoraAccountDto
+import net.hemisoft.p2p.converter.plattform.key.ExcelColum
+import net.hemisoft.p2p.converter.plattform.mapper.AbstractAccountExcelRowMapper
 
 @PackageScope
 class _BondoraAccountExcelRowMapper extends AbstractAccountExcelRowMapper<BondoraAccountDto> {

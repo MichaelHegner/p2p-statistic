@@ -3,10 +3,10 @@ package net.hemisoft.p2p.converter.converter.plattform.iuvo.processor
 import org.apache.commons.lang3.StringUtils
 import org.springframework.stereotype.Component
 
-import net.hemisoft.p2p.converter.converter.commons.plattform.processor.AbstractLoanItemProcessor
 import net.hemisoft.p2p.converter.converter.plattform.iuvo.dto.IuvoLoanDto
 import net.hemisoft.p2p.converter.domain.entity.Loan
 import net.hemisoft.p2p.converter.domain.entity.Plattform
+import net.hemisoft.p2p.converter.plattform.processor.AbstractLoanItemProcessor
 
 @Component
 public class IuvoLoanItemProcessor extends AbstractLoanItemProcessor<IuvoLoanDto, Loan> {

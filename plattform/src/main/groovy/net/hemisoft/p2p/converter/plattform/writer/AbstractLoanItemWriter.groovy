@@ -1,8 +1,8 @@
-package net.hemisoft.p2p.converter.converter.commons.plattform.writer
+package net.hemisoft.p2p.converter.plattform.writer
 
 import org.springframework.batch.item.ItemWriter
 
-import net.hemisoft.p2p.converter.converter.commons.plattform.service.AbstractLoanImportService
+import net.hemisoft.p2p.converter.plattform.service.AbstractLoanImportService
 
 abstract class AbstractLoanItemWriter implements ItemWriter {
 	AbstractLoanImportService service

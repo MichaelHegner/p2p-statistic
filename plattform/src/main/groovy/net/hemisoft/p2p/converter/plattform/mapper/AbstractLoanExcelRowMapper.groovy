@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.converter.converter.commons.plattform
+package net.hemisoft.p2p.converter.plattform.mapper
 
 import java.time.Instant
 import java.time.ZoneId
@@ -8,7 +8,7 @@ import org.apache.commons.lang3.math.NumberUtils
 import org.springframework.batch.item.excel.RowMapper
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
-import net.hemisoft.p2p.converter.converter.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.converter.plattform.dto.AbstractLoanDto
 
 public abstract class AbstractLoanExcelRowMapper<T> implements RowMapper<T> {
 	abstract int getLoanIdColumnIndex()

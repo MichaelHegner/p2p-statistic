@@ -1,12 +1,12 @@
-package net.hemisoft.p2p.converter.converter.commons.plattform.listener
+package net.hemisoft.p2p.converter.plattform.listener
 
 import org.springframework.batch.core.ExitStatus
 import org.springframework.batch.core.StepExecution
 import org.springframework.batch.core.StepExecutionListener
 
 import groovy.util.logging.Slf4j
-import net.hemisoft.p2p.converter.converter.commons.plattform.service.AbstractLoanImportService
 import net.hemisoft.p2p.converter.domain.entity.Plattform
+import net.hemisoft.p2p.converter.plattform.service.AbstractLoanImportService
 
 @Slf4j
 abstract class AbstractLoanStepExecutionListener implements StepExecutionListener {

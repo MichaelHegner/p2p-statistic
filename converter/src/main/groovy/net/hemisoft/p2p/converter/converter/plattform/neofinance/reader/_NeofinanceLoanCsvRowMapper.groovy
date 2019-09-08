@@ -1,10 +1,10 @@
 package net.hemisoft.p2p.converter.converter.plattform.neofinance.reader
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.commons.key.ExcelColum
-import net.hemisoft.p2p.converter.converter.commons.plattform.AbstractLoanCsvLineMapper
-import net.hemisoft.p2p.converter.converter.commons.plattform.dto.AbstractLoanDto
 import net.hemisoft.p2p.converter.converter.plattform.neofinance.dto.NeofinanceLoanDto
+import net.hemisoft.p2p.converter.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.converter.plattform.key.ExcelColum
+import net.hemisoft.p2p.converter.plattform.mapper.AbstractLoanCsvLineMapper
 
 @PackageScope
 class _NeofinanceLoanCsvRowMapper extends AbstractLoanCsvLineMapper<NeofinanceLoanDto> {

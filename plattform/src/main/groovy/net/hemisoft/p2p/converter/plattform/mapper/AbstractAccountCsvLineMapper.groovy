@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.converter.converter.commons.plattform
+package net.hemisoft.p2p.converter.plattform.mapper
 
 import java.time.Instant
 import java.time.ZoneId
@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter
 import org.apache.commons.lang3.math.NumberUtils
 import org.springframework.batch.item.file.LineMapper
 
-import net.hemisoft.p2p.converter.converter.commons.plattform.dto.AbstractAccountDto
+import net.hemisoft.p2p.converter.plattform.dto.AbstractAccountDto
 import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 
 public abstract class AbstractAccountCsvLineMapper<T> implements LineMapper<T> {

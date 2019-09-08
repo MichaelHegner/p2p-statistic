@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.converter.converter.commons.plattform.service
+package net.hemisoft.p2p.converter.plattform.service
 
 import net.hemisoft.p2p.converter.utils.collections.P2PMapUtils
 

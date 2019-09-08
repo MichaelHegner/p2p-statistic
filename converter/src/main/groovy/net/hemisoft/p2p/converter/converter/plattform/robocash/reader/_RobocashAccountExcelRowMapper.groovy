@@ -3,10 +3,10 @@ package net.hemisoft.p2p.converter.converter.plattform.robocash.reader
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.commons.key.ExcelColum
-import net.hemisoft.p2p.converter.converter.commons.plattform.AbstractAccountExcelRowMapper
-import net.hemisoft.p2p.converter.converter.commons.plattform.dto.AbstractAccountDto
 import net.hemisoft.p2p.converter.converter.plattform.robocash.dto.RobocashAccountDto
+import net.hemisoft.p2p.converter.plattform.dto.AbstractAccountDto
+import net.hemisoft.p2p.converter.plattform.key.ExcelColum
+import net.hemisoft.p2p.converter.plattform.mapper.AbstractAccountExcelRowMapper
 
 @PackageScope
 class _RobocashAccountExcelRowMapper extends AbstractAccountExcelRowMapper<RobocashAccountDto> {

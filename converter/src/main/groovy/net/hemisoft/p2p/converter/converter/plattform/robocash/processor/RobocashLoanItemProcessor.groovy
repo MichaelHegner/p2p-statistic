@@ -2,10 +2,10 @@ package net.hemisoft.p2p.converter.converter.plattform.robocash.processor
 
 import org.springframework.stereotype.Component
 
-import net.hemisoft.p2p.converter.converter.commons.plattform.processor.AbstractLoanItemProcessor
 import net.hemisoft.p2p.converter.converter.plattform.robocash.dto.RobocashLoanDto
 import net.hemisoft.p2p.converter.domain.entity.Loan
 import net.hemisoft.p2p.converter.domain.entity.Plattform
+import net.hemisoft.p2p.converter.plattform.processor.AbstractLoanItemProcessor
 
 @Component
 public class RobocashLoanItemProcessor extends AbstractLoanItemProcessor<RobocashLoanDto, Loan> {
