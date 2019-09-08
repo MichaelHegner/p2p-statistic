@@ -29,7 +29,7 @@ public class EstateguruConfiguration {
 	
 	
 	@Bean
-	Resource estateguruResource(@Value('${path.estateguru.input}') def path) {
+	Resource estateguruResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

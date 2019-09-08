@@ -29,7 +29,7 @@ public class DebitumConfiguration {
 	
 	
 	@Bean
-	Resource debitumResource(@Value('${path.debitum.input}') def path) {
+	Resource debitumResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

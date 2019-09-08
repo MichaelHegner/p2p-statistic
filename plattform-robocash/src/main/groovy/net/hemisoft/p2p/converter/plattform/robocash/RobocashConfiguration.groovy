@@ -28,7 +28,7 @@ public class RobocashConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource robocashResource(@Value('${path.robocash.input}') def path) {
+	Resource robocashResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

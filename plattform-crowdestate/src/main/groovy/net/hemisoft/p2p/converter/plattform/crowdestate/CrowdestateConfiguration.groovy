@@ -28,7 +28,7 @@ public class CrowdestateConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource crowdestateResource(@Value('${path.crowdestate.input}') def path) {
+	Resource crowdestateResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

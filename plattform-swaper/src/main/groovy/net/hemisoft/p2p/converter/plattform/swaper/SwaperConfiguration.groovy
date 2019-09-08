@@ -28,7 +28,7 @@ public class SwaperConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource swaperResource(@Value('${path.swaper.input}') def path) {
+	Resource swaperResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

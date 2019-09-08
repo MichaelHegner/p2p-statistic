@@ -29,12 +29,12 @@ public class FlenderConfiguration {
 
 	
 	@Bean
-	Resource flenderAccountResource(@Value('${path.flender.account.input}') def path) {
+	Resource flenderAccountResource(@Value('${path.input.account}') def path) {
 		new FileSystemResource(path)
 	}
 	
 	@Bean
-	Resource flenderLoanResource(@Value('${path.flender.loan.input}') def path) {
+	Resource flenderLoanResource(@Value('${path.input.loan}') def path) {
 		new FileSystemResource(path)
 	}
 

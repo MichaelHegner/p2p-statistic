@@ -28,7 +28,7 @@ public class TwinoConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource twinoResource(@Value('${path.twino.input}') def path) {
+	Resource twinoResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

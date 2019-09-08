@@ -29,7 +29,7 @@ public class GrupeerConfiguration {
 	
 	
 	@Bean
-	Resource grupeerResource(@Value('${path.grupeer.input}') def path) {
+	Resource grupeerResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

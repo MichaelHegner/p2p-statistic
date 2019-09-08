@@ -28,7 +28,7 @@ public class IuvoConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource iuvoResource(@Value('${path.iuvo.input}') def path) {
+	Resource iuvoResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 	

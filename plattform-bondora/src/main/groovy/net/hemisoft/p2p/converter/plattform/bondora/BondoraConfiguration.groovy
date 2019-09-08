@@ -28,7 +28,7 @@ public class BondoraConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource bondoraResource(@Value('${path.bondora.input}') def path) {
+	Resource bondoraResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

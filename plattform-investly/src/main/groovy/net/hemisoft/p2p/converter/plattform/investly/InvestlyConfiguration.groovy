@@ -29,7 +29,7 @@ public class InvestlyConfiguration {
 
 	
 	@Bean
-	Resource investlyResource(@Value('${path.investly.input}') def path) {
+	Resource investlyResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 	

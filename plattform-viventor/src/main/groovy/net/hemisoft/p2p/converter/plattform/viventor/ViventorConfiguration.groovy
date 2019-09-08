@@ -28,7 +28,7 @@ public class ViventorConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource viventorResource(@Value('${path.viventor.input}') def path) {
+	Resource viventorResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

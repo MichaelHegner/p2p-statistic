@@ -29,7 +29,7 @@ public class FinbeeConfiguration {
 	
 	
 	@Bean
-	Resource finbeeResource(@Value('${path.finbee.input}') def path) {
+	Resource finbeeResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

@@ -28,7 +28,7 @@ public class MintosConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource mintosResource(@Value('${path.mintos.input}') def path) {
+	Resource mintosResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 

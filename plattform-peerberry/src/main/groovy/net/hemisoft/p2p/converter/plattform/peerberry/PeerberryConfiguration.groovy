@@ -28,7 +28,7 @@ public class PeerberryConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource peerberryResource(@Value('${path.peerberry.input}') def path) {
+	Resource peerberryResource(@Value('${path.input}') def path) {
 		new FileSystemResource(path)
 	}
 
