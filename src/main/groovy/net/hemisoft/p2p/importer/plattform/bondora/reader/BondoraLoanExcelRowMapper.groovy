@@ -1,18 +1,21 @@
-package net.hemisoft.p2p.importer.plattform.bondora
+package net.hemisoft.p2p.importer.plattform.bondora.reader
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
 
+import groovy.transform.PackageScope
 import net.hemisoft.p2p.importer.commons.key.ExcelColum
 import net.hemisoft.p2p.importer.commons.plattform.AbstractLoanExcelRowMapper
 import net.hemisoft.p2p.importer.commons.plattform.dto.AbstractLoanDto
+import net.hemisoft.p2p.importer.plattform.bondora.dto.BondoraLoanDto
 
-class BondoraExcelRowMapper extends AbstractLoanExcelRowMapper<BondoraTransactionDto> {
+@PackageScope
+class BondoraLoanExcelRowMapper extends AbstractLoanExcelRowMapper<BondoraLoanDto> {
 	private static final int COL_TRANSACTION_ID   = ExcelColum.D.ordinal()
-	private static final int COL_LOAN_ID          = ExcelColum.A.ordinal()
-	private static final int COL_INVESTED_AMOUNT  = ExcelColum.F.ordinal()
-	private static final int COL_ISSUED           = ExcelColum.G.ordinal()
+	private static final int COL_LOAN_ID          = ExcelColum.F.ordinal()
+	private static final int COL_INVESTED_AMOUNT  = ExcelColum.C.ordinal()
+	private static final int COL_ISSUED           = ExcelColum.A.ordinal()
 
-	@Override BondoraTransactionDto mapRow(RowSet rs) throws Exception {
+	@Override BondoraLoanDto mapRow(RowSet rs) throws Exception {
 		super.mapRow(rs)
 	}
 
@@ -21,6 +24,6 @@ class BondoraExcelRowMapper extends AbstractLoanExcelRowMapper<BondoraTransactio
 	@Override int getIssuedColumnIndex()         { COL_ISSUED          }
 	
 	@Override AbstractLoanDto createNewDto() {
-		BondoraTransactionDto.newInstance()
+		BondoraLoanDto.newInstance()
 	}
 }

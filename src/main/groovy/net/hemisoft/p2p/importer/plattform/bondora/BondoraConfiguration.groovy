@@ -1,12 +1,17 @@
 package net.hemisoft.p2p.importer.plattform.bondora
 
+import org.springframework.batch.core.Job
+import org.springframework.batch.core.JobExecutionListener
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.StepExecutionListener
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
+import org.springframework.batch.core.launch.support.RunIdIncrementer
 import org.springframework.batch.item.ItemProcessor
 import org.springframework.batch.item.ItemReader
 import org.springframework.batch.item.ItemWriter
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,15 +19,13 @@ import org.springframework.core.io.FileSystemResource
 import org.springframework.core.io.Resource
 
 import net.hemisoft.p2p.importer.domain.TransactionEntity
+import net.hemisoft.p2p.importer.plattform.bondora.dto.BondoraLoanDto
 
 @Configuration
 @EnableBatchProcessing
 public class BondoraConfiguration {
-	private final StepBuilderFactory stepBuilderFactory
-	
-	BondoraConfiguration(StepBuilderFactory stepBuilderFactory) {
-		this.stepBuilderFactory = stepBuilderFactory
-	}
+	@Autowired StepBuilderFactory stepBuilderFactory
+	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
 	Resource bondoraResource(@Value('${path.bondora.input}') def path) {
@@ -31,38 +34,45 @@ public class BondoraConfiguration {
 
 	
 	@Bean
-	ItemReader bondoraItemReader(Resource bondoraResource) {
-		BondoraItemReader.newInstance bondoraResource
-	}
-
-	@Bean
-	ItemProcessor bondoraItemProcessor() {
-		new BondoraItemProcessor()
-	}
-	
-	@Bean
-	ItemWriter bondoraItemWriter() {
-		new BondoraItemWriter()
-	}
-	
-	
-	@Bean
-	Step importBondoraDataStep(
-		ItemReader bondoraItemReader, 
-		ItemProcessor bondoraItemProcessor, 
-		ItemWriter bondoraItemWriter,
-		StepExecutionListener bondoraStepExecutionListener
+	Job bondoraImportJob(
+		JobExecutionListener bondoraJobExecutionListener,
+		Step importBondoraAccountDataStep,
+		Step importBondoraLoanDataStep
 	) {
-		stepBuilderFactory.get("importBondoraData").listener(bondoraStepExecutionListener)
-			.<BondoraTransactionDto, TransactionEntity> chunk(10)
-			.reader(bondoraItemReader)
-			.processor(bondoraItemProcessor)
-			.writer(bondoraItemWriter)
+		jobBuilderFactory.get("importBondoraDataJob").incrementer(RunIdIncrementer.newInstance())
+			.listener(bondoraJobExecutionListener)
+			.start(importBondoraAccountDataStep)
+			.next(importBondoraLoanDataStep)
 			.build()
 	}
 	
 	@Bean
-	StepExecutionListener bondoraStepExecutionListener() {
-		new BondoraStepExecutionListener()
+	Step importBondoraAccountDataStep(
+		ItemReader bondoraAccountItemReader,
+		ItemProcessor bondoraAccountItemProcessor,
+		ItemWriter bondoraAccountItemWriter,
+		StepExecutionListener bondoraAccountStepExecutionListener
+	) {
+		stepBuilderFactory.get("importBondoraAccountData").listener(bondoraAccountStepExecutionListener)
+			.<BondoraLoanDto, TransactionEntity> chunk(10)
+			.reader(bondoraAccountItemReader)
+			.processor(bondoraAccountItemProcessor)
+			.writer(bondoraAccountItemWriter)
+			.build()
+	}
+
+	@Bean
+	Step importBondoraLoanDataStep(
+		ItemReader bondoraLoanItemReader, 
+		ItemProcessor bondoraLoanItemProcessor, 
+		ItemWriter bondoraLoanItemWriter,
+		StepExecutionListener bondoraLoanStepExecutionListener
+	) {
+		stepBuilderFactory.get("importBondoraAccountData").listener(bondoraLoanStepExecutionListener)
+			.<BondoraLoanDto, TransactionEntity> chunk(10)
+			.reader(bondoraLoanItemReader)
+			.processor(bondoraLoanItemProcessor)
+			.writer(bondoraLoanItemWriter)
+			.build()
 	}
 }
