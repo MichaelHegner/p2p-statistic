@@ -153,6 +153,284 @@ project(':' + rootProject.name + '-plattform-crowdestate') {
 	}
 }
 
+project(':' + rootProject.name + '-plattform-debitum') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.debitum'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-estateguru') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.estateguru'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-finbee') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.finbee'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-flender') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.flender'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-grupeer') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.grupeer'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-investly') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.investly'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-iuvo') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.iuvo'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-mintos') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.mintos'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-neofinance') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.neofinance'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-peerberry') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.peerberry'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-robocash') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.robocash'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-swaper') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.swaper'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-twino') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.twino'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
+project(':' + rootProject.name + '-plattform-viventor') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.viventor'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
 
 
 project(':' + rootProject.name + '-converter') {
