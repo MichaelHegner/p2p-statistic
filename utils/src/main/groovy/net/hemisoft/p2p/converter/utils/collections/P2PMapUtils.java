@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.converter.converter.commons.utils;
+package net.hemisoft.p2p.converter.utils.collections;
 
 import static lombok.AccessLevel.PRIVATE;
 

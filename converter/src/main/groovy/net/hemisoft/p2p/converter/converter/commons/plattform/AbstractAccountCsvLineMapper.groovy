@@ -8,7 +8,7 @@ import org.apache.commons.lang3.math.NumberUtils
 import org.springframework.batch.item.file.LineMapper
 
 import net.hemisoft.p2p.converter.converter.commons.plattform.dto.AbstractAccountDto
-import net.hemisoft.p2p.converter.converter.commons.utils.P2PNumberUtils
+import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 
 public abstract class AbstractAccountCsvLineMapper<T> implements LineMapper<T> {
 	private static final String SEPARATOR = ","

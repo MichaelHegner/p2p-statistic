@@ -1,6 +1,6 @@
 package net.hemisoft.p2p.converter.converter.commons.plattform.service
 
-import net.hemisoft.p2p.converter.converter.commons.utils.P2PMapUtils
+import net.hemisoft.p2p.converter.utils.collections.P2PMapUtils
 
 public abstract class AbstractLoanImportService {
 	def loanCounter = [:]
