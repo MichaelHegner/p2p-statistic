@@ -19,6 +19,5 @@ include 'plattform-robocash'
 include 'plattform-swaper'
 include 'plattform-twino'
 include 'plattform-viventor'
-include 'converter'
 
 rootProject.children.each { it.name = rootProject.name + '-' + it.name }
