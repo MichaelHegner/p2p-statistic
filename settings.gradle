@@ -1,1 +1,5 @@
 rootProject.name = 'p2p-importer'
+
+include 'converter'
+
+rootProject.children.each { it.name = rootProject.name + '-' + it.name }

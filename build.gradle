@@ -1,38 +1,76 @@
-plugins {
-	id 'org.springframework.boot' version '2.1.8.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-	id 'groovy'
-}
-
-group = 'net.hemisoft.p2p.importer'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
+buildscript {
+	
+	ext {
+		springBootVersion = '2.1.8.RELEASE'
+        // gradleReleaseVersion = '2.4.0'
 	}
-	compileOnly {
-		extendsFrom annotationProcessor
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
 	}
+
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        // classpath "net.researchgate:gradle-release:${gradleReleaseVersion}"
+	}
+
+	
 }
 
-repositories {
-	mavenCentral()
+
+allprojects {
+	apply plugin: 'eclipse'
+	apply plugin: 'maven'
+	apply plugin: 'maven-publish'
+    // apply plugin: 'net.researchgate.release'
+	
+	group = 'net.hemisoft.p2p'
 }
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-integration'
-	implementation 'org.springframework.boot:spring-boot-starter-batch'
-	implementation 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
-	implementation 'org.codehaus.groovy:groovy'
-	implementation 'org.apache.commons:commons-lang3:3.9'
-	implementation 'commons-validator:commons-validator:1.6'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.h2database:h2'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+subprojects {
+	apply plugin: 'groovy'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	
+
+	group = 'net.hemisoft.p2p.importer'
+	
+	sourceCompatibility = JavaVersion.VERSION_1_8
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	
+    configurations {
+		developmentOnly
+		runtimeClasspath {
+			extendsFrom developmentOnly
+		}
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	dependencies {
+		compile	    'org.codehaus.groovy:groovy'
+		compile     'org.springframework.boot:spring-boot-starter-data-jpa'
+	    compile     'org.springframework.boot:spring-boot-starter-integration'
+	    compile     'org.springframework.boot:spring-boot-starter-batch'
+	    compile     'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile     'org.apache.commons:commons-lang3:3.9'
+	    compile     'commons-validator:commons-validator:1.6'
+		
+		testCompile	'org.springframework.boot:spring-boot-starter-test'
+		testCompile	'org.assertj:assertj-core'
+
+        runtimeOnly         'com.h2database:h2'
+		developmentOnly     'org.springframework.boot:spring-boot-devtools'
+		annotationProcessor 'org.projectlombok:lombok'
+	}
 }
