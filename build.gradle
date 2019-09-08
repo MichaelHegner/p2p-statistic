@@ -36,10 +36,6 @@ subprojects {
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 
-	
-
-	group = 'net.hemisoft.p2p.importer'
-	
 	sourceCompatibility = JavaVersion.VERSION_1_8
 
 	repositories {
@@ -59,10 +55,9 @@ subprojects {
 
 	dependencies {
 		compile	    'org.codehaus.groovy:groovy'
-		compile     'org.springframework.boot:spring-boot-starter-data-jpa'
-	    compile     'org.springframework.boot:spring-boot-starter-integration'
-	    compile     'org.springframework.boot:spring-boot-starter-batch'
-	    compile     'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+		// ompile     'org.springframework.boot:spring-boot-starter-data-jpa'
+	    // compile     'org.springframework.boot:spring-boot-starter-integration'
+	    
 	    compile     'org.apache.commons:commons-lang3:3.9'
 	    compile     'commons-validator:commons-validator:1.6'
 		
@@ -72,5 +67,23 @@ subprojects {
         runtimeOnly         'com.h2database:h2'
 		developmentOnly     'org.springframework.boot:spring-boot-devtools'
 		annotationProcessor 'org.projectlombok:lombok'
+	}
+}
+
+project(':' + rootProject.name + '-converter') {
+	dependencies {
+		compile	'org.springframework.boot:spring-boot-starter'
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
 	}
 }
