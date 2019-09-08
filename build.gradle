@@ -2,7 +2,6 @@ buildscript {
 	
 	ext {
 		springBootVersion = '2.1.8.RELEASE'
-        // gradleReleaseVersion = '2.4.0'
 	}
 
 	repositories {
@@ -15,7 +14,6 @@ buildscript {
 
 	dependencies {
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-        // classpath "net.researchgate:gradle-release:${gradleReleaseVersion}"
 	}
 
 	
@@ -26,7 +24,6 @@ allprojects {
 	apply plugin: 'eclipse'
 	apply plugin: 'maven'
 	apply plugin: 'maven-publish'
-    // apply plugin: 'net.researchgate.release'
 	
 	group = 'net.hemisoft.p2p'
 }
@@ -55,7 +52,8 @@ subprojects {
 
 	dependencies {
 		compile	    'org.codehaus.groovy:groovy'
-		// ompile     'org.springframework.boot:spring-boot-starter-data-jpa'
+		compile	    'org.springframework.boot:spring-boot-starter'
+		// compile     'org.springframework.boot:spring-boot-starter-data-jpa'
 	    // compile     'org.springframework.boot:spring-boot-starter-integration'
 	    
 	    compile     'org.apache.commons:commons-lang3:3.9'
@@ -70,14 +68,9 @@ subprojects {
 	}
 }
 
-project(':' + rootProject.name + '-converter') {
-	dependencies {
-		compile	'org.springframework.boot:spring-boot-starter'
-		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
-	}
 
-	group = 'net.hemisoft.p2p.converter'
+project(':' + rootProject.name + '-domain') {
+	group = 'net.hemisoft.p2p.converter.domain'
 	
 	jar {
 		enabled = true
@@ -87,3 +80,23 @@ project(':' + rootProject.name + '-converter') {
 		enabled = false
 	}
 }
+
+project(':' + rootProject.name + '-converter') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-domain')
+				
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.converter'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
