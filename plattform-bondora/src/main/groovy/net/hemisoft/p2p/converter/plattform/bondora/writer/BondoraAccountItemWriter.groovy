@@ -1,8 +1,8 @@
-package net.hemisoft.p2p.converter.converter.plattform.bondora.writer
+package net.hemisoft.p2p.converter.plattform.bondora.writer
 
 import org.springframework.stereotype.Component
 
-import net.hemisoft.p2p.converter.converter.plattform.bondora.service.BondoraAccountImportService
+import net.hemisoft.p2p.converter.plattform.bondora.service.BondoraAccountImportService
 import net.hemisoft.p2p.converter.plattform.writer.AbstractAccountItemWriter
 
 @Component

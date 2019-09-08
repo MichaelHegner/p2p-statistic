@@ -1,10 +1,10 @@
-package net.hemisoft.p2p.converter.converter.plattform.bondora.reader
+package net.hemisoft.p2p.converter.plattform.bondora.reader
 
 import org.springframework.batch.item.excel.poi.PoiItemReader
 import org.springframework.core.io.Resource
 
 import groovy.transform.PackageScope
-import net.hemisoft.p2p.converter.converter.plattform.bondora.dto.BondoraLoanDto
+import net.hemisoft.p2p.converter.plattform.bondora.dto.BondoraLoanDto
 
 @PackageScope
 abstract class _BondoraAbstractItemReader extends PoiItemReader<BondoraLoanDto> {

@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.converter.converter.plattform.bondora.reader
+package net.hemisoft.p2p.converter.plattform.bondora.reader
 
 import org.springframework.core.io.Resource
 import org.springframework.stereotype.Component

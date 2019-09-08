@@ -1,4 +1,4 @@
-package net.hemisoft.p2p.converter.converter.plattform.bondora.service
+package net.hemisoft.p2p.converter.plattform.bondora.service
 
 import org.springframework.stereotype.Service
 
