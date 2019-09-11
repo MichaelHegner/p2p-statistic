@@ -28,12 +28,12 @@ public class NeofinanceConfiguration {
 	@Autowired JobBuilderFactory  jobBuilderFactory
 	
 	@Bean
-	Resource neofinanceAccountResource(@Value('${path.input.account}') def path) {
+	Resource accountResource(@Value('${path.input.account}') def path) {
 		new FileSystemResource(path)
 	}
 	
 	@Bean
-	Resource neofinanceLoanResource(@Value('${path.input.loan}') def path) {
+	Resource loanResource(@Value('${path.input.loan}') def path) {
 		new FileSystemResource(path)
 	}
 	

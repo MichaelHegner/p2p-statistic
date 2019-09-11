@@ -1,14 +1,14 @@
 package net.hemisoft.p2p.converter.plattform.debitum.reader
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
+import org.springframework.stereotype.Component
 
-import groovy.transform.PackageScope
 import net.hemisoft.p2p.converter.plattform.debitum.dto.DebitumLoanDto
 import net.hemisoft.p2p.converter.plattform.dto.AbstractLoanDto
 import net.hemisoft.p2p.converter.plattform.key.ExcelColum
-import net.hemisoft.p2p.converter.plattform.mapper.AbstractLoanExcelRowMapper
+import net.hemisoft.p2p.converter.plattform.reader.AbstractLoanExcelRowMapper
 
-@PackageScope
+@Component
 class _DebitumLoanExcelRowMapper extends AbstractLoanExcelRowMapper<DebitumLoanDto> {
 	private static final int COL_TRANSACTION_ID   = ExcelColum.B.ordinal()
 	private static final int COL_LOAN_ID          = ExcelColum.C.ordinal()

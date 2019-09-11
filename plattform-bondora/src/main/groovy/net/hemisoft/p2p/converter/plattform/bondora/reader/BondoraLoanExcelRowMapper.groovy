@@ -1,14 +1,14 @@
 package net.hemisoft.p2p.converter.plattform.bondora.reader
 
 import org.springframework.batch.item.excel.support.rowset.RowSet
+import org.springframework.stereotype.Component
 
-import groovy.transform.PackageScope
 import net.hemisoft.p2p.converter.plattform.bondora.dto.BondoraLoanDto
 import net.hemisoft.p2p.converter.plattform.dto.AbstractLoanDto
 import net.hemisoft.p2p.converter.plattform.key.ExcelColum
-import net.hemisoft.p2p.converter.plattform.mapper.AbstractLoanExcelRowMapper
+import net.hemisoft.p2p.converter.plattform.reader.AbstractLoanExcelRowMapper
 
-@PackageScope
+@Component
 class BondoraLoanExcelRowMapper extends AbstractLoanExcelRowMapper<BondoraLoanDto> {
 	private static final int COL_TRANSACTION_ID   = ExcelColum.D.ordinal()
 	private static final int COL_LOAN_ID          = ExcelColum.F.ordinal()
