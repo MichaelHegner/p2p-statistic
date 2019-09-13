@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component
 
 import net.hemisoft.p2p.converter.domain.entity.Account
 import net.hemisoft.p2p.converter.domain.entity.Plattform
-import net.hemisoft.p2p.converter.domain.entity.TransferType
 import net.hemisoft.p2p.converter.plattform.investly.dto.InvestlyAccountDto
 import net.hemisoft.p2p.converter.plattform.processor.AbstractAccountItemProcessor
 
@@ -15,12 +14,4 @@ public class InvestlyAccountItemProcessor extends AbstractAccountItemProcessor<I
 	}
 
 	@Override Plattform createPlattform()   { Plattform.INVESTLY }
-	
-	@Override TransferType createTransferType(String transferType) {
-		switch(transferType) {
-			case "DEPOSIT":    TransferType.DEPOSIT;  break
-			case "WITHDRAWAL": TransferType.WITHDRAW; break
-			default: null
-		}
-	}
 }

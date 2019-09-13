@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component
 
 import net.hemisoft.p2p.converter.domain.entity.Account
 import net.hemisoft.p2p.converter.domain.entity.Plattform
-import net.hemisoft.p2p.converter.domain.entity.TransferType
 import net.hemisoft.p2p.converter.plattform.processor.AbstractAccountItemProcessor
 import net.hemisoft.p2p.converter.plattform.robocash.dto.RobocashAccountDto
 
@@ -15,12 +14,4 @@ public class RobocashAccountItemProcessor extends AbstractAccountItemProcessor<R
 	}
 	
 	@Override Plattform createPlattform()   { Plattform.ROBOCASH }
-	
-	@Override TransferType createTransferType(String transferType) {
-		switch(transferType) {
-			case "Adding funds":      TransferType.DEPOSIT;  break
-			case "Withdrawing funds": TransferType.WITHDRAW; break
-			default: null
-		}
-	}
 }

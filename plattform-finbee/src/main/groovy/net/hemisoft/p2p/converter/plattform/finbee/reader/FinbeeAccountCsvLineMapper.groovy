@@ -3,9 +3,9 @@ package net.hemisoft.p2p.converter.plattform.finbee.reader
 import org.springframework.stereotype.Component
 
 import net.hemisoft.p2p.converter.plattform.finbee.dto.FinbeeAccountDto
-import net.hemisoft.p2p.converter.plattform.reader.AbstractAccountExcelRowMapper
+import net.hemisoft.p2p.converter.plattform.reader.AbstractAccountCsvLineMapper
 
 @Component
-class FinbeeAccountExcelRowMapper extends AbstractAccountExcelRowMapper<FinbeeAccountDto> {
+class FinbeeAccountCsvLineMapper extends AbstractAccountCsvLineMapper<FinbeeAccountDto> {
 	@Override FinbeeAccountDto createNewDto() { FinbeeAccountDto.newInstance() }
 }

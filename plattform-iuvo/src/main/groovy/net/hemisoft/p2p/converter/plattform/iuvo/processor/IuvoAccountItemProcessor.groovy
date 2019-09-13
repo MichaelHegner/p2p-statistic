@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component
 
 import net.hemisoft.p2p.converter.domain.entity.Account
 import net.hemisoft.p2p.converter.domain.entity.Plattform
-import net.hemisoft.p2p.converter.domain.entity.TransferType
 import net.hemisoft.p2p.converter.plattform.iuvo.dto.IuvoAccountDto
 import net.hemisoft.p2p.converter.plattform.processor.AbstractAccountItemProcessor
 
@@ -15,12 +14,4 @@ public class IuvoAccountItemProcessor extends AbstractAccountItemProcessor<IuvoA
 	}
 
 	@Override Plattform createPlattform()   { Plattform.INVESTLY }
-	
-	@Override TransferType createTransferType(String transferType) {
-		switch(transferType) {
-			case "deposit":    TransferType.DEPOSIT;  break
-			case "withdrawal": TransferType.WITHDRAW; break
-			default: null
-		}
-	}
 }

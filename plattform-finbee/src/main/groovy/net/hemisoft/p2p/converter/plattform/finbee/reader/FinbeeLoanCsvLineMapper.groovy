@@ -1,22 +1,21 @@
 package net.hemisoft.p2p.converter.plattform.finbee.reader
 
-import org.springframework.batch.item.excel.support.rowset.RowSet
 import org.springframework.stereotype.Component
 
 import net.hemisoft.p2p.converter.plattform.dto.AbstractLoanDto
 import net.hemisoft.p2p.converter.plattform.finbee.dto.FinbeeLoanDto
 import net.hemisoft.p2p.converter.plattform.key.ExcelColum
-import net.hemisoft.p2p.converter.plattform.reader.AbstractLoanExcelRowMapper
+import net.hemisoft.p2p.converter.plattform.reader.AbstractLoanCsvLineMapper
 
 @Component
-class FinbeeLoanExcelRowMapper extends AbstractLoanExcelRowMapper<FinbeeLoanDto> {
+class FinbeeLoanCsvLineMapper extends AbstractLoanCsvLineMapper<FinbeeLoanDto> {
 	private static final int COL_TRANSACTION_ID   = -1 // TODO: No Transaction Id availdable
-	private static final int COL_LOAN_ID          = ExcelColum.A.ordinal()
-	private static final int COL_INVESTED_AMOUNT  = ExcelColum.F.ordinal()
-	private static final int COL_ISSUED           = ExcelColum.B.ordinal()
+	private static final int COL_LOAN_ID          = ExcelColum.C.ordinal()
+	private static final int COL_INVESTED_AMOUNT  = ExcelColum.D.ordinal()
+	private static final int COL_ISSUED           = ExcelColum.A.ordinal()
 	
-	@Override FinbeeLoanDto mapRow(RowSet rs) throws Exception {
-		super.mapRow(rs)
+	@Override FinbeeLoanDto mapLine(String line, int lineNumber) throws Exception {
+		super.mapLine line, lineNumber
 	}
 
 	@Override int getLoanIdColumnIndex()         { COL_LOAN_ID         }

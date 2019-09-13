@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component
 
 import net.hemisoft.p2p.converter.domain.entity.Account
 import net.hemisoft.p2p.converter.domain.entity.Plattform
-import net.hemisoft.p2p.converter.domain.entity.TransferType
 import net.hemisoft.p2p.converter.plattform.neofinance.dto.NeofinanceAccountDto
 import net.hemisoft.p2p.converter.plattform.processor.AbstractAccountItemProcessor
 
@@ -16,12 +15,4 @@ public class NeofinanceAccountItemProcessor extends AbstractAccountItemProcessor
 	}
 
 	@Override Plattform createPlattform()   { Plattform.NEOFINANCE }
-	
-	@Override TransferType createTransferType(String transferType) {
-		switch(transferType) {
-			case "Money deposit":    TransferType.DEPOSIT;  break
-			case "Money withdrawal": TransferType.WITHDRAW; break
-			default: null
-		}
-	}
 }
