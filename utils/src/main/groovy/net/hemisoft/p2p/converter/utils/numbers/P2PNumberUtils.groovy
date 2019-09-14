@@ -1,10 +1,14 @@
 package net.hemisoft.p2p.converter.utils.numbers
 
-import org.apache.commons.lang3.math.NumberUtils
+import static org.apache.commons.lang3.StringUtils.deleteWhitespace
+
+import java.util.regex.Matcher
 
 class P2PNumberUtils {
 	static Double createDoubleIfPossible(String possibleDouble) {
-		NumberUtils.isCreatable(possibleDouble) ? Double.parseDouble(possibleDouble) : null
+		def matcher = deleteWhitespace(possibleDouble) =~ /\d{1,8}.\d{1,2}?/
+		assert matcher instanceof Matcher
+		matcher.find() ? Double.parseDouble(matcher[0]) : null 
 	}
 	
 	private P2PNumberUtils() {}

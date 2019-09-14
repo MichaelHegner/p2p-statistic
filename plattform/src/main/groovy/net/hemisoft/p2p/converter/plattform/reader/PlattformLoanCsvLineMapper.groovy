@@ -19,7 +19,9 @@ import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 @Component
 @ConditionalOnProperty(name="reader.loan.file.type", havingValue="CSV")
 class PlattformLoanCsvLineMapper implements LineMapper<LoanDto> {
-	private static final String SEPARATOR = ","
+	@Value('${reader.loan.file.separator:,}')
+	private String csvSeparator
+
 	
 	private Integer readerColumnTransactionId
 	private Integer readerColumnLoanId
@@ -29,7 +31,7 @@ class PlattformLoanCsvLineMapper implements LineMapper<LoanDto> {
 	@Override
 	LoanDto mapLine(String line, int lineNumber) throws Exception {
 		def dto = LoanDto.newInstance()
-		def columns = line.replace("\"", "").split(SEPARATOR)
+		def columns = line.replace("\"", "").split(csvSeparator)
 		
 		if(readerColumnLoanId > -1 && columns.length > readerColumnLoanId)
 			dto.loanId = columns[readerColumnLoanId]

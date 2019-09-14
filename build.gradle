@@ -134,6 +134,25 @@ project(':' + rootProject.name + '-plattform-bondora') {
 	}
 }
 
+project(':' + rootProject.name + '-plattform-bulkestate') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.bondora'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
 project(':' + rootProject.name + '-plattform-crowdestate') {
 	dependencies {
 		compile project	(':' + rootProject.name + '-plattform')

@@ -1,5 +1,7 @@
 package net.hemisoft.p2p.converter.plattform.reader
 
+import static org.apache.commons.lang3.StringUtils.trim
+
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -17,7 +19,9 @@ import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 @Component
 @ConditionalOnProperty(name="reader.account.file.type", havingValue="CSV")
 class PlattformAccountCsvLineMapper implements LineMapper<AccountDto> {
-	private static final String SEPARATOR = ","
+	
+	@Value('${reader.account.file.separator:,}')
+	private String csvSeparator
 
 	private Integer readerColumnTransferType
 	private Integer readerColumnIssued
@@ -27,7 +31,11 @@ class PlattformAccountCsvLineMapper implements LineMapper<AccountDto> {
 	@Override
 	AccountDto mapLine(String line, int lineNumber) throws Exception {
 		AccountDto dto = AccountDto.newInstance()
-		def columns = line.replace("\"", "").split(SEPARATOR)
+		String[] columns = line.replace("\"", "").split(csvSeparator)
+		
+		for(int i = 0; i < columns.length; i++) {
+			columns[i] = trim(columns[i])
+		}
 		
         if(null != readerColumnTransferType && columns.length > readerColumnTransferType) {
             dto.transferType = columns[readerColumnTransferType]

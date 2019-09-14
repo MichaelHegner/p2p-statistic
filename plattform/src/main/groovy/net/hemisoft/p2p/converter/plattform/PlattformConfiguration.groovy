@@ -28,7 +28,6 @@ public class PlattformConfiguration {
 	
 	
 	@Bean
-//	@ConditionalOnBean(name = ["importAccountDataStep", "importLoanDataStep"])
 	Job importJob(
 		JobExecutionListener jobExecutionListener,
 		Step importAccountDataStep,
@@ -42,7 +41,6 @@ public class PlattformConfiguration {
 	}
 	
 	@Bean
-//	@ConditionalOnBean(name = ["plattformAccountItemReader", "plattformAccountItemProcessor", "plattformAccountItemWriter", "plattformAccountStepExecutionListener"])
 	Step importAccountDataStep(
 		ItemReader plattformAccountItemReader,
 		ItemProcessor plattformAccountItemProcessor,
@@ -58,7 +56,6 @@ public class PlattformConfiguration {
 	}
 
 	@Bean
-//	@ConditionalOnBean(name = ["plattformLoanItemReader", "plattformLoanItemProcessor", "plattformLoanItemWriter", "plattformLoanStepExecutionListener"])
 	Step importLoanDataStep(
 		ItemReader plattformLoanItemReader, 
 		ItemProcessor plattformLoanItemProcessor, 

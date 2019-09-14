@@ -2,6 +2,7 @@ package net.hemisoft.p2p.converter.domain.entity;
 
 public enum Plattform {
 	BONDORA, 
+	BULKESTATE,
 	CROWDESTATE, 
 	DEBITUM,
 	ESTATEGURU, 
