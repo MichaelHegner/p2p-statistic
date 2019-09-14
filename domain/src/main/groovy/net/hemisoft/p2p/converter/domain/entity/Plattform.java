@@ -16,6 +16,7 @@ public enum Plattform {
 	MINTOS, 
 	NEOFINANCE, 
 	PEERBERRY, 
+	REINVEST24, 
 	ROBOCASH, 
 	SWAPER, 
 	TWINO,

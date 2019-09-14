@@ -11,9 +11,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule
 import net.hemisoft.p2p.converter.plattform.PlattformConfiguration
 import net.hemisoft.p2p.converter.plattform.dto.AccountDto
 import net.hemisoft.p2p.converter.plattform.dto.LoanDto
-import net.hemisoft.p2p.converter.plattform.envestio.AccountDtoDeserializer
-import net.hemisoft.p2p.converter.plattform.envestio.LoanDtoDeserializer
-import net.hemisoft.p2p.converter.plattform.envestio.PlattformApplication
 
 @SpringBootApplication
 @ComponentScan(basePackageClasses=PlattformConfiguration)

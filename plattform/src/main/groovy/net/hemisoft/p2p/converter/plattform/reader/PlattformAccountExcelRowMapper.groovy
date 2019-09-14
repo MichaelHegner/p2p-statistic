@@ -37,6 +37,7 @@ class PlattformAccountExcelRowMapper implements RowMapper<AccountDto> {
         if(null != readerColumnIssued && currentRow.length > readerColumnIssued) {
             def issuedFromRowSet = rs.getColumnValue readerColumnIssued
             
+			// TODO: MOVE LOGICC IN P2PDATEUTILS CLASS
             if(NumberUtils.isCreatable(issuedFromRowSet)) {
                 def getColumnValue = NumberUtils.toLong issuedFromRowSet
                 dto.issuedDate = Instant.ofEpochMilli(getColumnValue).atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))

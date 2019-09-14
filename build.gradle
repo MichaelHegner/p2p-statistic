@@ -411,6 +411,26 @@ project(':' + rootProject.name + '-plattform-peerberry') {
 }
 
 
+project(':' + rootProject.name + '-plattform-reinvest24') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.reinvest24'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
 project(':' + rootProject.name + '-plattform-robocash') {
 	dependencies {
 		compile project	(':' + rootProject.name + '-plattform')
