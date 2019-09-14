@@ -211,6 +211,26 @@ project(':' + rootProject.name + '-plattform-debitum') {
 }
 
 
+project(':' + rootProject.name + '-plattform-envestio') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-plattform')
+
+		compile 'org.springframework.boot:spring-boot-starter-batch'
+	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	}
+
+	group = 'net.hemisoft.p2p.converter.plattform.envestio'
+	
+	jar {
+		enabled = true
+	}
+	
+	bootJar {
+		enabled = false
+	}
+}
+
+
 project(':' + rootProject.name + '-plattform-estateguru') {
 	dependencies {
 		compile project	(':' + rootProject.name + '-plattform')

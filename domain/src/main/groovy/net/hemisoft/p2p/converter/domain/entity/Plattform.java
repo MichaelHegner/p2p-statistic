@@ -6,6 +6,7 @@ public enum Plattform {
 	CREDITGATE24, 
 	CROWDESTATE, 
 	DEBITUM,
+	ENVESTIO, 
 	ESTATEGURU, 
 	FINBEE,
 	FLENDER, 
