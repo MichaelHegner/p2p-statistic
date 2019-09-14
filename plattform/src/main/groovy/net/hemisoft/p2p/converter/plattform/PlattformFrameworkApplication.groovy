@@ -4,6 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = "not.valid.package")
-public class PlattformApplication {
-	static void main(String[] args) { SpringApplication.run PlattformApplication, args }
+public class PlattformFrameworkApplication {
+	static void main(String[] args) { SpringApplication.run PlattformFrameworkApplication, args }
 }
