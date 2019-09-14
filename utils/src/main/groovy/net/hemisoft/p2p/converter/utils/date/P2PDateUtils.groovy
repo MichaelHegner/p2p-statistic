@@ -6,7 +6,7 @@ import java.time.ZoneId
 import org.apache.commons.lang3.time.DateUtils
 import org.apache.commons.validator.GenericValidator
 
-public class P2PDateUtils {
+final class P2PDateUtils {
 	static String[] validPatterns = [
 		"dd.MM.yyyy", "dd.MM.yy HH:mm:ss", "dd/MM/yyyy", "dd/MM/yyyy HH:mm", "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss"
 	]
@@ -29,4 +29,6 @@ public class P2PDateUtils {
 		
 		return Optional.empty()
 	}
+	
+	private P2PDateUtils() {}
 }

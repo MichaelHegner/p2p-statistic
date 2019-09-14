@@ -6,4 +6,6 @@ class P2PNumberUtils {
 	static Double createDoubleIfPossible(String possibleDouble) {
 		NumberUtils.isCreatable(possibleDouble) ? Double.parseDouble(possibleDouble) : null
 	}
+	
+	private P2PNumberUtils() {}
 }
