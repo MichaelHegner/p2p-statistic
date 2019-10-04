@@ -27,7 +27,7 @@ class PlattformAccountStepExecutionListener implements StepExecutionListener {
 
 	@Override
 	public ExitStatus afterStep(StepExecution stepExecution) {
-		def accountValue = service.value
+		def accountValue = service.totalDeposit
 		log.info "$plattform Account Import added $accountValue euro."
 	}
 }
