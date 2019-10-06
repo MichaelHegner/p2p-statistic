@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
 
-import net.hemisoft.p2p.converter.domain.entity.Plattform
 import net.hemisoft.p2p.converter.plattform.dto.AccountDto
 
 public class AccountDtoDeserializer extends StdDeserializer<AccountDto> {
@@ -19,8 +18,7 @@ public class AccountDtoDeserializer extends StdDeserializer<AccountDto> {
 	public AccountDto deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
 		JsonNode node = jp.getCodec().readTree(jp)
         AccountDto dto = new AccountDto().with { 
-			plattform    = Plattform.REINVEST24
-			amount       = node.get("amount").numberValue()
+			amount       = node.get("amount").asText()
 			transferType = node.get("type").asText()
 			issuedDate   = node.get("datetime").asText()
 			return it

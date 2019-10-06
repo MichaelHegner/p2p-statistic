@@ -19,7 +19,7 @@ import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 @Component
 @ConditionalOnProperty(name="reader.account.file.type", havingValue="EXCEL")
 class PlattformAccountExcelRowMapper implements RowMapper<AccountDto> {
-    private Integer readerColumnTransferType
+	private Integer readerColumnTransferType
 	private Integer readerColumnIssued
 	private Integer readerColumnInvestedAmount
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
 import net.hemisoft.p2p.converter.domain.entity.Loan
 import net.hemisoft.p2p.converter.domain.entity.Plattform
 import net.hemisoft.p2p.converter.plattform.dto.LoanDto
-import net.hemisoft.p2p.converter.utils.date.P2PDateUtils
+import net.hemisoft.p2p.converter.utils.date.P2PDateConversionUtils
 import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 
 @Component
@@ -27,7 +27,7 @@ class PlattformLoanItemProcessor implements ItemProcessor<LoanDto, Loan> {
 		def entity            = new Loan()
 		entity.loanId         = createLoanId dto
 		entity.investedAmount = P2PNumberUtils.createDoubleIfPossible dto.investedAmount
-		entity.issued         = P2PDateUtils.createLocalDateIfPossible dto.issuedDate
+		entity.issued         = P2PDateConversionUtils.createLocalDateIfPossible dto.issuedDate
 		entity.plattform      = Plattform.valueOf(plattform.toUpperCase())
 		entity
 	}

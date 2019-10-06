@@ -14,13 +14,11 @@ import org.springframework.stereotype.Component
 
 import net.hemisoft.p2p.converter.plattform.dto.AccountDto
 import net.hemisoft.p2p.converter.plattform.key.ExcelColum
-import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 
 @Component
 @ConditionalOnProperty(name="reader.account.file.type", havingValue="CSV")
 class PlattformAccountCsvLineMapper implements LineMapper<AccountDto> {
-	
-	@Value('${reader.account.file.separator:,}')
+	@Value('${reader.account.file.separator:,}') 
 	private String csvSeparator
 
 	private Integer readerColumnTransferType
@@ -54,8 +52,7 @@ class PlattformAccountCsvLineMapper implements LineMapper<AccountDto> {
 		}
 			
 		if(null != readerColumnInvestedAmount && columns.length > readerColumnInvestedAmount) {
-			def investmentAmountAsString = columns[readerColumnInvestedAmount].replace(",", ".")
-			dto.amount = P2PNumberUtils.createDoubleIfPossible investmentAmountAsString
+			dto.amount = columns[readerColumnInvestedAmount].replace(",", ".")
 		}
 		
 		dto

@@ -8,7 +8,7 @@ import org.apache.commons.lang3.math.NumberUtils
 import org.apache.commons.lang3.time.DateUtils
 import org.apache.commons.validator.GenericValidator
 
-final class P2PDateUtils {
+final class P2PDateConversionUtils {
 	static final String DEFAULT_PATTERN = "yyyy-MM-dd"
 	
 	
@@ -78,5 +78,5 @@ final class P2PDateUtils {
 		createByPatternIfPossible ( matcher.find() ? matcher[0] : null )
 	}
 	
-	private P2PDateUtils() {}
+	private P2PDateConversionUtils() {}
 }
