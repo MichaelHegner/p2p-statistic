@@ -14,17 +14,17 @@ import net.hemisoft.p2p.converter.domain.entity.TransferType
 class PlattformAccountImportService {
 	@Value('${p2p.operation.deposit.abs:true}') boolean useAbsolute
 	
-	double totalDeposit
-	double totalWithdrawal
-	double totalInvestment
-	double totalPrincipal
-	double totalEarning
+	BigDecimal totalDeposit     = ZERO
+	BigDecimal totalWithdrawal  = ZERO
+	BigDecimal totalInvestment  = ZERO
+	BigDecimal totalPrincipal   = ZERO
+	BigDecimal totalEarning     = ZERO
 	
-	Map<YearMonth, BigDecimal> depositMapByYearMonth = [:]
+	Map<YearMonth, BigDecimal> depositMapByYearMonth    = [:]
 	Map<YearMonth, BigDecimal> withdrawalMapByYearMonth = [:]
 	Map<YearMonth, BigDecimal> investmentMapByYearMonth = [:]
-	Map<YearMonth, BigDecimal> principleMapByYearMonth = [:]
-	Map<YearMonth, BigDecimal> earningMapByYearMonth = [:]
+	Map<YearMonth, BigDecimal> principleMapByYearMonth  = [:]
+	Map<YearMonth, BigDecimal> earningMapByYearMonth    = [:]
 	
 	void saveAccount(List<Account> items) {
 		items.each {
@@ -53,7 +53,7 @@ class PlattformAccountImportService {
 	
 	
 	void increaseDeposit(Account account) {
-		if(useAbsolute) totalDeposit += Math.abs account.amount
+		if(useAbsolute) totalDeposit += account.amount.abs()
 		else            totalDeposit += account.amount
 	}
 	
@@ -63,7 +63,7 @@ class PlattformAccountImportService {
 	}
 
 	void increaseWithdrawal(Account account) {
-		totalWithdrawal += Math.abs account.amount
+		totalWithdrawal += account.amount.abs()
 	}
 	
 	void increaseWithdrawalByYearMonth(Account account) {
@@ -73,18 +73,18 @@ class PlattformAccountImportService {
 	
 	
 	void increaseInvestment(Account account) {
-		if(useAbsolute) totalInvestment += Math.abs account.amount
+		if(useAbsolute) totalInvestment += account.amount.abs()
 		else            totalInvestment += account.amount
 	}
 	
 	void increaseInvestmentByYearMonth(Account account) {
 		def yearMonth = YearMonth.from account.getIssued()
-		def accountAmount = useAbsolute ? Math.abs(account.amount) : account.amount
+		def accountAmount = useAbsolute ? account.amount.abs() : account.amount
 		investmentMapByYearMonth.put(yearMonth, investmentMapByYearMonth.getOrDefault(yearMonth, ZERO).plus(accountAmount))
 	}
 
 	void increasePrincipal(Account account) {
-		totalPrincipal += Math.abs account.amount
+		totalPrincipal += account.amount.abs()
 	}
 	
 	void increasePrincipalByYearMonth(Account account) {
@@ -94,18 +94,18 @@ class PlattformAccountImportService {
 
 	
 	void increaseEarning(Account account) {
-		if(useAbsolute) totalEarning += Math.abs account.amount
+		if(useAbsolute) totalEarning += account.amount.abs()
 		else            totalEarning += account.amount
 	}
 	
 	void increaseEarningByYearMonth(Account account) {
 		def yearMonth = YearMonth.from account.getIssued()
-		def accountAmount = Math.abs account.amount
+		def accountAmount = account.amount.abs()
 		earningMapByYearMonth.put(yearMonth, earningMapByYearMonth.getOrDefault(yearMonth, ZERO).plus(accountAmount))
 	}
 
 	void decreaseEarning(Account account) {
-		totalEarning -= Math.abs account.amount
+		totalEarning -= account.amount.abs()
 	}
 	
 	void decreaseEarningByYearMonth(Account account) {
