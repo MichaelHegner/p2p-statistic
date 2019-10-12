@@ -59,7 +59,7 @@ class PlattformJobExecutionListener implements JobExecutionListener {
 					def depositBefore    = accountService.depositMapByYearMonth.getOrDefault beforeMonthYear, 0.0
 					def earningBefore    = accountService.earningMapByYearMonth.getOrDefault beforeMonthYear, 0.0
 					
-					totalVolume = totalVolume + deposit + earning
+					totalVolume = totalVolume + ( deposit - withdrawal ) + earning
 
 										log.info (
 						"$it: " 
@@ -112,7 +112,7 @@ class PlattformJobExecutionListener implements JobExecutionListener {
 	private String formatCurrency(BigDecimal amount) {
 		def amountAsString = String.valueOf amount
 		def formatted      = formatter.format amount
-		def padded         = formatted.padLeft(10)
+		def padded         = formatted.padLeft(12)
 		    padded
 	}
 }
