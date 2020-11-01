@@ -20,7 +20,6 @@ class PlattformAccountImportService {
 	BigDecimal totalPrincipal   = ZERO
 	BigDecimal totalEarning     = ZERO
 	
-	// TODO: ADD FEE and LOSS!
 	Map<YearMonth, BigDecimal> depositMapByYearMonth    = [:]
 	Map<YearMonth, BigDecimal> withdrawalMapByYearMonth = [:]
 	Map<YearMonth, BigDecimal> investmentMapByYearMonth = [:]
