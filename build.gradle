@@ -108,7 +108,9 @@ project(':' + rootProject.name + '-plattform') {
 		compile project	(':' + rootProject.name + '-utils')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform'
@@ -127,7 +129,9 @@ project(':' + rootProject.name + '-plattform-bondora') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.bondora'
@@ -146,7 +150,9 @@ project(':' + rootProject.name + '-plattform-bulkestate') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.bulkestate'
@@ -165,7 +171,9 @@ project(':' + rootProject.name + '-plattform-creditgate24') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.creditgate24'
@@ -184,7 +192,9 @@ project(':' + rootProject.name + '-plattform-crowdestate') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.crowdestate'
@@ -203,7 +213,9 @@ project(':' + rootProject.name + '-plattform-debitum') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.debitum'
@@ -223,7 +235,9 @@ project(':' + rootProject.name + '-plattform-envestio') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.envestio'
@@ -243,7 +257,9 @@ project(':' + rootProject.name + '-plattform-estateguru') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.estateguru'
@@ -263,7 +279,9 @@ project(':' + rootProject.name + '-plattform-finbee') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.finbee'
@@ -283,7 +301,9 @@ project(':' + rootProject.name + '-plattform-flender') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.flender'
@@ -303,7 +323,9 @@ project(':' + rootProject.name + '-plattform-grupeer') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.grupeer'
@@ -323,7 +345,9 @@ project(':' + rootProject.name + '-plattform-investly') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.investly'
@@ -343,7 +367,9 @@ project(':' + rootProject.name + '-plattform-iuvo') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.iuvo'
@@ -363,7 +389,9 @@ project(':' + rootProject.name + '-plattform-mintos') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.mintos'
@@ -383,7 +411,9 @@ project(':' + rootProject.name + '-plattform-neofinance') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.neofinance'
@@ -403,7 +433,9 @@ project(':' + rootProject.name + '-plattform-peerberry') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.peerberry'
@@ -423,7 +455,9 @@ project(':' + rootProject.name + '-plattform-reinvest24') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.reinvest24'
@@ -443,7 +477,9 @@ project(':' + rootProject.name + '-plattform-robocash') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.robocash'
@@ -463,7 +499,9 @@ project(':' + rootProject.name + '-plattform-swaper') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.swaper'
@@ -483,7 +521,9 @@ project(':' + rootProject.name + '-plattform-twino') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.twino'
@@ -503,7 +543,9 @@ project(':' + rootProject.name + '-plattform-viventor') {
 		compile project	(':' + rootProject.name + '-plattform')
 
 		compile 'org.springframework.boot:spring-boot-starter-batch'
-	    compile 'com.github.kumarpankaj18:spring-batch-excel:1.0.6'
+	    compile 'biz.deinum.spring:spring-batch-excel:2.0.0-SNAPSHOT'
+	    compile 'org.apache.poi:poi:4.1.2'
+	    compile 'org.apache.poi:poi-ooxml:4.1.2'
 	}
 
 	group = 'net.hemisoft.p2p.converter.plattform.viventor'
