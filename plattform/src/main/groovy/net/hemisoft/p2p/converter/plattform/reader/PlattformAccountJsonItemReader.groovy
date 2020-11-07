@@ -11,12 +11,12 @@ import net.hemisoft.p2p.converter.plattform.dto.AccountDto
 @Component("plattformAccountItemReader")
 @ConditionalOnProperty(name="reader.account.file.type", havingValue="JSON")
 class PlattformAccountJsonItemReader extends JsonItemReader<AccountDto> {
-	
-	PlattformAccountJsonItemReader(
-		@Value('${path.account.input}') String path,
-		PlattformAccountJsonObjectReader objectReader
-	) {
-		super(new FileSystemResource(path), objectReader)
-		setName("plattformAccountJsonItemReader")
-	}
+    
+    PlattformAccountJsonItemReader(
+        @Value('${path.account.input}') String path,
+        PlattformAccountJsonObjectReader objectReader
+    ) {
+        super(new FileSystemResource(path), objectReader)
+        setName("plattformAccountJsonItemReader")
+    }
 }

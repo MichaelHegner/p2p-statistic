@@ -8,9 +8,9 @@ import groovy.transform.PackageScope
 
 @PackageScope
 abstract class _AbstractCsvItemReader<T> extends FlatFileItemReader<T> {
-	_AbstractCsvItemReader(Resource resource, LineMapper<T> lineMapper, int linesToSkip) {
-		this.setResource    resource
-		this.setLineMapper  lineMapper
-		this.setLinesToSkip linesToSkip
-	}
+    _AbstractCsvItemReader(Resource resource, LineMapper<T> lineMapper, int linesToSkip) {
+        this.setResource    resource
+        this.setLineMapper  lineMapper
+        this.setLinesToSkip linesToSkip
+    }
 }

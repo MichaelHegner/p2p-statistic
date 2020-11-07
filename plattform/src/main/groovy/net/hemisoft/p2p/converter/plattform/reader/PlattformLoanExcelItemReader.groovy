@@ -10,11 +10,11 @@ import net.hemisoft.p2p.converter.plattform.dto.LoanDto
 @Component("plattformLoanItemReader")
 @ConditionalOnProperty(name="reader.loan.file.type", havingValue="EXCEL")
 class PlattformLoanExcelItemReader extends _AbstractExcelItemReader<LoanDto> {
-	PlattformLoanExcelItemReader(
-		@Value('${path.loan.input}') String path,
-		PlattformLoanExcelRowMapper rowMapper,
-		@Value('${reader.loan.line.skip}') int linesToSkip
-	) {
-		super(new FileSystemResource(path), rowMapper, linesToSkip)
-	}
+    PlattformLoanExcelItemReader(
+        @Value('${path.loan.input}') String path,
+        PlattformLoanExcelRowMapper rowMapper,
+        @Value('${reader.loan.line.skip}') int linesToSkip
+    ) {
+        super(new FileSystemResource(path), rowMapper, linesToSkip)
+    }
 }

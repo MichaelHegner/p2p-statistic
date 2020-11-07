@@ -11,12 +11,12 @@ import net.hemisoft.p2p.converter.plattform.dto.LoanDto
 @Component("plattformLoanItemReader")
 @ConditionalOnProperty(name="reader.loan.file.type", havingValue="JSON")
 class PlattformLoanJsonItemReader extends JsonItemReader<LoanDto> {
-	
-	PlattformLoanJsonItemReader(
-		@Value('${path.loan.input}') String path,
-		PlattformLoanJsonObjectReader objectReader
-	) {
-		super(new FileSystemResource(path), objectReader)
-		setName("plattformLoanJsonItemReader")
-	}
+    
+    PlattformLoanJsonItemReader(
+        @Value('${path.loan.input}') String path,
+        PlattformLoanJsonObjectReader objectReader
+    ) {
+        super(new FileSystemResource(path), objectReader)
+        setName("plattformLoanJsonItemReader")
+    }
 }

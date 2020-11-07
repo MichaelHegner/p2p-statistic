@@ -12,22 +12,22 @@ import net.hemisoft.p2p.converter.plattform.service.PlattformLoanImportService
 @Slf4j
 @Component
 class PlattformLoanStepExecutionListener implements StepExecutionListener {
-	@Value('${p2p.plattform:UNKNOWN}') String plattform
-	
-	final PlattformLoanImportService service
-	
-	PlattformLoanStepExecutionListener(PlattformLoanImportService plattformLoanImportService) {
-		this.service = plattformLoanImportService
-	}
-	
-	@Override
-	public void beforeStep(StepExecution stepExecution) {
-		log.info "Start $plattform Loan Import ...."
-	}
+    @Value('${p2p.plattform:UNKNOWN}') String plattform
+    
+    final PlattformLoanImportService service
+    
+    PlattformLoanStepExecutionListener(PlattformLoanImportService plattformLoanImportService) {
+        this.service = plattformLoanImportService
+    }
+    
+    @Override
+    public void beforeStep(StepExecution stepExecution) {
+        log.info "Start $plattform Loan Import ...."
+    }
 
-	@Override
-	public ExitStatus afterStep(StepExecution stepExecution) {
-		def numberOfLoans = service.countLoans()
-		log.info "$plattform Loan Import added $numberOfLoans loans."
-	}
+    @Override
+    public ExitStatus afterStep(StepExecution stepExecution) {
+        def numberOfLoans = service.countLoans()
+        log.info "$plattform Loan Import added $numberOfLoans loans."
+    }
 }

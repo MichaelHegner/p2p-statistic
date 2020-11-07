@@ -8,8 +8,8 @@ import groovy.transform.builder.Builder
 @Builder
 @ToString
 class AccountDto {
-	@NotNull String issuedDate
-	@NotNull String amount
-	@NotNull String transferType
-	         String transferStatus
+    @NotNull String issuedDate
+    @NotNull String amount
+    @NotNull String transferType
+             String transferStatus
 }

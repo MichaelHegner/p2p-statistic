@@ -12,22 +12,22 @@ import net.hemisoft.p2p.converter.plattform.service.PlattformAccountImportServic
 @Slf4j
 @Component
 class PlattformAccountStepExecutionListener implements StepExecutionListener {
-	@Value('${p2p.plattform:UNKNOWN}') String plattform
-	
-	final PlattformAccountImportService service
-	
-	PlattformAccountStepExecutionListener(PlattformAccountImportService plattformAccountImportService) {
-		this.service = plattformAccountImportService
-	}
-	
-	@Override
-	public void beforeStep(StepExecution stepExecution) {
-		log.info "Start $plattform Account Import ...."
-	}
+    @Value('${p2p.plattform:UNKNOWN}') String plattform
+    
+    final PlattformAccountImportService service
+    
+    PlattformAccountStepExecutionListener(PlattformAccountImportService plattformAccountImportService) {
+        this.service = plattformAccountImportService
+    }
+    
+    @Override
+    public void beforeStep(StepExecution stepExecution) {
+        log.info "Start $plattform Account Import ...."
+    }
 
-	@Override
-	public ExitStatus afterStep(StepExecution stepExecution) {
-		def accountValue = service.totalDeposit
-		log.info "$plattform Account Import added $accountValue euro."
-	}
+    @Override
+    public ExitStatus afterStep(StepExecution stepExecution) {
+        def accountValue = service.totalDeposit
+        log.info "$plattform Account Import added $accountValue euro."
+    }
 }
