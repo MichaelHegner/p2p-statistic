@@ -18,12 +18,14 @@ import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 
 @Component
 class PlattformAccountItemProcessor implements ItemProcessor<AccountDto, Account> {
+    @Value('${p2p.operation.strict:false}')          boolean      matchStrict
+    
     @Value('${p2p.plattform:UNKNOWN}')               String       plattform
     @Value('${p2p.operation.deposit:DEPOSIT}')       List<String> operationDeposit
     @Value('${p2p.operation.withdrawing:WITHDRAW}')  List<String> operationWithdrawing
     @Value('${p2p.operation.investment:INVESTMENT}') List<String> operationInvestment
     @Value('${p2p.operation.principal:PRINCIPAL}')   List<String> operationPrincipal
-    @Value('${p2p.operation.earning:PRINCIPAL}')     List<String> operationEarning
+    @Value('${p2p.operation.earning:INTEREST}')      List<String> operationEarning
     
     
     def validator = Validation.buildDefaultValidatorFactory().getValidator()
@@ -54,8 +56,14 @@ class PlattformAccountItemProcessor implements ItemProcessor<AccountDto, Account
     
     private boolean checkOperation(AccountDto dto, List<String> operations) {
         boolean check = false
-        check |= operations.stream().anyMatch{s -> startsWithIgnoreCase(dto.transferType, s)}
-        check |= operations.stream().anyMatch{s -> endsWithIgnoreCase(dto.transferType, s)}
+        
+        if (matchStrict) {
+            check |= operations.stream().anyMatch{s -> equalsIgnoreCase(dto.transferType, s)}
+        } else {
+            check |= operations.stream().anyMatch{s -> startsWithIgnoreCase(dto.transferType, s)}
+            check |= operations.stream().anyMatch{s -> endsWithIgnoreCase(dto.transferType, s)}
+        }
+        
         check
     }
 
