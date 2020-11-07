@@ -20,6 +20,7 @@ import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 @ConditionalOnProperty(name="reader.account.file.type", havingValue="EXCEL")
 class PlattformAccountExcelRowMapper implements RowMapper<AccountDto> {
 	private Integer readerColumnTransferType
+	private Integer readerColumnTransferStatus
 	private Integer readerColumnIssued
 	private Integer readerColumnInvestedAmount
 
@@ -29,9 +30,13 @@ class PlattformAccountExcelRowMapper implements RowMapper<AccountDto> {
         def currentRow = rs.getCurrentRow()
 
         if (null == currentRow) return null
+		
+		if(null != readerColumnTransferType && currentRow.length > readerColumnTransferType) {
+			dto.transferType = rs.getColumnValue readerColumnTransferType
+		}
 
-        if(null != readerColumnTransferType && currentRow.length > readerColumnTransferType) {
-            dto.transferType = rs.getColumnValue readerColumnTransferType
+        if(null != readerColumnTransferStatus && currentRow.length > readerColumnTransferStatus) {
+            dto.transferStatus = rs.getColumnValue readerColumnTransferStatus
         }
 
         if(null != readerColumnIssued && currentRow.length > readerColumnIssued) {
@@ -55,11 +60,17 @@ class PlattformAccountExcelRowMapper implements RowMapper<AccountDto> {
         dto
     }
 
-		
+	
 	@Value('${reader.account.column.transfer.type}')
 	void setReaderColumnTransferType(String readerColumnTransferType) {
 		if(StringUtils.isNoneBlank(readerColumnTransferType))
 			this.readerColumnTransferType = ExcelColum.valueOf(readerColumnTransferType).ordinal()
+	}
+		
+	@Value('${reader.account.column.transfer.status:#{null}}')
+	void setReaderColumnTransferStatus(String readerColumnTransferStatus) {
+		if(StringUtils.isNotBlank(readerColumnTransferStatus))
+			this.readerColumnTransferStatus = ExcelColum.valueOf(readerColumnTransferStatus).ordinal()
 	}
 	
 	@Value('${reader.account.column.issued}')

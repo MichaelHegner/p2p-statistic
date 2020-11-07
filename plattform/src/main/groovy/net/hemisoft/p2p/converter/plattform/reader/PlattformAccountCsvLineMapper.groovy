@@ -6,6 +6,7 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
+import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.math.NumberUtils
 import org.springframework.batch.item.file.LineMapper
 import org.springframework.beans.factory.annotation.Value
@@ -22,6 +23,7 @@ class PlattformAccountCsvLineMapper implements LineMapper<AccountDto> {
 	private String csvSeparator
 
 	private Integer readerColumnTransferType
+	private Integer readerColumnTransferStatus
 	private Integer readerColumnIssued
 	private Integer readerColumnInvestedAmount
 	
@@ -35,8 +37,12 @@ class PlattformAccountCsvLineMapper implements LineMapper<AccountDto> {
 			columns[i] = trim(columns[i])
 		}
 		
-        if(null != readerColumnTransferType && columns.length > readerColumnTransferType) {
-            dto.transferType = columns[readerColumnTransferType]
+		if(null != readerColumnTransferType && columns.length > readerColumnTransferType) {
+			dto.transferType = columns[readerColumnTransferType]
+		}
+
+        if(null != readerColumnTransferStatus && columns.length > readerColumnTransferStatus) {
+            dto.transferStatus = columns[readerColumnTransferStatus]
         }
 			
 		if(null != readerColumnIssued && columns.length > readerColumnIssued) {
@@ -62,6 +68,12 @@ class PlattformAccountCsvLineMapper implements LineMapper<AccountDto> {
 	@Value('${reader.account.column.transfer.type}')
 	void setReaderColumnTransferType(String readerColumnTransferType) {
 		this.readerColumnTransferType = ExcelColum.valueOf(readerColumnTransferType).ordinal()
+	}
+
+	@Value('${reader.account.column.transfer.status:#{null}}')
+	void setReaderColumnTransferStatus(String readerColumnTransferStatus) {
+		if(StringUtils.isNotBlank(readerColumnTransferStatus))
+			this.readerColumnTransferStatus = ExcelColum.valueOf(readerColumnTransferStatus).ordinal()
 	}
 	
 	@Value('${reader.account.column.issued}')
