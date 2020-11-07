@@ -10,5 +10,5 @@ import net.hemisoft.p2p.converter.plattform.PlattformConfiguration
 @SpringBootApplication
 @ComponentScan(basePackageClasses=PlattformConfiguration)
 class PlattformApplication {
-	static void main(String[] args) { SpringApplication.run PlattformApplication, args }
+    static void main(String[] args) { SpringApplication.run PlattformApplication, args }
 }

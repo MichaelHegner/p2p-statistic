@@ -8,9 +8,9 @@ import groovy.transform.PackageScope
 
 @PackageScope
 abstract class _AbstractExcelItemReader<T> extends PoiItemReader<T> {
-	_AbstractExcelItemReader(Resource resource, RowMapper<T> rowMapper, int linesToSkip) {
-		this.setResource    resource
-		this.setRowMapper   rowMapper
-		this.setLinesToSkip linesToSkip
-	}
+    _AbstractExcelItemReader(Resource resource, RowMapper<T> rowMapper, int linesToSkip) {
+        this.setResource    resource
+        this.setRowMapper   rowMapper
+        this.setLinesToSkip linesToSkip
+    }
 }

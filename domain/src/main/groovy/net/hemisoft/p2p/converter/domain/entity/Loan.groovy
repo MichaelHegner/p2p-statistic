@@ -6,11 +6,11 @@ import groovy.transform.ToString
 
 @ToString
 class Loan {
-	Long      id
-	String    loanId	
-	Plattform plattform
-	Account   account 
-	LocalDate issued
-	Double    investedAmount = 0.0
-	Boolean   closed         = false
+    Long      id
+    String    loanId    
+    Plattform plattform
+    Account   account 
+    LocalDate issued
+    Double    investedAmount = 0.0
+    Boolean   closed         = false
 }

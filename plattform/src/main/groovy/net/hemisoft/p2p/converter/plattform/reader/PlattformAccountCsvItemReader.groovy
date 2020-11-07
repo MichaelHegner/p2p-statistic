@@ -10,13 +10,13 @@ import net.hemisoft.p2p.converter.plattform.dto.AccountDto
 @Component("plattformAccountItemReader")
 @ConditionalOnProperty(name="reader.account.file.type", havingValue="CSV")
 class PlattformAccountCsvItemReader extends _AbstractCsvItemReader<AccountDto> {
-	
-	PlattformAccountCsvItemReader(
-		@Value('${path.account.input}') String path,
-		PlattformAccountCsvLineMapper lineMapper,
-		@Value('${reader.account.line.skip}') int linesToSkip
-	) {
-		super(new FileSystemResource(path), lineMapper, linesToSkip)
-	}
-	
+    
+    PlattformAccountCsvItemReader(
+        @Value('${path.account.input}') String path,
+        PlattformAccountCsvLineMapper lineMapper,
+        @Value('${reader.account.line.skip}') int linesToSkip
+    ) {
+        super(new FileSystemResource(path), lineMapper, linesToSkip)
+    }
+    
 }

@@ -10,13 +10,13 @@ import net.hemisoft.p2p.converter.plattform.dto.AccountDto
 @Component("plattformAccountItemReader")
 @ConditionalOnProperty(name="reader.account.file.type", havingValue="EXCEL")
 class PlattformAccountExcelItemReader extends _AbstractExcelItemReader<AccountDto> {
-	
-	PlattformAccountExcelItemReader(
-		@Value('${path.account.input}') String path,
-		PlattformAccountExcelRowMapper rowMapper,
-		@Value('${reader.account.line.skip}') int linesToSkip
-	) {
-		super(new FileSystemResource(path), rowMapper, linesToSkip)
-	}
-	
+    
+    PlattformAccountExcelItemReader(
+        @Value('${path.account.input}') String path,
+        PlattformAccountExcelRowMapper rowMapper,
+        @Value('${reader.account.line.skip}') int linesToSkip
+    ) {
+        super(new FileSystemResource(path), rowMapper, linesToSkip)
+    }
+    
 }

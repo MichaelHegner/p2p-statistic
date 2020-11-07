@@ -8,8 +8,8 @@ import groovy.transform.ToString
 
 @ToString
 class Account {
-	Plattform    plattform
-	BigDecimal   amount        = ZERO
-	TransferType transferType
-	LocalDate    issued
+    Plattform    plattform
+    BigDecimal   amount        = ZERO
+    TransferType transferType
+    LocalDate    issued
 }
