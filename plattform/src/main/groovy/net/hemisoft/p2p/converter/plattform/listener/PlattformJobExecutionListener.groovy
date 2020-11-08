@@ -106,7 +106,8 @@ class PlattformJobExecutionListener implements JobExecutionListener {
         treeSet.addAll(accountService.earningMapByYearMonth.keySet())
         treeSet.addAll(accountService.investmentMapByYearMonth.keySet())
         treeSet.addAll(accountService.principleMapByYearMonth.keySet())
-        treeSet.getAt 0
+        
+        treeSet.getAt(0) ?: YearMonth.now()
     } 
     
     private String formatCurrency(BigDecimal amount) {
