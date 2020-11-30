@@ -23,7 +23,8 @@ class PlattformAccountItemProcessor implements ItemProcessor<AccountDto, Account
     @Value('${p2p.operation.withdrawing:WITHDRAW}')  List<String> operationWithdrawing
     @Value('${p2p.operation.investment:INVESTMENT}') List<String> operationInvestment
     @Value('${p2p.operation.principal:PRINCIPAL}')   List<String> operationPrincipal
-    @Value('${p2p.operation.earning:PRINCIPAL}')     List<String> operationEarning
+    @Value('${p2p.operation.earning:INTEREST}')      List<String> operationEarning
+    @Value('${p2p.operation.deficit:FEE}')           List<String> operationDeficit
     
     
     def validator = Validation.buildDefaultValidatorFactory().getValidator()
@@ -49,6 +50,7 @@ class PlattformAccountItemProcessor implements ItemProcessor<AccountDto, Account
         else if (checkOperation(dto, operationInvestment))   TransferType.INVESTMENT
         else if (checkOperation(dto, operationPrincipal))    TransferType.PRINCIPAL
         else if (checkOperation(dto, operationEarning))      TransferType.EARNING
+        else if (checkOperation(dto, operationDeficit))      TransferType.DEFICIT
         else                                                 null 
     }
     
