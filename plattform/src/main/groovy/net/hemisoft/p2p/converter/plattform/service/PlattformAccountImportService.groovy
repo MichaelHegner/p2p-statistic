@@ -19,12 +19,14 @@ class PlattformAccountImportService {
     BigDecimal totalInvestment  = ZERO
     BigDecimal totalPrincipal   = ZERO
     BigDecimal totalEarning     = ZERO
+    BigDecimal totalDeficit     = ZERO
     
     Map<YearMonth, BigDecimal> depositMapByYearMonth    = [:]
     Map<YearMonth, BigDecimal> withdrawalMapByYearMonth = [:]
     Map<YearMonth, BigDecimal> investmentMapByYearMonth = [:]
     Map<YearMonth, BigDecimal> principleMapByYearMonth  = [:]
     Map<YearMonth, BigDecimal> earningMapByYearMonth    = [:]
+    Map<YearMonth, BigDecimal> deficitMapByYearMonth    = [:]
     
     void saveAccount(List<Account> items) {
         items.each {
@@ -41,11 +43,11 @@ class PlattformAccountImportService {
                 case TransferType.PRINCIPAL:  increasePrincipal it
                                               increasePrincipalByYearMonth it
                                               break
-                case TransferType.EARNING:       increaseEarning it
+                case TransferType.EARNING:    increaseEarning it
                                               increaseEarningByYearMonth it
                                               break
-                case TransferType.DEFICIT:       decreaseEarning it
-                                              decreaseEarningByYearMonth it
+                case TransferType.DEFICIT:    increaseDeficit it
+                                              increaseDeficitByYearMonth it
                                               break
             }
         }
@@ -104,13 +106,13 @@ class PlattformAccountImportService {
         earningMapByYearMonth.put(yearMonth, earningMapByYearMonth.getOrDefault(yearMonth, ZERO).plus(accountAmount))
     }
 
-    void decreaseEarning(Account account) {
-        totalEarning -= account.amount.abs()
+    void increaseDeficit(Account account) {
+        totalDeficit += account.amount.abs()
     }
     
-    void decreaseEarningByYearMonth(Account account) {
+    void increaseDeficitByYearMonth(Account account) {
         def yearMonth = YearMonth.from(account.getIssued())
-        earningMapByYearMonth.put(yearMonth, earningMapByYearMonth.getOrDefault(yearMonth, ZERO).minus(account.amount))
+        deficitMapByYearMonth.put(yearMonth, deficitMapByYearMonth.getOrDefault(yearMonth, ZERO).plus(account.amount))
     }
 
 }

@@ -1,7 +1,6 @@
 package net.hemisoft.p2p.converter.plattform.listener
 
 import static java.math.BigDecimal.ZERO
-import static org.apache.commons.lang3.math.NumberUtils.LONG_ONE
 
 import java.text.NumberFormat
 import java.time.Month
@@ -54,21 +53,19 @@ class PlattformJobExecutionListener implements JobExecutionListener {
                     def investment = accountService.investmentMapByYearMonth.getOrDefault it, 0.0
                     def principal  = accountService.principleMapByYearMonth.getOrDefault  it, 0.0
                     def earning    = accountService.earningMapByYearMonth.getOrDefault    it, 0.0
+                    def deficit    = accountService.deficitMapByYearMonth.getOrDefault    it, 0.0
                     
-                    def beforeMonthYear  = it.minusMonths LONG_ONE
-                    def depositBefore    = accountService.depositMapByYearMonth.getOrDefault beforeMonthYear, 0.0
-                    def earningBefore    = accountService.earningMapByYearMonth.getOrDefault beforeMonthYear, 0.0
-                    
-                    totalVolume = totalVolume + ( deposit - withdrawal ) + earning
+                    totalVolume = totalVolume + ( deposit - withdrawal ) + ( earning - deficit )
 
-                                        log.info (
+                    log.info (
                         "$it: " 
                         + TransferType.DEPOSIT.name()    + ": " + formatCurrency(deposit)     + "\t" 
                         + TransferType.WITHDRAW.name()   + ": " + formatCurrency(withdrawal)  + "\t"   
                         + TransferType.INVESTMENT.name() + ": " + formatCurrency(investment)  + "\t"  
                         + TransferType.PRINCIPAL.name()  + ": " + formatCurrency(principal)   + "\t" 
                         + TransferType.EARNING.name()    + ": " + formatCurrency(earning)     + "\t"
-                        
+                        + TransferType.DEFICIT.name()    + ": " + formatCurrency(deficit)     + "\t"
+
                         + "VOLUME: "                            + formatCurrency(totalVolume) + "\t"
                     )
                     
@@ -81,7 +78,8 @@ class PlattformJobExecutionListener implements JobExecutionListener {
                 log.info "WITHDRAWAL TOTAL: " + formatCurrency(accountService.totalWithdrawal)
                 log.info "INVESTMENT TOTAL: " + formatCurrency(accountService.totalInvestment)
                 log.info "PRINCIPAL TOTAL:  " + formatCurrency(accountService.totalPrincipal)
-                log.info "EARNINGS TOTAL:   " + formatCurrency(accountService.totalEarning)
+                log.info "EARNING TOTAL:    " + formatCurrency(accountService.totalEarning)
+                log.info "DEFICIT TOTAL:    " + formatCurrency(accountService.totalDeficit)
                 
                 log.info "VOLUME TOTAL:     "   + formatCurrency(totalVolume)
                 log.info "===================================="
