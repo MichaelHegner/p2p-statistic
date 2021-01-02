@@ -53,8 +53,7 @@ class PlattformAccountExcelRowMapper implements RowMapper<AccountDto> {
         }
         
         if(null != readerColumnInvestedAmount && currentRow.length > readerColumnInvestedAmount) {
-            def investmentAmountAsString = rs.getColumnValue(readerColumnInvestedAmount).replace(",", ".")
-            dto.amount = P2PNumberUtils.createDoubleIfPossible investmentAmountAsString
+            dto.amount = P2PNumberUtils.createDoubleIfPossible rs.getColumnValue(readerColumnInvestedAmount)
         }
         
         dto

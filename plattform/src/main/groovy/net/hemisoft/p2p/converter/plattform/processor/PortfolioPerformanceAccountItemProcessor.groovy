@@ -17,12 +17,10 @@ import net.hemisoft.p2p.converter.utils.date.P2PDateConversionUtils
 import net.hemisoft.p2p.converter.utils.numbers.P2PNumberUtils
 
 @Component
-class PlattformAccountItemProcessor implements ItemProcessor<AccountDto, Account> {
+class PortfolioPerformanceAccountItemProcessor implements ItemProcessor<AccountDto, Account> {
     @Value('${p2p.plattform:UNKNOWN}')               String       plattform
     @Value('${p2p.operation.deposit:DEPOSIT}')       List<String> operationDeposit
     @Value('${p2p.operation.withdrawing:WITHDRAW}')  List<String> operationWithdrawing
-    @Value('${p2p.operation.investment:INVESTMENT}') List<String> operationInvestment
-    @Value('${p2p.operation.principal:PRINCIPAL}')   List<String> operationPrincipal
     @Value('${p2p.operation.earning:INTEREST}')      List<String> operationEarning
     @Value('${p2p.operation.deficit:FEE}')           List<String> operationDeficit
     
@@ -48,8 +46,6 @@ class PlattformAccountItemProcessor implements ItemProcessor<AccountDto, Account
     private TransferType createTransferType(AccountDto dto) {
         if      (checkOperation(dto, operationDeposit))      TransferType.DEPOSIT 
         else if (checkOperation(dto, operationWithdrawing))  TransferType.WITHDRAW
-        else if (checkOperation(dto, operationInvestment))   TransferType.INVESTMENT
-        else if (checkOperation(dto, operationPrincipal))    TransferType.PRINCIPAL
         else if (checkOperation(dto, operationEarning))      TransferType.EARNING
         else if (checkOperation(dto, operationDeficit))      TransferType.DEFICIT
         else                                                 null 

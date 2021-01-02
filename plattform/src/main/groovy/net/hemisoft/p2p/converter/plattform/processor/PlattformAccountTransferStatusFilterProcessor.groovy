@@ -24,6 +24,7 @@ public class PlattformAccountTransferStatusFilterProcessor implements ItemFilter
 		}
 	}
 	
+    // TODO: #25 - Use Mapstruct
 	private boolean checkOperationTransferStatus(AccountDto dto, List<String> status) {
 		boolean check = false
 		check |= status.stream().anyMatch{s -> startsWithIgnoreCase(dto.transferStatus, s)}

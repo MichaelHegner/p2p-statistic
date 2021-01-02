@@ -21,7 +21,8 @@ import net.hemisoft.p2p.converter.domain.entity.Loan
 import net.hemisoft.p2p.converter.plattform.dto.AccountDto
 import net.hemisoft.p2p.converter.plattform.dto.LoanDto
 import net.hemisoft.p2p.converter.plattform.policy.AccountSkipPolicy
-import net.hemisoft.p2p.converter.plattform.processor.ItemFilterProcessor
+import net.hemisoft.p2p.converter.plattform.processor.PlattformAccountTransferStatusFilterProcessor
+import net.hemisoft.p2p.converter.plattform.processor.PortfolioPerformanceTransferStatusFilterProcessor
 
 @Configuration
 @EnableBatchProcessing
@@ -34,13 +35,18 @@ public class PlattformConfiguration {
     Job importJob(
             JobExecutionListener jobExecutionListener,
             Step importAccountDataStep,
-            Step importLoanDataStep
+            Step importLoanDataStep,
+            Step importPortfolioPerformanceStep
     ) {
-        jobBuilderFactory.get("converterJob").incrementer(RunIdIncrementer.newInstance())
+        jobBuilderFactory.get("converterJob")
+                .incrementer(RunIdIncrementer.newInstance())
                 .listener(jobExecutionListener)
                 .start(importAccountDataStep)
                 .next(importLoanDataStep)
-                .build() }
+                .next(importPortfolioPerformanceStep)
+                .build() 
+    }
+    
 
     @Bean
     Step importAccountDataStep(
@@ -49,29 +55,16 @@ public class PlattformConfiguration {
             ItemWriter plattformAccountItemWriter,
             StepExecutionListener plattformAccountStepExecutionListener
     ) {
-        stepBuilderFactory.get("convertAccountData").listener(plattformAccountStepExecutionListener)
+        stepBuilderFactory.get("convertAccountData")
+                .listener(plattformAccountStepExecutionListener)
                 .<AccountDto, Account> chunk(10)
                 .reader(plattformAccountItemReader)
                 .processor(accountProcessors)
                 .writer(plattformAccountItemWriter)
                 .faultTolerant()
                 .skipPolicy(new AccountSkipPolicy())
-                .build() }
-
-    @Bean
-    CompositeItemProcessor accountProcessors(
-            List<ItemFilterProcessor> accountFilters,
-            ItemProcessor plattformAccountItemProcessor
-    ) {
-        List itemProcessors = new ArrayList()
-        itemProcessors.addAll(accountFilters)
-        itemProcessors.add(plattformAccountItemProcessor)
-        
-        CompositeItemProcessor compositeProcessor = new CompositeItemProcessor()
-        compositeProcessor.setDelegates(itemProcessors) 
-        return compositeProcessor
+                .build() 
     }
-
 
     @Bean
     Step importLoanDataStep(
@@ -80,9 +73,63 @@ public class PlattformConfiguration {
             ItemWriter plattformLoanItemWriter,
             StepExecutionListener plattformLoanStepExecutionListener
     ) {
-        stepBuilderFactory.get("convertLoanData").listener(plattformLoanStepExecutionListener)
+        stepBuilderFactory.get("convertLoanData")
+                .listener(plattformLoanStepExecutionListener)
                 .<LoanDto, Loan> chunk(10)
                 .reader(plattformLoanItemReader)
                 .processor(plattformLoanItemProcessor)
                 .writer(plattformLoanItemWriter)
-                .build() } } 
+                .build() 
+    } 
+    
+    @Bean
+    Step importPortfolioPerformanceStep(
+            ItemReader plattformAccountItemReader,
+            ItemProcessor portfolioPerformanceProcessors,
+            ItemWriter portfolioPerformanceCsvItemWriter,
+            StepExecutionListener plattformAccountStepExecutionListener
+    ) {
+        stepBuilderFactory.get("convertPortfolioPerformanceData")
+                .<LoanDto, Loan> chunk(10)
+                .reader(plattformAccountItemReader)
+                .processor(portfolioPerformanceProcessors)
+                .writer(portfolioPerformanceCsvItemWriter)
+                .faultTolerant()
+                .skipPolicy(new AccountSkipPolicy())
+                .build() 
+    } 
+
+    
+    
+    @Bean
+    CompositeItemProcessor accountProcessors(
+            PlattformAccountTransferStatusFilterProcessor plattformAccountTransferStatusFilterProcessor,
+            ItemProcessor plattformAccountItemProcessor
+    ) {
+                
+        List itemProcessors = new ArrayList()
+        itemProcessors.add(plattformAccountTransferStatusFilterProcessor)
+        itemProcessors.add(plattformAccountItemProcessor)
+        
+        CompositeItemProcessor compositeProcessor = new CompositeItemProcessor()
+        compositeProcessor.setDelegates(itemProcessors) 
+        return compositeProcessor
+    }
+    
+    @Bean
+    CompositeItemProcessor portfolioPerformanceProcessors(
+            PlattformAccountTransferStatusFilterProcessor plattformAccountTransferStatusFilterProcessor,
+            PortfolioPerformanceTransferStatusFilterProcessor portfolioPerformanceTransferStatusFilterProcessor,
+            ItemProcessor portfolioPerformanceAccountItemProcessor
+    ) {
+        
+        List itemProcessors = new ArrayList()
+        itemProcessors.add(plattformAccountTransferStatusFilterProcessor)
+        itemProcessors.add(portfolioPerformanceTransferStatusFilterProcessor)
+        itemProcessors.add(portfolioPerformanceAccountItemProcessor)
+        
+        CompositeItemProcessor compositeProcessor = new CompositeItemProcessor()
+        compositeProcessor.setDelegates(itemProcessors) 
+        return compositeProcessor
+    }
+} 
