@@ -25,7 +25,7 @@ public class PortfolioPerformanceCsvItemWriter extends FlatFileItemWriter<Accoun
     @Autowired
     private PortfolioPerformanceTransferTypeMapper transferTypeMapper
     
-    PortfolioPerformanceCsvItemWriter(@Value('${path.portfolio-pro.output}') String path) {
+    PortfolioPerformanceCsvItemWriter(@Value('${path.portfolio-performance.output}') String path) {
         this.setResource             FileSystemResource.newInstance(path)
         this.setAppendAllowed        true
         this.setShouldDeleteIfExists true
