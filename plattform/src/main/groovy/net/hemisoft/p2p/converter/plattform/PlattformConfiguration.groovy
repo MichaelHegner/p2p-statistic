@@ -22,6 +22,7 @@ import net.hemisoft.p2p.converter.plattform.dto.AccountDto
 import net.hemisoft.p2p.converter.plattform.dto.LoanDto
 import net.hemisoft.p2p.converter.plattform.policy.AccountSkipPolicy
 import net.hemisoft.p2p.converter.plattform.processor.PlattformAccountTransferStatusFilterProcessor
+import net.hemisoft.p2p.converter.plattform.processor.PlattformAccountTransferTypeFilterProcessor
 import net.hemisoft.p2p.converter.plattform.processor.PortfolioPerformanceTransferStatusFilterProcessor
 
 @Configuration
@@ -103,11 +104,13 @@ public class PlattformConfiguration {
     
     @Bean
     CompositeItemProcessor accountProcessors(
+            PlattformAccountTransferTypeFilterProcessor plattformAccountTransferTypeFilterProcessor,
             PlattformAccountTransferStatusFilterProcessor plattformAccountTransferStatusFilterProcessor,
             ItemProcessor plattformAccountItemProcessor
     ) {
                 
         List itemProcessors = new ArrayList()
+        itemProcessors.add(plattformAccountTransferTypeFilterProcessor)
         itemProcessors.add(plattformAccountTransferStatusFilterProcessor)
         itemProcessors.add(plattformAccountItemProcessor)
         
@@ -118,12 +121,14 @@ public class PlattformConfiguration {
     
     @Bean
     CompositeItemProcessor portfolioPerformanceProcessors(
+            PlattformAccountTransferTypeFilterProcessor plattformAccountTransferTypeFilterProcessor,
             PlattformAccountTransferStatusFilterProcessor plattformAccountTransferStatusFilterProcessor,
             PortfolioPerformanceTransferStatusFilterProcessor portfolioPerformanceTransferStatusFilterProcessor,
             ItemProcessor portfolioPerformanceAccountItemProcessor
     ) {
         
         List itemProcessors = new ArrayList()
+        itemProcessors.add(plattformAccountTransferTypeFilterProcessor)
         itemProcessors.add(plattformAccountTransferStatusFilterProcessor)
         itemProcessors.add(portfolioPerformanceTransferStatusFilterProcessor)
         itemProcessors.add(portfolioPerformanceAccountItemProcessor)

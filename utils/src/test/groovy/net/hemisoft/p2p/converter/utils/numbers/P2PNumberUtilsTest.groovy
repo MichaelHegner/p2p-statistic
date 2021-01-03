@@ -21,9 +21,11 @@ class P2PNumberUtilsTest {
         [
             // INPUT            EXPECTED
             [ "+0.50€",         0.5d ],
-            [ "-0.50€",         0.5d ], // does absolut number // TODO: Think about it
+            [ "-0.50€",         0.5d ],  // does absolut number // TODO: Think about it
             [ "+1,500.00€",     1500d ],
             [ "+1, 500.00â‚¬",  1500d ],
+            [ "-10,10",         10.1d ], // does absolut number // TODO: Think about it
+            [ "10,10",          10.1d ],
             [ "abc",            null ],
             [ "",               null ],
             [ null,             null ],
