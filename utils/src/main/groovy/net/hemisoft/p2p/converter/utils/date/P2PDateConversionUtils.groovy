@@ -60,7 +60,7 @@ final class P2PDateConversionUtils {
             "dd.MM.yyyy", "dd.MM.yyyy HH:mm", "dd.MM.yyyy HH:mm:ss", 
             "dd.MM.yy",   "dd.MM.yy HH:mm",   "dd.MM.yy HH:mm:ss", 
             "dd/MM/yyyy", "dd/MM/yyyy HH:mm", "dd/MM/yyyy HH:mm:ss", 
-            "yyyy-MM-dd", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss"
+            "yyyy-MM-dd", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss",
         ]
         for (pattern in validPatterns) {
             if(GenericValidator.isDate(possibleDate, pattern, true)) {
@@ -74,8 +74,19 @@ final class P2PDateConversionUtils {
     // REGEX ...
     
     static LocalDate createByRegexIfPossible(possibleDate) {
-        def matcher = possibleDate =~ /\d{2}\/\d{2}\/\d{4}/
-        createByPatternIfPossible ( matcher.find() ? matcher[0] : null )
+        def matcher
+
+        matcher = possibleDate =~ /\d{2}\/\d{2}\/\d{4}/
+        if (matcher.find()) {
+            return createByPatternIfPossible ( matcher[0] )
+        }
+        
+        matcher = possibleDate =~ /\d{4}-\d{2}-\d{2}/
+        if (matcher.find()) {
+            return createByPatternIfPossible ( matcher[0] )
+        }
+        
+        
     }
     
     private P2PDateConversionUtils() {}

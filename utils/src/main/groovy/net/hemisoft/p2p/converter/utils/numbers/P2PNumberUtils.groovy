@@ -10,13 +10,14 @@ final class P2PNumberUtils {
     
     
     static Double createDoubleIfPossible(String possibleDouble) {
+        
+        if (NumberUtils.isCreatable(possibleDouble)) {
+            return NumberUtils.createDouble(possibleDouble)
+        } 
+        
         def temp 
         temp = StringUtils.deleteWhitespace possibleDouble
         temp = RegExUtils.replaceAll(temp, "[^0-9?!\\.,]", "")
-        
-        if (NumberUtils.isCreatable(temp)) {
-            return NumberUtils.createDouble(temp)
-        } 
         
         if (findWithDecimalPoint(temp).isPresent()) {
             temp = RegExUtils.replaceAll(temp, "[^0-9?!\\.]", "")

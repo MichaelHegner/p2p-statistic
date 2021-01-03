@@ -28,7 +28,7 @@ class PlattformAccountExcelRowMapper implements RowMapper<AccountDto> {
     AccountDto mapRow(RowSet rs) throws Exception {
         def dto = AccountDto.newInstance()
         def currentRow = rs.getCurrentRow()
-
+        
         if (null == currentRow) return null
         
         if(null != readerColumnTransferType && currentRow.length > readerColumnTransferType) {
@@ -54,6 +54,10 @@ class PlattformAccountExcelRowMapper implements RowMapper<AccountDto> {
         
         if(null != readerColumnInvestedAmount && currentRow.length > readerColumnInvestedAmount) {
             dto.amount = P2PNumberUtils.createDoubleIfPossible rs.getColumnValue(readerColumnInvestedAmount)
+        }
+        
+        if (StringUtils.contains(dto.issuedDate, "2020-06-26")) {
+            println dto
         }
         
         dto

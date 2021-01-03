@@ -39,8 +39,6 @@ public class PortfolioPerformanceCsvItemWriter extends FlatFileItemWriter<Accoun
                 setDelimiter DELIMITER
                 setFieldExtractor(new FieldExtractor<Account>() {
                     Object[] extract(Account item) {
-                        println item
-                        
                         def mappedTransferType = transferTypeMapper.map item.transferType
                         def amount = String.format(Locale.GERMAN, "%,.2f", item.amount.setScale(2, RoundingMode.HALF_DOWN))
                         

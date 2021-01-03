@@ -1,7 +1,6 @@
 package net.hemisoft.p2p.converter.plattform.processor
 
-import static org.apache.commons.lang3.StringUtils.endsWithIgnoreCase
-import static org.apache.commons.lang3.StringUtils.startsWithIgnoreCase
+import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase
 
 import javax.validation.Validation
 
@@ -41,6 +40,9 @@ class PlattformAccountItemProcessor implements ItemProcessor<AccountDto, Account
         entity.amount         = P2PNumberUtils.createDoubleIfPossible  dto.amount
         entity.issued         = P2PDateConversionUtils.createLocalDateIfPossible dto.issuedDate
         entity.plattform      = Plattform.valueOf plattform.toUpperCase()
+
+        println entity
+        
         entity
     }
     
@@ -56,10 +58,7 @@ class PlattformAccountItemProcessor implements ItemProcessor<AccountDto, Account
     }
     
     private boolean checkOperation(AccountDto dto, List<String> operations) {
-        boolean check = false
-        check |= operations.stream().anyMatch{s -> startsWithIgnoreCase(dto.transferType, s)}
-        check |= operations.stream().anyMatch{s -> endsWithIgnoreCase(dto.transferType, s)}
-        check
+        return operations.stream().anyMatch{s -> equalsIgnoreCase(dto.transferType, s)}
     }
 
 }
